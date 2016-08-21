@@ -1,0 +1,217 @@
+<!-- index.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery UI Tabs - Default functionality</title>
+
+    {% load staticfiles %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+<link
+href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.1.min.css"
+rel="stylesheet" type="text/css">
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.1.min.js"></script>
+<script src="mysite/polls/templates/myscript.js"></script>
+<link rel="stylesheet" type="text/css" href="mysite/polls/templates/mystyle.css">
+<link rel="stylesheet" type="text/css" href="mysite/polls/templates/semantic/dist/semantic.min.css">
+<script src="mysite/polls/templates/semantic/dist/semantic.min.js"></script>
+
+      <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+  <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+
+
+  $(function() {
+    $( "#menu" ).menu();
+  });
+
+  $(function() {
+    $( "a" )
+      .button()
+      .click(function( event ) {
+
+      });
+  });
+
+  $(function() {
+    // run the currently selected effect
+    function runEffect() {
+
+
+      // run the effect
+      $( "#effect" ).toggle("Drop");
+    };
+
+    // set effect from select menu value
+    $( "#button" ).click(function() {
+      runEffect();
+    });
+  });
+
+  $('.ui.sidebar')
+  .sidebar('toggle');
+
+</script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script>
+
+    function f1(){
+    $("#div2").append($(this));
+    $(this).click(f2);
+}
+    function f2(){
+    $("#div1").append($(this));
+    $(this).click(f1);
+}
+
+$(document).ready(function(){
+      $("#div1").children(".child").click(f1);
+      $("#div2").children(".child").click(f2);
+}
+);
+
+
+
+</script>
+
+
+<style>.ui-menu { width: 350px; }</style>
+    <style>form{margin:0px; display:inline} </style>
+{% autoescape off %}{{ script }}{% endautoescape %}
+
+
+</head>
+<body>
+
+  <div class="ui sidebar inverted vertical menu">
+    <a class="item">
+      1
+    </a>
+    <a class="item">
+      2
+    </a>
+    <a class="item">
+      3
+    </a>
+  </div>
+
+  <div class="pusher">
+    <div id="tabs">
+    <ul>
+    <li><a href="#tabs-1">db</a></li>
+    <li><a href="#tabs-2">data</a></li>
+    <li><a href="#tabs-3">MARS</a></li>
+    <li><a href="#tabs-4">lasso_aic</a></li>
+    <li><a href="#tabs-5">lasso_bic</a></li>
+    <li><a href="#tabs-6">BRT</a></li>
+  </ul>
+    <div id="tabs-1">
+            <button id="button" class="ui-state-default ui-corner-all">toggle</button>
+    <div class="toggler">
+    <div id="effect" class="ui-widget-content ui-corner-all">
+    <form action="/polls/database/" method="post">
+        {% csrf_token %}
+    <!--<ul id="menu">-->
+    {% for tb in db %}
+    <input type="radio" value={{ tb }} name="dbtable">{{ tb }}<br>
+    {% endfor %}
+        <input type="submit" value="press enter">
+
+    <!--</ul>-->
+    </form>
+
+
+    </div>
+    </div>
+
+                    <div id="div1" style="background-color:purple;color:white;padding:10px;" class="col-md-4">
+            {{dbtable}}<br>
+      {% for j in names %}
+    <input type="button" name="field" value={{ j }} class="child">
+    {% endfor %}
+        </div>
+
+                  <div id="div2" style="background-color:black;color:white;padding:10px;" class="col-md-4">
+                           <form action="/polls/database1/" method="post">
+            {% csrf_token %}
+                   <input type="submit" >
+       </form>
+
+                  </div>
+
+        <div>
+            {% for j in field %}
+{{i}}
+{% endfor %}
+        </div>
+    </div>
+
+
+
+
+  <div id="tabs-2">
+      {{nr}}
+<form action="/polls/data/" method="post">
+    {% csrf_token %}
+    0
+    <input type="range" name="firstrow" min="0" max="{{nrow}}" value="{{row}}">
+    <input type="range" name="lastrow" min="0" max="{{nrow}}" value="{{row}}+100">
+    {{nrow}}<br>
+    <input type="submit" value="data" />
+</form>
+
+      {% autoescape off %}{{ table }}{% endautoescape %}
+
+  </div>
+  <div id="tabs-3">
+      <a href="http://localhost:8000/polls/mars">mars</a><br>
+      summary:<br>{{summary|linebreaks}}
+      trace:<br>{{trace|linebreaks}}
+  </div>
+  <div id="tabs-4">
+      <a href="http://localhost:8000/polls/lasso_aic">lasso_aic</a><br>
+    test_score_aic:{{ score_aic }}<br>
+    time:{{time}}<br>
+
+  </div>
+    <div id="tabs-5">
+        <a href="http://localhost:8000/polls/lasso">lasso</a><br>
+        test_score_bic:{{ score_bic }}<br>
+        time:{{time}}<br>
+    </div>
+
+    <div id="tabs-6">
+        <a href="http://localhost:8000/polls/brt">brt</a><br>
+        {% autoescape off %}{{ div_p1 }}{% endautoescape %}
+        {% autoescape off %}{{ div_p2 }}{% endautoescape %}
+    </div>
+    </div>
+
+<form aciton="/polls/test/" method="post">
+    {% csrf_token %}
+    <label for="user_name">您的名字</label>
+    <input id="user_name0" type="text" name="user_name[]">
+    <input id="user_name1" type="text" name="user_name[]">
+    <input type="submit" value="進入網站">
+
+</form>
+  </div>
+      {% for t in test %}
+    {{t}}
+    {% endfor %}
+{{test}}
+</body>
+</html>

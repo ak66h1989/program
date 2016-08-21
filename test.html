@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    
+    function f1(){
+    $("#div2").append($(this));
+    $(this).click(f2);
+}
+    function f2(){
+    $("#div1").append($(this));
+    $(this).click(f1);
+}
+    
+$(document).ready(function(){
+   $("#div1 button").click(f1);
+   $("#div2 button").click(f2);
+}   
+);
+  
+
+//    function f1(){
+//    $("#div1 button").click(function(){
+//    $(this).remove();
+//    var b=$("<button>"+$(this).text()+"</button>");
+//    b.appendTo("#div2");
+//    f2();
+//        });
+//    
+//}
+//    function f2(){
+//    $("#div2 button").click(function(){
+//    $(this).remove();
+//    var b=$("<button>"+$(this).text()+"</button>");
+//    b.appendTo("#div1");
+//    f1();
+//        });
+//        
+//}
+//
+//$(document).ready(function(){f1();f2();});
+
+</script>
+<style>
+/*.city {
+    float: left;
+    margin: 5px;
+    padding: 0px;
+    width: 100px;
+    height: 300px;
+
+}*/
+
+/*div {
+    width: 300px;
+    height: 300px;
+}*/
+</style>
+
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div id='div0' style="background-color:green;color:white;padding:10px;" class="col-md-4">
+        <button>1</button>
+        <button>2</button>
+    </div>
+
+
+    <div id='div1' style="background-color:blue;color:white;padding:10px;" class="col-md-4">
+        <button>List item 1</button>
+        <button>List item 2</button>
+        <button>List item 3</button>
+    </div>
+
+    <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
+        <button>List item 4</button>
+        <button>List item 5</button>
+        <button>List item 6</button>
+    </div>
+</div>
+
+
+</body>
+</html>
