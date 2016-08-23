@@ -241,8 +241,9 @@ df = df.groupby(['a']).apply(change1)
 
 from sqlite3 import *
 conn = connect('D:\\tse.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\tse.sqlite3')
 c = conn.cursor()
-df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))`", conn).replace('', nan)
+df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))`", conn)
 df
 df['e']=df.groupby(['a'])['d'].pct_change()
 df['d'][6]=1
@@ -280,9 +281,37 @@ isnan(df['f'][0])
 df['g'][i] != df['g'][i-1] and (isnull(df['g'][2-1]) !=True)
 seasons = ['Spring', 'Summer', 'Fall', 'Winter']
 df[['f']].round(decimals=0)
-round(df[['f']],-1)
+round(df[['f']], -1)
 def rep(s):
     s.replace('.0', '')
 '.0'.replace('.0', '')
 df[['f']].astype(str).replace('.0', '')
 df['f'][1].replace('.0', '')
+
+from numpy import *
+df['收盤價']=df[['收盤價']].replace('--', NaN).astype(float)
+df['change']=df.groupby(['證券代號'])['收盤價'].pct_change()
+df['sign']=sign(df['change']).astype(str)
+df['trend']=nan
+for i in range(len(df)):
+    if df['sign'][i]=='0.0':
+        df['trend'][i]=df['sign'][i-1]
+    else:
+        df['trend'][i]=df['sign'][i]
+
+df['reverse']=nan
+for i in range(1, len(df)):
+    if df['trend'][i] != df['trend'][i-1] and isnull(df['trend'][i-1]) !=True:
+        df['reverse'][i]='r'
+    else:
+        df['reverse'][i] = 't'
+
+from sqlite3 import *
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\TEJ.sqlite3')
+conn1 = connect('C:\\Users\\ak66h_000\\Documents\\db\\mysum.sqlite3')
+c = conn.cursor()
+c1 = conn1.cursor()
+df = read_sql_query("SELECT * from `forr`", conn)
+df.to_sql('forr', conn1, index=False)
+df = read_sql_query("SELECT * from `xlwings`", conn)
+df.to_sql('xlwings', conn1, index=False)
