@@ -1,7 +1,7 @@
 ##----- pe is '0.00' when pe < 0 -----
 
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\tse.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\tse.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -11,7 +11,7 @@ from pandas import *
 import re
 import datetime
 
-lastdate = datetime.datetime(2016, 8, 8)  #last time 8/8
+lastdate = datetime.datetime(2016, 8, 12)  #last time 8/22
 delta = datetime.datetime.now() - lastdate
 ###----大盤統計資訊 + 大盤成交統計 in one new----
 

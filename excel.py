@@ -1,7 +1,7 @@
 from xlwings import *
 
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\mops.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\mops.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -66,11 +66,11 @@ inc = inc.sort_values(['公司代號', '年', '季'])
 # df=read_csv('C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/季/綜合損益表/綜合損益表(季)-dashboard.csv',encoding='cp950')
 # df=df[['年季','公司代號','公司名稱','本期淨利（淨損）','本期綜合損益總額','基本每股盈餘（元）','本期綜合損益總額.wma','本期綜合損益總額.ma','grow','grow.ma']]
 # df=df.sort_values(['公司代號','年季'],ascending=[True,False])
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\TEJ.sqlite3')
 c = conn.cursor()
 tse = read_sql_query("SELECT * FROM tse_ch", conn)
 tse = tse[['公司代號', '產業別']]
-conn = connect('C:\\Users\\ak66h_000\\Documents\\summary.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\summary.sqlite3')
 c = conn.cursor()
 operation = read_sql_query("SELECT * FROM 營益分析", conn).drop(['營業收入(百萬元)'], axis=1)
 # operation['公司代號'] = operation['公司代號'].astype(str).replace('\.0', '', regex=True)
@@ -91,7 +91,7 @@ df = df.sort_values(['公司代號', '年', '季'])
 df = df.groupby('公司代號').last().reset_index()
 df = df.drop(['年', '季', '公司簡稱'], 1)
 
-conn = connect('C:\\Users\\ak66h_000\\Documents\\tse.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\tse.sqlite3')
 c = conn.cursor()
 close = read_sql_query("SELECT 證券代號, 年月日, 收盤價 FROM `每日收盤行情(全部(不含權證、牛熊證))`", conn)
 close = close.rename(columns={'證券代號': '公司代號'})
@@ -134,7 +134,7 @@ m = m[['公司代號', '公司名稱', '產業別', '本期淨利（淨損）', 
              '總資產週轉率(次)', '資產報酬率(%)', '稅前純益佔實收資本比率(%)', '純益率(%)', '每股盈餘(元)', '現金流量比率(%)', '現金流量允當比率(%)', 
              '現金再投資比率(%)', '流通在外股數', '市值', '收盤價', '年月日']]
 
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\TEJ.sqlite3')
 c = conn.cursor()
 # m[(m['本益比'] < 15) & (m['殖利率(%)'] > 5) & (m['股價淨值比'] < 1.5)].sort_values(['ave'])
 xlwings = m[(m['營業收入(百萬元)'] > 3000) & (m['本益比'] < 15) & (m['殖利率(%)'] > 5) & (m['股價淨值比'] < 1.5)].sort_values(['ave'])
@@ -150,7 +150,7 @@ wb = Workbook('C:\\Users\\ak66h_000\\Desktop\\dashboard.xlsm')
 Range('new', (1,1)).options(index=False).value = xlwings
 print('finish')
 
-m[m['公司代號']=='2316']
+# m[m['公司代號']=='2316']
 
 #----IFRS+preIFRS.xlsm---
 
