@@ -1,7 +1,8 @@
   # ----import----
 from sqlite3 import *
 
-conn = connect('C://Users//ak66h_000//Documents//TEJ.sqlite3')
+conn = connect('C://Users//ak66h_000//Documents//mops.sqlite3')
+conn = connect('D://mops.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -87,6 +88,9 @@ inc['本期綜合損益總額.wma'] = inc.本期綜合損益總額.ewm(com=19).m
 inc['本期綜合損益總額.ma'] = inc['本期綜合損益總額'].rolling(window=12).mean() * 4
 sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s"
 bal = read_sql_query(sql % ('ifrs前後-資產負債表-一般業', com), conn)
+#--- summary ---
+# conn = connect('C://Users//ak66h_000//Documents//summary.sqlite3')
+conn = connect('D://summary.sqlite3')
 fin = read_sql_query(sql % ('財務分析', com), conn)
 report = mymerge(inc, bal)
 report['流動比率'] = report['流動資產'] / report['流動負債']
@@ -100,6 +104,8 @@ remcol = ['Unnamed: 21', '待註銷股本股數（單位：股）', 'Unnamed: 22
 report = report.drop(remcol, axis=1)
 list(report)
 #--- tse ---
+# conn = connect('C://Users//ak66h_000//Documents//tse.sqlite3')
+conn = connect('D://tse.sqlite3')
 sql="SELECT * FROM '%s' WHERE 證券代號 LIKE %s"
 close = read_sql_query(sql% ('每日收盤行情(全部(不含權證、牛熊證))', com), conn)
 value = read_sql_query(sql% ('個股日本益比、殖利率及股價淨值比', com), conn).drop(['證券名稱'], 1)

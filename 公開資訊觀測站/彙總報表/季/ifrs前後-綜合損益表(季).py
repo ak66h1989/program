@@ -1,3 +1,7 @@
+from pandas import *
+from sqlite3 import *
+from numpy import *
+conn = connect('D:\\mops.sqlite3')
 sql = "SELECT * FROM `%s` " % ('ifrs前後-綜合損益表')
 inc = read_sql_query(sql, conn).replace('--', nan).replace('', nan)
 # inc['年'] = [x.split('/')[0] for x in inc['年季']]
@@ -24,6 +28,29 @@ for i in col1:
     if inc[i].dtypes is dtype('O'):
         inc[[i]] = inc[[i]].astype(float)
 
+def change0(df):
+    df0 = df[[x for x in list(df) if df[x].dtypes == 'O']]
+    return df0
+inc.apply(change0)
+
+def change0(s):
+    if s.dtypes == 'O':
+        return s
+    else:
+        return s-s
+inc.apply(change)
+
+def change(s):
+    if s.dtypes != 'O':
+        a1 = array(s)
+        v = vstack((a1[0], a1[1:] - a1[0:len(s) - 1]))
+        se = Series(v)
+        return se
+    else:
+        return s
+inc = inc.groupby(['公司代號', '年']).apply(change).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
+
+
 def change1(df):
     df0 = df[[x for x in list(df) if df[x].dtype == 'O']]
     df1 = df[[x for x in list(df) if df[x].dtype != 'O']]
@@ -32,8 +59,8 @@ def change1(df):
     v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
     h = hstack((a0, v))
     return DataFrame(h, columns=list(df0) + list(df1))
-
 inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
+
 table='ifrs前後-綜合損益表(季)'
 # ----create table----
 names = list(inc)
@@ -59,3 +86,11 @@ sql='insert into `%s`(`%s`) values(%s)'%(table, '`,`'.join(list(inc)), ','.join(
 c.executemany(sql, inc.values.tolist())
 conn.commit()
 print('finish')
+len(inc['營業收入'])
+len(inc['營業收入'][1:] - inc['營業收入'][0:len(inc['營業收入']) - 1])
+len(inc['營業收入'][0:len(inc['營業收入']) - 1])
+a1=inc['營業收入']
+v = vstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
+Series([a1[0], a1[1:] - a1[0:len(a1) - 1]])
+a1[0].append(a1[0])
+concat([a1[0], a1[0]])

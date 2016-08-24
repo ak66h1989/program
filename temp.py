@@ -241,8 +241,10 @@ df = df.groupby(['a']).apply(change1)
 
 from sqlite3 import *
 conn = connect('D:\\tse.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\tse.sqlite3')
 c = conn.cursor()
-df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))`", conn).replace('', nan)
+df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))`", conn)
+df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))` where `證券代號`='2316'", conn)
 df
 df['e']=df.groupby(['a'])['d'].pct_change()
 df['d'][6]=1
@@ -280,9 +282,60 @@ isnan(df['f'][0])
 df['g'][i] != df['g'][i-1] and (isnull(df['g'][2-1]) !=True)
 seasons = ['Spring', 'Summer', 'Fall', 'Winter']
 df[['f']].round(decimals=0)
-round(df[['f']],-1)
+round(df[['f']], -1)
 def rep(s):
     s.replace('.0', '')
 '.0'.replace('.0', '')
 df[['f']].astype(str).replace('.0', '')
 df['f'][1].replace('.0', '')
+
+from pandas import *
+from numpy import *
+df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))` where `證券代號`='2316'", conn)
+df['收盤價']=df[['收盤價']].replace('--', NaN).astype(float)
+df['change']=df.groupby(['證券代號'])['收盤價'].pct_change()
+df['sign']=sign(df['change']).astype(str)
+df['trend']=df['sign']
+for i in range(len(df)):
+    if df['trend'][i]=='0.0':
+        df['trend'][i]=df['trend'][i-1]
+
+df['reverse']=nan
+for i in range(1, len(df)):
+    if df['trend'][i] != df['trend'][i-1] and isnull(df['trend'][i-1]) !=True:
+        df['reverse'][i]='r'
+    else:
+        df['reverse'][i] = 't'
+df
+from sqlite3 import *
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\TEJ.sqlite3')
+conn1 = connect('D:\\mysum.sqlite3')
+c = conn.cursor()
+c1 = conn1.cursor()
+forr = read_sql_query("SELECT * from `forr`", conn1)
+df.to_sql('forr', conn1, index=False)
+df = read_sql_query("SELECT * from `xlwings`", conn)
+df.to_sql('xlwings', conn1, index=False)
+
+df[['sign', 'trend']]
+
+def mymerge(x, y):
+    m = merge(x, y, on=[i for i in list(x) if i in list(y)], how='outer')
+    return m
+
+df = mymerge(df, forr)
+list(df)
+
+df[['pctB']].apply(lambda x: x - x.shift())
+df['收盤價'].map(lambda x: x - x.shift())
+df['收盤價'].shift()
+
+def f(x):
+    if x=='0.0':
+        x=x.shift(1)
+        return x
+df[['trend']]
+
+def f(x):
+    if x != x.shift(1) and isnull(x.shift(1)) !=True:
+        x = 'r'
