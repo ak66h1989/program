@@ -1,6 +1,7 @@
 from pandas import *
 from sqlite3 import *
 from numpy import *
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\mops.sqlite3')
 conn = connect('D:\\mops.sqlite3')
 sql = "SELECT * FROM `%s` " % ('ifrs前後-綜合損益表')
 inc = read_sql_query(sql, conn).replace('--', nan).replace('', nan)
@@ -34,7 +35,7 @@ def change0(df):
 inc.apply(change0)
 
 def change0(s):
-    if s.dtypes == 'O':
+    if type(s) == str:
         return s
     else:
         return s-s
@@ -43,12 +44,12 @@ inc.apply(change)
 def change(s):
     if s.dtypes != 'O':
         a1 = array(s)
-        v = vstack((a1[0], a1[1:] - a1[0:len(s) - 1]))
-        se = Series(v)
+        h = hstack((a1[0], a1[1:] - a1[0:len(s) - 1]))
+        se = Series(h)
         return se
     else:
         return s
-inc = inc.groupby(['公司代號', '年']).apply(change).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
+inc = inc.groupby(['公司代號', '年']).apply(change0).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
 
 
 def change1(df):
@@ -89,8 +90,9 @@ print('finish')
 len(inc['營業收入'])
 len(inc['營業收入'][1:] - inc['營業收入'][0:len(inc['營業收入']) - 1])
 len(inc['營業收入'][0:len(inc['營業收入']) - 1])
-a1=inc['營業收入']
-v = vstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
+a1=array(inc['營業收入'])
+h= hstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
 Series([a1[0], a1[1:] - a1[0:len(a1) - 1]])
-a1[0].append(a1[0])
+a1[0:1].append(a1[0:1])
 concat([a1[0], a1[0]])
+
