@@ -240,62 +240,24 @@ df = df.groupby(['a']).apply(change1)
 #df.dtypes
 
 from sqlite3 import *
+from pandas import *
+from numpy import *
 conn = connect('D:\\tse.sqlite3')
 conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\tse.sqlite3')
 c = conn.cursor()
 df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))`", conn)
 df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))` where `證券代號`='2316'", conn)
 df
-df['e']=df.groupby(['a'])['d'].pct_change()
-df['d'][6]=1
-
-def f(x):
-    if x=='i' or 'd': return 'd'
-    if x==0: return 'e'
-    if x>0: return 'i'
-
-def trend(df):
-    for i in df['f']:
-        if i == 'i' or 'd':
-
-    return df
-df.ix[df.f=='i','g']='i'
-df.ix[df.f=='d','g']='d'
-df['f']=sign(df['e']).astype(str).replace('.0', '')
-df['f']=sign(df['e'])
-for i in range(len(df)):
-    if df['f'][i]=='0.0':
-        df['g'][i]=df['f'][i-1]
-    else:
-        df['g'][i]=df['f'][i]
-
-df['h']=nan
-for i in range(1, len(df)):
-    if df['g'][i] != df['g'][i-1] and isnull(df['g'][i-1]) !=True:
-        df['h'][i]='c'
-    else:
-        df['h'][i] = 'uc'
-
-sign(df['g'][0])
-isnull(df['e'][0])
-isnan(df['f'][0])
-df['g'][i] != df['g'][i-1] and (isnull(df['g'][2-1]) !=True)
-seasons = ['Spring', 'Summer', 'Fall', 'Winter']
-df[['f']].round(decimals=0)
-round(df[['f']], -1)
-def rep(s):
-    s.replace('.0', '')
-'.0'.replace('.0', '')
-df[['f']].astype(str).replace('.0', '')
-df['f'][1].replace('.0', '')
-
-from pandas import *
-from numpy import *
-df = read_sql_query("SELECT * from `每日收盤行情(全部(不含權證、牛熊證))` where `證券代號`='2316'", conn)
 df['收盤價']=df[['收盤價']].replace('--', NaN).astype(float)
 df['change']=df.groupby(['證券代號'])['收盤價'].pct_change()
 df['sign']=sign(df['change']).astype(str)
 df['trend']=df['sign']
+i=df[df['trend']=='0.0'].index
+while i.tolist() !=[]:
+    df.ix[i]=df.ix[i-1]
+    i = df[df['trend'] == '0.0'].index
+
+
 for i in range(len(df)):
     if df['trend'][i]=='0.0':
         df['trend'][i]=df['trend'][i-1]

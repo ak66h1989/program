@@ -28,6 +28,8 @@ inc.dtypes
 for i in col1:
     if inc[i].dtypes is dtype('O'):
         inc[[i]] = inc[[i]].astype(float)
+i=inc.ix[inc.公司代號=='2316'].index
+inc.ix[i-1]
 
 def change0(df):
     df0 = df[[x for x in list(df) if df[x].dtypes == 'O']]
