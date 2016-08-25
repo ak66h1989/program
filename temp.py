@@ -339,3 +339,13 @@ df[['trend']]
 def f(x):
     if x != x.shift(1) and isnull(x.shift(1)) !=True:
         x = 'r'
+df.max()
+df['收盤價'].dtypes=='float64'
+list(df['收盤價'])
+Series(df)
+def f(x):
+    x+1
+    return x+1
+    
+f(2)
+df.apply(sum)

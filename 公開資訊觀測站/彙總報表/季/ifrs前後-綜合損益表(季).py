@@ -89,7 +89,7 @@ print('finish')
 len(inc['營業收入'])
 len(inc['營業收入'][1:] - inc['營業收入'][0:len(inc['營業收入']) - 1])
 len(inc['營業收入'][0:len(inc['營業收入']) - 1])
-a1=inc['營業收入']
+a1=array(inc['營業收入'])
 v = vstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
 Series([a1[0], a1[1:] - a1[0:len(a1) - 1]])
 a1[0].append(a1[0])
