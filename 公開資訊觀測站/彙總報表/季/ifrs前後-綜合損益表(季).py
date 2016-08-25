@@ -29,38 +29,35 @@ for i in col1:
     if inc[i].dtypes is dtype('O'):
         inc[[i]] = inc[[i]].astype(float)
 
-def change0(df):
-    df0 = df[[x for x in list(df) if df[x].dtypes == 'O']]
-    return df0
-inc.apply(change0)
 
 def change0(s):
-    if type(s) == str:
+    if s.dtypes == 'object':
         return s
     else:
         return s-s
-inc.apply(change)
-
-def change(s):
-    if s.dtypes != 'O':
-        a1 = array(s)
-        h = hstack((a1[0], a1[1:] - a1[0:len(s) - 1]))
-        se = Series(h)
-        return se
-    else:
-        return s
-inc = inc.groupby(['公司代號', '年']).apply(change0).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
-
+inc.apply(change0)
+inc.groupby(['公司代號', '年']).apply(change0)    # apply applies function to each series of one dataframe(dataframe object)
+inc.dtypes
+inc[['公司代號']].dtypes=='0'
+def change1(df):
+    df1 = df[[x for x in list(df) if df[x].dtype != 'object']]
+    a1 = array(df1)
+    v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
+    return DataFrame(v, columns=list(df1))
+inc0 = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True);inc0
+list(inc0)
 
 def change1(df):
-    df0 = df[[x for x in list(df) if df[x].dtype == 'O']]
-    df1 = df[[x for x in list(df) if df[x].dtype != 'O']]
+    df0 = df[[x for x in list(df) if df[x].dtype == 'object']]
+    df1 = df[[x for x in list(df) if df[x].dtype != 'object']]
     a0 = array(df0)
     a1 = array(df1)
     v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
     h = hstack((a0, v))
     return DataFrame(h, columns=list(df0) + list(df1))
-inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True).sort_values(['年', '季', '公司代號'])
+inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True).sort_values(['年', '季', '公司代號']);inc  # apply applies function to each datafrme(group) of one dataframe(groupby object)
+
+
 
 table='ifrs前後-綜合損益表(季)'
 # ----create table----
@@ -91,12 +88,18 @@ len(inc['營業收入'])
 len(inc['營業收入'][1:] - inc['營業收入'][0:len(inc['營業收入']) - 1])
 len(inc['營業收入'][0:len(inc['營業收入']) - 1])
 a1=array(inc['營業收入'])
-<<<<<<< HEAD
-v = vstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
-=======
 h= hstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
->>>>>>> 4c31860edd5d519f5eca3810e5ab5913722a2450
 Series([a1[0], a1[1:] - a1[0:len(a1) - 1]])
 a1[0:1].append(a1[0:1])
 concat([a1[0], a1[0]])
 
+sf = Series([1, 1, 2, 3, 3, 3])
+sf.groupby(sf).filter(lambda x: x.sum() > 0)
+sf.filter(lambda x: x.sum() > 0)
+tsdf = DataFrame(np.random.randn(1000, 3),
+index=date_range('1/1/2000', periods=1000),
+columns=['A', 'B', 'C'])
+tsdf[::2]
+tsdf.ix[::2] = np.nan
+grouped = tsdf.groupby(lambda x: x.year)
+grouped.fillna(method='pad')
