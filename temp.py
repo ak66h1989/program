@@ -199,17 +199,7 @@ df = DataFrame({'a' : ['foo', 'bar', 'foo', 'bar',
                    'c' : np.random.randn(8),
                     'd' : np.random.randn(8)}).sort_values(['a', 'b']).reset_index(drop=True)
 a=array(df)
-a[0,0]=1
-a[:,3]=1
-df
-df.query('d > 0').assign(e = lambda x: (x['a']/x['b']))
-df.apply(mean, axis=1
-f = lambda x: x+1
-def f(x):
-    if x<0: return 'd'
-    if x==0: return 'e'
-    if x>0: return 'i'
-f(2)
+
         
 df.applymap(f)
 df['e']=df['d'].map(f)
@@ -254,8 +244,23 @@ df['sign']=sign(df['change']).astype(str)
 df['trend']=df['sign']
 i=df[df['trend']=='0.0'].index
 while i.tolist() !=[]:
-    df.ix[i]=df.ix[i-1]
+    df.ix[i, 'trend']=df.ix[i-1, 'trend'].tolist()
     i = df[df['trend'] == '0.0'].index
+df['trend']
+i=df[df['trend']=='1.0'].index
+a=array(i)
+l=(a[1:]-a[:-1]).tolist()
+i=array([ i for i, j in enumerate(l) if j !=1])+1
+a[i]
+df['reverse']=df['trend']
+df.ix[a[i], 'reverse']='r'
+
+i=df[df['trend']=='-1.0'].index
+a=array(i)
+l=(a[1:]-a[:-1]).tolist()
+i=array([ i for i, j in enumerate(l) if j !=1])+1
+df.ix[a[i], 'reverse']='r'
+df.ix[(df['reverse'] !='nan')&(df['reverse'] !='r'), 'reverse']='t' ;df['reverse']
 
 
 for i in range(len(df)):
