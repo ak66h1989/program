@@ -1,5 +1,8 @@
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+import os
+os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+# os.chdir('D:\\')
+conn = connect('mysum.sqlite3')
 c = conn.cursor()
 
 import requests

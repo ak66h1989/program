@@ -1,8 +1,9 @@
   # ----import----
 from sqlite3 import *
-
-conn = connect('C://Users//ak66h_000//Documents//mops.sqlite3')
-conn = connect('D://mops.sqlite3')
+import os
+os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+# os.chdir('D:\\')
+conn = connect('mops.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -30,7 +31,10 @@ def fill(s):
         l = l + repeat(s[a[i]], le[i]).tolist()
     return Series(l, name=s.name)
 id='2316'
-ac = read_sql_query("SELECT * from '會計師查核報告'", conn).sort_values(['年', '季', '證券代號'])
+com = "'%s'"%(id)
+sql = "SELECT * FROM '%s' WHERE 證券代號 LIKE %s" % ('會計師查核報告', com)
+ac = read_sql_query(sql, conn).replace('--', 'NaN').sort_values(['年', '季', '證券代號'])
+ac[['年', '季']]=ac[['年', '季']].astype(str)
 ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('-', '/', regex=True)
 ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('\xa0', '', regex=True)
 # ac['年'] = ac['\u3000 核閱或查核日期'].str.split('\').str[0]
@@ -42,7 +46,6 @@ ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace(
 # ac['\u3000 核閱或查核日期'] = ac['年'] + '\' + ac['月'] + '\' + ac['日']
 ac1 = ac[ac['證券代號'] == id].rename(columns={'\u3000 核閱或查核日期': '年月日'})
 # com = "'5522%'"
-com = "'%s'"%(id)
 sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s" % ('ifrs前後-綜合損益表', com)
 inc = read_sql_query(sql, conn).replace('--', 'NaN')
 # inc['年'] = [x.split('/')[0] for x in inc['年季']]
@@ -65,19 +68,20 @@ inc = inc[col]
 #     a = array(s)
 #     return Series(append(a[0], a[1:] - a[0:len(s) - 1]),name=s.name)
 for i in col1:
-    if inc[i].dtypes is dtype('O'):
+    if inc[i].dtypes == 'object':
         inc[[i]] = inc[[i]].astype(float)
-
+inc[['年', '季']]=inc[['年', '季']].astype(str)
 def change1(df):
-    df0 = df[[x for x in list(df) if df[x].dtype == 'O']]
-    df1 = df[[x for x in list(df) if df[x].dtype != 'O']]
+    df0 = df[[x for x in list(df) if df[x].dtype == 'object']]
+    df1 = df[[x for x in list(df) if df[x].dtype != 'object']]
     a0 = array(df0)
     a1 = array(df1)
     v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
     h = hstack((a0, v))
     return DataFrame(h, columns=list(df0) + list(df1))
 
-inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True)
+
+inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True)  #'年', '季' must be string
 inc['grow_s'] = inc['本期綜合損益總額'].pct_change(1)
 inc['grow_hy'] = inc['本期綜合損益總額'].rolling(window=2).sum().pct_change(2)
 inc[col1] = inc[col1].rolling(window=4).sum()
@@ -88,9 +92,11 @@ inc['本期綜合損益總額.wma'] = inc.本期綜合損益總額.ewm(com=19).m
 inc['本期綜合損益總額.ma'] = inc['本期綜合損益總額'].rolling(window=12).mean() * 4
 sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s"
 bal = read_sql_query(sql % ('ifrs前後-資產負債表-一般業', com), conn)
+bal[['年', '季']]=bal[['年', '季']].astype(str)
+print('mops')
+
 #--- summary ---
-# conn = connect('C://Users//ak66h_000//Documents//summary.sqlite3')
-conn = connect('D://summary.sqlite3')
+conn = connect('summary.sqlite3')
 fin = read_sql_query(sql % ('財務分析', com), conn)
 report = mymerge(inc, bal)
 report['流動比率'] = report['流動資產'] / report['流動負債']
@@ -102,10 +108,12 @@ report = report.rename(columns={'公司代號': '證券代號'})
 report = mymerge(ac1, report)
 remcol = ['Unnamed: 21', '待註銷股本股數（單位：股）', 'Unnamed: 22', ]
 report = report.drop(remcol, axis=1)
+report[['年', '季', '綜合損益總額歸屬於母公司業主', '權益總額', 'profitbility', '權益報酬率']]
 list(report)
+print('summary')
+
 #--- tse ---
-# conn = connect('C://Users//ak66h_000//Documents//tse.sqlite3')
-conn = connect('D://tse.sqlite3')
+conn = connect('tse.sqlite3')
 sql="SELECT * FROM '%s' WHERE 證券代號 LIKE %s"
 close = read_sql_query(sql% ('每日收盤行情(全部(不含權證、牛熊證))', com), conn)
 value = read_sql_query(sql% ('個股日本益比、殖利率及股價淨值比', com), conn).drop(['證券名稱'], 1)
@@ -134,6 +142,8 @@ list(bal)
 list(deal)
 list(fin)
 list(trust)
+print('tse')
+
 m=mymerge(close, value)
 m=mymerge(m, deal)
 m[['自營商(自行買賣)賣出股數', '自營商(自行買賣)買賣超股數', '自營商(自行買賣)買進股數', '自營商(避險)賣出股數', '自營商(避險)買賣超股數', '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數']] = m[['自營商(自行買賣)賣出股數', '自營商(自行買賣)買賣超股數', '自營商(自行買賣)買進股數', '自營商(避險)賣出股數', '自營商(避險)買賣超股數', '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數']].fillna(0)
@@ -144,6 +154,9 @@ m[['投信鉅額交易']] = m[['投信鉅額交易']].fillna('no')
 m=mymerge(m, index)
 m=mymerge(m, rindex)
 m=mymerge(m, report)
+list(m)
+print('merge')
+
 m.年月日=to_datetime(m.年月日, format='%Y/%m/%d').apply(lambda x: x.date()) # should convert to datetime before sort, or the result is  wrong
 m=m.sort_values(['年月日','證券代號']).reset_index(drop=True) # reset_index make the index ascending
 m[list(report)] = m[list(report)].apply(fill)
@@ -163,7 +176,26 @@ col=['年月日', '證券代號','time', '成交股數', '成交筆數', '成交
   '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數', '外資鉅額交易', '外資買進股數', '外資賣出股數', '外資買賣超股數', '投信鉅額交易', '投信買進股數',
   '投信賣出股數', '投信買賣超股數', '基本每股盈餘（元）','每股參考淨值', '流動比率', '負債佔資產比率', '權益報酬率', '毛利率', '營業利益率', '綜合稅後純益率', 'grow_s', 'grow_hy', 'grow_y', 'grow',
     '本期綜合損益總額.wma', '本期綜合損益總額.ma', 'profitbility', 'investment', '建材營造類指數', '漲跌點數', '漲跌百分比(%)', '建材營造類報酬指數', 'r漲跌點數', 'r漲跌百分比(%)']
+m[['profitbility', '權益報酬率']]
+print('before dropna')
 m=m.dropna(axis=1, how='all')
+
+TWII = web.DataReader("^TWII", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'TWII'})
+SSE = web.DataReader("000001.SS", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'SSE'})
+HSI = web.DataReader("^HSI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'HSI'})
+# STI = web.DataReader("^STI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'STI'})
+N225 = web.DataReader("^N225", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'N225'})
+AXJO = web.DataReader("^AXJO", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'AXJO'})
+GSPC = web.DataReader("^GSPC", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'GSPC'})
+IXIC = web.DataReader("^IXIC", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'IXIC'})
+GDAXI = web.DataReader("^GDAXI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'GDAXI'})
+# FTSE = web.DataReader("^FTSE", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'FTSE'})
+STOXX50E = web.DataReader("^STOXX50E", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'STOXX50E'})
+l = [TWII, SSE, HSI, N225, AXJO, GSPC, IXIC, GDAXI, STOXX50E]
+index = reduce(mymerge, l).sort_values(['年月日'])
+index.年月日=to_datetime(index.年月日).apply(lambda x: x.date())
+print('index')
+
 forr=m[col]
 forr['lnmo'] = log(forr['收盤價']/forr['收盤價'].shift(120))
 forr['lnr'] = log(forr['收盤價']/forr['收盤價'].shift())
@@ -206,6 +238,7 @@ forr.ix[forr.ch_u < 0, 'ch_u'], forr.ix[forr.ch_d > 0, 'ch_d'] = 0, 0
 forr['ch_d'] = forr['ch_d'].abs()
 forr['rsi'] = forr.ch_u.ewm(alpha=1/14).mean()/(forr.ch_u.ewm(alpha=1/14).mean()+forr.ch_d.ewm(alpha=1/14).mean())*100 #與r和凱基同,ema的公式與一般的ema不同。公式見http://www.fmlabs.com/reference/default.htm?url=RSI.htm
 forr['MA5'] = forr.收盤價.rolling(window=5).mean()
+forr['MA10'] = forr.收盤價.rolling(window=10).mean()
 forr['MA20'] = forr.收盤價.rolling(window=20).mean()
 forr['MA60'] = forr.收盤價.rolling(window=60).mean()
 forr['MA120'] = forr.收盤價.rolling(window=120).mean()
@@ -230,52 +263,117 @@ forr['c_dn'] = forr.收盤價-forr.dn
 forr['std5'] = forr.收盤價.rolling(window=5).std()
 forr['std10'] = forr.收盤價.rolling(window=10).std()
 forr['std20'] = forr.收盤價.rolling(window=20).std()
-TWII = web.DataReader("^TWII", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'TWII'})
-SSE = web.DataReader("000001.SS", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'SSE'})
-HSI = web.DataReader("^HSI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'HSI'})
-STI = web.DataReader("^STI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'STI'})
-N225 = web.DataReader("^N225", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'N225'})
-AXJO = web.DataReader("^AXJO", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'AXJO'})
-GSPC = web.DataReader("^GSPC", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'GSPC'})
-IXIC = web.DataReader("^IXIC", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'IXIC'})
-GDAXI = web.DataReader("^GDAXI", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'GDAXI'})
-FTSE = web.DataReader("^FTSE", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'FTSE'})
-STOXX50E = web.DataReader("^STOXX50E", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'STOXX50E'})
-l = [TWII, SSE, HSI, STI, N225, AXJO, GSPC, IXIC, GDAXI, FTSE, STOXX50E]
-index = reduce(mymerge, l).sort_values(['年月日'])
-index.年月日=to_datetime(index.年月日).apply(lambda x: x.date())
-forr = mymerge(forr, index).sort_values(['年月日'])
+forr['sign']=sign(forr['pch'])
+forr['trend']=forr['sign']
+i=forr[forr['trend']==0].index
+while i.tolist() !=[]:
+    forr.ix[i, 'trend']=forr.ix[i-1, 'trend'].tolist()
+    i = forr[forr['trend'] == 0].index
+forr['trend']
+i=forr[forr['trend']==1].index
+a=array(i)
+l=(a[1:]-a[:-1]).tolist()
+i=array([ i for i, j in enumerate(l) if j !=1])+1
+a[i]
+forr['reverse']=forr['trend']*2
+forr.ix[a[i], 'reverse']=1
 
+i=forr[forr['trend']==-1].index
+a=array(i)
+l=(a[1:]-a[:-1]).tolist()
+i=array([ i for i, j in enumerate(l) if j !=1])+1
+forr.ix[a[i], 'reverse']=-1
+forr.ix[(forr['reverse'] ==2) | (forr['reverse'] == -2), 'reverse']=0
+i=forr.ix[~isnull(forr['pch']),'pch'].index[0:2]
+if forr.ix[i[1], 'pch']>forr.ix[i[1], 'pch'] and forr.ix[i[1], 'pch'] !=0:
+    forr.ix[i[1], 'reverse'] = 1
+if forr.ix[i[1], 'pch']<forr.ix[i[0], 'pch'] and forr.ix[i[1], 'pch'] !=0:
+    forr.ix[i[1], 'reverse'] = -1
+forr[['pch', 'trend', 'reverse']].head(100)
+del forr['sign']
+
+def f(df, c):
+    df['pch_{}'.format(c)] = df[c].pct_change()
+    df['sign_{}'.format(c)] = sign(df['pch_{}'.format(c)])
+    df['trend_{}'.format(c)] = df['sign_{}'.format(c)]
+    i = df[df['trend_{}'.format(c)] == 0].index
+    while i.tolist() != []:
+        df.ix[i, 'trend_{}'.format(c)] = df.ix[i - 1, 'trend_{}'.format(c)].tolist()
+        i = df[df['trend_{}'.format(c)] == 0].index
+    df['trend_{}'.format(c)]
+    i = df[df['trend_{}'.format(c)] == 1].index
+    a = array(i)
+    l = (a[1:] - a[:-1]).tolist()
+    i = array([i for i, j in enumerate(l) if j != 1]) + 1
+    a[i]
+    df['reverse_{}'.format(c)] = df['trend_{}'.format(c)] * 2
+    df.ix[a[i], 'reverse_{}'.format(c)] = 1
+
+    i = df[df['trend_{}'.format(c)] == -1].index
+    a = array(i)
+    l = (a[1:] - a[:-1]).tolist()
+    i = array([i for i, j in enumerate(l) if j != 1]) + 1
+    df.ix[a[i], 'reverse_{}'.format(c)] = -1
+    df.ix[(df['reverse_{}'.format(c)] == 2) | (df['reverse_{}'.format(c)] == -2), 'reverse_{}'.format(c)] = 0
+    i = df.ix[~isnull(df['pch_{}'.format(c)]), 'pch_{}'.format(c)].index[0:2]
+    if df.ix[i[1], 'pch_{}'.format(c)] > df.ix[i[1], 'pch_{}'.format(c)] and df.ix[i[1], 'pch_{}'.format(c)] != 0:
+        df.ix[i[1], 'reverse_{}'.format(c)] = 1
+    if df.ix[i[1], 'pch_{}'.format(c)] < df.ix[i[0], 'pch_{}'.format(c)] and df.ix[i[1], 'pch_{}'.format(c)] != 0:
+        df.ix[i[1], 'reverse_{}'.format(c)] = -1
+    del df['sign_{}'.format(c)]
+    print(df[['pch_{}'.format(c), 'trend_{}'.format(c), 'reverse_{}'.format(c)]].head(100))
+
+f(forr, 'MA5')
+f(forr, 'MA10')
+f(forr, 'MA20')
+f(forr, 'MA60')
+f(forr, 'MA120')
+
+forr['newhl']=forr['reverse']*2
+i=forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
+a=array(i)
+l = (forr['收盤價'][a] - forr['收盤價'][a].shift()).tolist()
+i = array([i for i, j in enumerate(l) if j > 0])
+forr.ix[a[i], 'newhl'] = 1
+i=forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
+a=array(i)
+l = (forr['收盤價'][a] - forr['收盤價'][a].shift()).tolist()
+i = array([i for i, j in enumerate(l) if j < 0])
+forr.ix[a[i], 'newhl'] = -1
+forr.ix[(forr['newhl'] == 2) | (forr['newhl'] == -2), 'newhl'] = 0
+print(forr[['收盤價', 'trend', 'reverse', 'newhl']])
+
+def f(df, c):
+    df['newhl_{}'.format(c)] = df['reverse_{}'.format(c)] * 2
+    i = df.ix[df['reverse_{}'.format(c)] == 1, 'reverse_{}'.format(c)].index.tolist()
+    a = array(i)
+    l = (df['{}'.format(c)][a] - df['{}'.format(c)][a].shift()).tolist()
+    i = array([i for i, j in enumerate(l) if j > 0])
+    df.ix[a[i], 'newhl_{}'.format(c)] = 1
+    i = df.ix[df['reverse_{}'.format(c)] == -1, 'reverse_{}'.format(c)].index.tolist()
+    a = array(i)
+    l = (df['{}'.format(c)][a] - df['{}'.format(c)][a].shift()).tolist()
+    i = array([i for i, j in enumerate(l) if j < 0])
+    df.ix[a[i], 'newhl_{}'.format(c)] = -1
+    df.ix[(df['newhl_{}'.format(c)] == 2) | (df['newhl_{}'.format(c)] == -2), 'newhl_{}'.format(c)] = 0
+    print(df[['{}'.format(c), 'trend_{}'.format(c), 'reverse_{}'.format(c), 'newhl_{}'.format(c)]])
+f(forr, 'MA5')
+f(forr, 'MA10')
+f(forr, 'MA20')
+f(forr, 'MA60')
+print('forr')
+
+forr = mymerge(forr, index).sort_values(['年月日'])
+# list(forr)
+conn = connect('mysum.sqlite3')
+c = conn.cursor()
 sql = 'DROP TABLE forr'
 c.execute(sql)
 forr.to_sql('forr', conn, index=False)
-forr.to_sql('forr1', connect('C:/Users/ak66h_000/OneDrive/webscrap/djangogirls/mysite/db.sqlite3'))
-forr.to_sql('forr', connect('C:/Users/ak66h_000/OneDrive/testpydev/src/db.sqlite3'), index=False)
-forr.to_csv('C:/Users/ak66h_000/Dropbox/forspark.csv', index=False)
-forr.to_json('C:/Users/ak66h_000/Dropbox/forspark.json',force_ascii=False)
+# forr.to_sql('forr1', connect('C:/Users/ak66h_000/OneDrive/webscrap/djangogirls/mysite/db.sqlite3'))
+# forr.to_sql('forr', connect('C:/Users/ak66h_000/OneDrive/testpydev/src/db.sqlite3'), index=False)
+# forr.to_csv('C:/Users/ak66h_000/Dropbox/forspark.csv', index=False)
+# forr.to_json('C:/Users/ak66h_000/Dropbox/forspark.json',force_ascii=False)
 print('finish')
 
-def consumer():
-    r = ''
-    while True:
-        n = yield r
-        if not n:
-            return
-        print('[CONSUMER] Consuming %s...' % n)
-        r = '200 OK'
-def produce(c):
-    c.send(None)
-    n = 0
-    while n < 5:
-        n = n + 1
-        print('[PRODUCER] Producing %s...' % n)
-        r = c.send(n)
-        print('[PRODUCER] Consumer return: %s' % r)
-    c.close()
-
-c = consumer()
-produce(c)
-
-for i in consumer():
-    print(i)
 

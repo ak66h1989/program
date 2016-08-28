@@ -1,5 +1,7 @@
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\mops.sqlite3')
+os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+# os.chdir('D:\\')
+conn = connect('mops.sqlite3')
 c = conn.cursor()
 
 from numpy import *
@@ -89,17 +91,17 @@ c.executemany(sql, df.values.tolist())
 conn.commit()
 
 
-conn = connect('C:\\Users\\ak66h_000\\Documents\\mops.sqlite3')
+conn = connect('mops.sqlite3')
 c = conn.cursor()
-table='ifrs前後-綜合損益表(季)'
+table='會計師查核報告'
 df = read_sql_query("SELECT * from `%s`"%table, conn)
 df.年=df.年.astype(int)
 df.季=df.季.astype(int)
-df.公司代號=df.公司代號.astype(str)
+df.證券代號=df.證券代號.astype(str)
 # df.duplicated(['年', '季', '公司代號'])
 sql='ALTER TABLE `%s` RENAME TO `%s0`'%(table, table)
 c.execute(sql)
-sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(table, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(table, '`,`'.join(list(df)), '`年`, `季`, `證券代號`')
 c.execute(sql)
 sql='insert into `%s`(`%s`) values(%s)'%(table, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
 c.executemany(sql, df.values.tolist())
@@ -110,7 +112,7 @@ print('finish')
 
 #---- from summary to ifrs前後-綜合損益表 ----
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\mops.sqlite3')
+conn = connect('mops.sqlite3')
 c = conn.cursor()
 dic = {1: "綜合損益表-銀行業", 2: "綜合損益表-證券業", 3: "綜合損益表-一般業", 4: "綜合損益表-金控業", 5: "綜合損益表-保險業", 6: "綜合損益表-未知業"}
 import os
@@ -142,9 +144,9 @@ list(df1)
 list(df2)
 df2=df2[list(df)].sort_values(['年', '季', '公司代號']).reset_index(drop=True)
 
-conn = connect('C:\\Users\\ak66h_000\\Documents\\mops.sqlite3')
+conn = connect('mops.sqlite3')
 c = conn.cursor()
-table='ifrs前後-綜合損益表'
+table='ifrs前後-資產負債表-一般業'
 df2.年=df2.年.astype(int)
 df2.季=df2.季.astype(int)
 df2.公司代號=df2.公司代號.astype(str)

@@ -1,8 +1,10 @@
 from pandas import *
 from sqlite3 import *
 from numpy import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\mops.sqlite3')
-conn = connect('D:\\mops.sqlite3')
+import os
+os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+os.chdir('D:\\')
+conn = connect('mops.sqlite3')
 sql = "SELECT * FROM `%s` " % ('ifrs前後-綜合損益表')
 inc = read_sql_query(sql, conn).replace('--', nan).replace('', nan)
 # inc['年'] = [x.split('/')[0] for x in inc['年季']]

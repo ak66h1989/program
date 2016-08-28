@@ -276,7 +276,7 @@ for i in range(1, len(df)):
 df
 from sqlite3 import *
 conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\TEJ.sqlite3')
-conn1 = connect('D:\\mysum.sqlite3')
+# conn1 = connect('D:\\mysum.sqlite3)
 c = conn.cursor()
 c1 = conn1.cursor()
 forr = read_sql_query("SELECT * from `forr`", conn1)
