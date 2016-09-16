@@ -84,9 +84,33 @@ $(document).ready(function(){
         <input type="submit">
     </form>
 
+
 </div>
+
     {% for item in l %}
     {{ item }}<br>
     {% endfor %}
+
+    <form action="{% url 'myapp:listfield'%}" method="post">
+        {% csrf_token %}
+        <h4>mops</h4>
+        {% for item in mops %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>mysum</h4>
+        {% for item in mysum %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>summary</h4>
+        {% for item in summary %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>tse</h4>
+        {% for item in tse %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <input type="submit" value="Show fields">
+    </form>
+
 </body>
 </html>
