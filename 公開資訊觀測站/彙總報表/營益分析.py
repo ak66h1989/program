@@ -1,7 +1,7 @@
 #----import----
 
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\summary.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\summary.sqlite3')
 c = conn.cursor()
 
 from numpy import *
@@ -25,6 +25,7 @@ col=['年', '季']
 df['年'], df['季']= int(t[0:4]), int(t[6])
 df=df[col+col1]
 df['公司名稱'] = df['公司名稱'].str.strip()
+df['公司代號']=df['公司代號'].astype(str)
 name=list(df)
 for i in range(len(name)):
     name[i] =name[i].replace('(營業毛利)/(營業收入)', '')
@@ -32,11 +33,25 @@ for i in range(len(name)):
     name[i] =name[i].replace('(稅前純益)/(營業收入)', '')
     name[i] =name[i].replace('(稅後純益)/(營業收入)', '')
 df.columns = name
+tablename='營益分析'
 sql='insert into `%s`(`%s`) values(%s)'%(tablename, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
 c.executemany(sql, df.values.tolist())
 conn.commit()
 
-
+# ----reorgnize table----
+df = read_sql_query("SELECT * from `%s`"%tablename, conn)
+df['年'], df['季'], df['公司代號']= df['年'].astype(int), df['季'].astype(int), df['公司代號'].astype(str)
+df=df.drop_duplicates(subset=['年','季', '公司代號']).sort_values(['年','季', '公司代號'])
+sql='ALTER TABLE `%s` RENAME TO `%s0`'%(tablename, tablename)
+c.execute(sql)
+sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(tablename, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+c.execute(sql)
+sql='insert into `%s`(`%s`) values(%s)'%(tablename, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+c.executemany(sql, df.values.tolist())
+conn.commit()
+sql="drop table `%s0`"%tablename
+c.execute(sql)
+print('finish')
 # def mymerge(x, y):
 #     m = merge(x, y, how='outer')
 #     return m

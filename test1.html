@@ -1,44 +1,127 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <style>
+input {
+    display: none;
+}
+
+/*.city {
+    float: left;
+    margin: 5px;
+    padding: 0px;
+    width: 100px;
+    height: 300px;
+
+}*/
+
+/*div {
+    width: 300px;
+    height: 300px;
+}*/
+
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  li { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+
+</style>
     
+<script>
+
     function f1(){
-    $("#div2").append($(this));
-    $(this).click(f2);
+    $("#div2 ul").append("<li>"+$(this)[0].outerHTML+"</li>");
+    var x=$('<input type=checkbox name=choice class='+$(this).text()+' value='+$(this).text()+' checked = true>');
+    //var x=$('<input type=checkbox name=choice value='+$(this).text()+' checked = true>');
+    $("#div2").append(x);
+    alert('<input type=checkbox name=choice class='+$(this).text()+' value='+$(this).text()+' checked = true>');
+    $(this).parent().remove();
+    //$(this).remove();
+    //$("<li>"+$(this)[0].outerHTML+"</li>").remove();
+    //alert("<li>"+$(this)[0].outerHTML+"</li>");
+
+//alert($(this).parent().attr('id'));
+    //$(this).click(f2);
 }
     function f2(){
-    $("#div1").append($(this));
-    $(this).click(f1);
+    $("#div1 ul").append('<li>'+$(this)[0].outerHTML+'</li>');
+    //var x=$('<input type=checkbox name=choice class='+$(this).text()+' value='+$(this).text()+' checked = true>');
+    //var x=$('<input type=checkbox name=choice value='+$(this).text()+' checked = true>');
+    //$("#div1").append(x);
+    //$("."+$(this).text()).remove();
+    //$("."+$(this).text()+":eq(0)").remove();
+    //$("."+$(this).text()+":first").remove();
+    $("."+$(this).text()+":lt(1)").remove();
+    //$("#div1").append(x);
+    //alert("."+$(this).text()+":lt(1)");
+    //$("."+$(this).text()).remove();
+    //alert($(this).parent().attr('id'));
+    //$(this).click(f1);
+    $(this).parent().remove();
+    //$(this).remove();
+    //$("<li>"+$(this)[0].outerHTML+"</li>").remove();
 }
     
 $(document).ready(function(){
     $("#div0 button:eq(0)").click(function(){
-        $("#div1").children().remove();
-        $("#div1")
-        .append("<button type='button' class='btn btn-default'>List item 1</button>")
-        .append("<button type='button' class='btn btn-primary'>List item 2</button>")
-        .append("<button type='button' class='btn btn-success'>List item 3</button>");
-      $("#div1 button").click(f1);
-      $("#div2 button").click(f2);  
+        $("#div1 ul").children().remove();
+        $("#div1 ul")
+        .append("<li><button type='button' class='btn btn-default'>item1</button></li>")
+        .append("<li><button type='button' class='btn btn-primary'>item2</button></li>")
+        .append("<li><button type='button' class='btn btn-success'>item3</button></li>");
+      //  .append("<input type=checkbox value=item1 checked = true name=choice class=item1>")
+      //  .append("<input type=checkbox value=item2 checked = true name=choice class=item2>")
+      //  .append("<input type=checkbox value=item3 checked = true name=choice class=item3>");
+      //$("#div1 button").click(f1);
+      //$("#div2 button").click(f2);  
         });
     $("#div0 button:eq(1)").click(function(){
-        $("#div1").children().remove();
-        $("#div1")
-        .append("<button type='button' class='btn btn-info'>List item 4</button>")
-        .append("<button type='button' class='btn btn-warning'>List item 5</button>")
-        .append("<button type='button' class='btn btn-danger'>List item 6</button>")
-        .append("<button type='button' class='btn btn-link'>List item 7</button>");
-      $("#div1 button").click(f1); 
-      $("#div2 button").click(f2);        
+        $("#div1 ul").children().remove();
+        $("#div1 ul")
+        .append("<li><button type='button' class='btn btn-info'>item4</button></li>")
+        .append("<li><button type='button' class='btn btn-warning'>item5</button></li>")
+        .append("<li><button type='button' class='btn btn-danger'>item6</button></li>")
+        .append("<li><button type='button' class='btn btn-link'>item7</button></li>");
+        //.append("<input type=checkbox value=item4 checked = true name=choice class=item4>")
+        //.append("<input type=checkbox value=item5 checked = true name=choice class=item5>")
+        //.append("<input type=checkbox value=item6 checked = true name=choice class=item6>")
+        //.append("<input type=checkbox value=item7 checked = true name=choice class=item7>");
+      //$("#div1 button").click(f1); 
+      //$("#div2 button").click(f2);        
         });
 
-
-}   
-);
+    $("#div1").on('click', 'button', f1);
+    $("#div2").on('click', 'button', f2);
+    //$("#div1 button").on('click', f1);  wrong
+    //$("#div2 button").on('click', f2);  wrong
+    
+        $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  
+  $("ul").sortable({ 
+   cancel: ".fixed"
+});
+    
+    
+});
   
 
+  
+  
 //    function f1(){
 //    $("#div1 button").click(function(){
 //    $(this).remove();
@@ -61,28 +144,7 @@ $(document).ready(function(){
 //$(document).ready(function(){f1();f2();});
 
 </script>
-<style>
-/*.city {
-    float: left;
-    margin: 5px;
-    padding: 0px;
-    width: 100px;
-    height: 300px;
 
-}*/
-
-/*div {
-    width: 300px;
-    height: 300px;
-}*/
-</style>
-
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -95,26 +157,34 @@ $(document).ready(function(){
 
 
     <div id='div1' style="background-color:purple;color:white;padding:10px;" class="col-md-4">
-<!--        <button>List item 1</button>
-        <button>List item 2</button>
-        <button>List item 3</button>-->
+<ul></ul>
     </div>
 
     <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
-<!--        <button>List item 4</button>
-        <button>List item 5</button>
-        <button>List item 6</button>-->
+        <ul></ul>
+
     </div>
 </div>
+<ul id="sortable1">
+    <li><button type="button" class="btn btn-default">Default</button></li>
+    <li><button type="button" class="btn btn-primary">Primary</button></li>
+    <li><button type="button" class="btn btn-success">Success</button></li>
+    <li><button type="button" class="btn btn-info">Info</button></li>
+    <li><button type="button" class="btn btn-danger">Danger</button></li>
+    <li><button type="button" class="btn btn-warning">Warning</button></li>
+    <li><button type="button" class="btn btn-link">Link</button></li>
+    
+</ul>
 
-<button type="button" class="btn btn-default">Default</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-link">Link</button>
-
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+</ul>
 
 </body>
 </html>

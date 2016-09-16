@@ -1,7 +1,7 @@
 #----import----
 
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\summary.sqlite3')
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\summary.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 from numpy import *
 from pandas import *
 from functools import *
-
 
 # def mymerge(x, y):
 #     m = merge(x, y, how='outer')
@@ -71,9 +70,6 @@ for ind in industry:
     sql = "drop table `" + '資產負債表-' + ind + "0`"
     c.execute(sql)
 
-
-
-
 ###  balance sheet is weird, can't find <tbody> and tr[1], tr[2],...
 
 #----test connection----
@@ -121,7 +117,7 @@ dic={1:[53,"資產負債表-銀行業"],3:[22,"資產負債表-一般業"],5:[47
 for key in dic.keys():
     L = []
     for YEAR in ['105']:
-        for SEASON in ['01']:
+        for SEASON in ['02']:
             try:
                 y = str(int(YEAR)+1911)
                 print(y, SEASON, dic[key])
@@ -154,41 +150,19 @@ for key in dic.keys():
                 df.columns = df.ix[0, :]
                 df = df.ix[1:len(df), :]
                 df = df.replace(',', '', regex=True)
-                df.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/'+ dic[key][1] + y + SEASON + '.csv',index=False)
+                df.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/'+ dic[key][1] + '/' + dic[key][1] + y + SEASON + '.csv',index=False)
                 print(df)
                 L.append(df)
             except Exception as e:
                 print(e)
                 pass
-    # try:
-    #     df1 = reduce(mymerge, L)
-    #     print(df1)
-    #     # ----create table----
-    #     names = list(df1)
-    #     c = conn.cursor()
-    #     sql = "create table `" + dic[key][1] + "`(" + "'" + names[0] + "'"
-    #     for n in names[1:len(names)]:
-    #         sql = sql + ',' + "'" + n + "'"
-    #     sql = sql + ')'
-    #     c.execute(sql)
-    #     # ----inserting data----
-    #     sql = 'INSERT INTO `' + dic[key][1] + '` VALUES (?'
-    #     n = [',?'] * (len(names) - 1)
-    #     for h in n:
-    #         sql = sql + h
-    #     sql = sql + ')'
-    #     c.executemany(sql, df1.values.tolist())
-    #     conn.commit()
-    #     print(dic[key][1] + ' done\n')
-    # except Exception as e:
-    #     print(e)
-    #     pass
+
 # odd table
 dic = {2: [22, "資產負債表-證券業"], 4: [54,"資產負債表-金控業"], 6: [21,"資產負債表-未知業"]}
 for key in dic.keys():
     L = []
     for YEAR in ['105']:
-        for SEASON in ['01']:
+        for SEASON in ['02']:
             try:
                 y = str(int(YEAR)+1911)
                 print(y, SEASON, dic[key])
@@ -222,110 +196,45 @@ for key in dic.keys():
                 df = df.ix[1:len(df), :]
                 df = df.replace(',', '', regex=True)
                 df['公司代號'], df['公司名稱'] = df['公司代號'].str.strip(), df['公司名稱'].str.strip()
-                df.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/'+ dic[key][1] + y + SEASON + '.csv',index=False)
+                df.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/'+ dic[key][1]+'/'+ dic[key][1] + y + SEASON + '.csv',index=False)
                 print(df)
                 L.append(df)
             except Exception as e:
                 print(e)
                 pass
-    # try:
-    #     df1 = reduce(mymerge, L)
-    #     print(df1)
-    #     # ----create table----
-    #     names = list(df1)
-    #     c = conn.cursor()
-    #     sql = "create table `" + dic[key][1] + "`(" + "'" + names[0] + "'"
-    #     for n in names[1:len(names)]:
-    #         sql = sql + ',' + "'" + n + "'"
-    #     sql = sql + ')'
-    #     c.execute(sql)
-    #     # ----inserting data----
-    #     sql = 'INSERT INTO `' + dic[key][1] + '` VALUES (?'
-    #     n = [',?'] * (len(names) - 1)
-    #     for h in n:
-    #         sql = sql + h
-    #     sql = sql + ')'
-    #     c.executemany(sql, df1.values.tolist())
-    #     conn.commit()
-    #     print(dic[key][1] + ' done\n')
-    # except Exception as e:
-    #     print(e)
-    #     pass
-
-
-# import shutil
-# import os
-# import re
-# os.getcwd()
-# dir()
-# os.listdir()
-# industry=['銀行業','證券業','一般業','金控業','保險業','未知業']
-# for ind in industry:
-#     path = 'C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/彙總報表/'+ind
-#     os.chdir(path)
-#     l = os.listdir()
-#     for i in l:
-#         df = read_csv(i, encoding='cp950')
-#         t = re.findall(r'\d', i)
-#         t = str(int(t[0] + t[1] + t[2])+1911) + '/' + t[3] + t[4]
-#         d = {'年季': repeat(t, len(df))}
-#         df1 = DataFrame(d)
-#         df = concat([df1, df], axis=1)
-#         df = df.sort_values(['年季', '公司代號'])
-#         t=t[0]+t[1]+t[2]+t[3]+t[5]+t[6]
-#         df.to_csv(path+'/資產負債表-'+ind+t+'.csv',index=False)
-#
-#
-path='C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表'
-os.chdir(path)
-l = os.listdir()
-for i in l[1:]:
-    i1=i.replace('102','2013').replace('103','2014').replace('104','2015')
-    shutil.move(i, i1)
-l = os.listdir()
-for i in l[1:]:
-    df = read_csv(i, encoding='cp950')
-    df['年季']=df['年季'].replace('102','2013',regex=True).replace('103','2014',regex=True).replace('104','2015',regex=True)
-    df.to_csv(path+'/'+i, index=False)
-
-
-x = iter([[1, 2, 3], [1, 2, 3]])
-x = iter((1, 2, 3))
-next(x)[0]
-for i in next(x):
-    print(i)
-    
 
 # ---- update table ----
 dic = {1: "資產負債表-銀行業", 2: "資產負債表-證券業", 3: "資產負債表-一般業", 4: "資產負債表-金控業", 5: "資產負債表-保險業", 6: "資產負債表-未知業"}
 for key in dic:
-    path='C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/%s/'%dic[key]
+    path='C:/Users/ak66h_000/OneDrive/webscrap/公開資訊觀測站/彙總報表/資產負債表/{}/'.format(dic[key])
     os.chdir(path)
     L=os.listdir()
     df = read_csv(L[-1], encoding='cp950')
-    sql='insert into `%s`(`%s`) values(%s)'%(dic[key], '`,`'.join(list(df)), ','.join('?'*len(list(df))))
-    c.executemany(sql, df.values.tolist())
-    conn.commit()
-
-
-conn = connect('C:\\Users\\ak66h_000\\Documents\\summary.sqlite3')
-c = conn.cursor()
-for key in dic:
-    df = read_sql_query("SELECT * from `%s`"%dic[key], conn)
     df.年=df.年.astype(int)
     df.季=df.季.astype(int)
-    df.公司代號=df.公司代號.astype(int)
-    sql='ALTER TABLE `%s` RENAME TO `%s0`'%(dic[key], dic[key])
-    c.execute(sql)
-    sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(dic[key], '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
-    c.execute(sql)
-    sql='insert into `%s`(`%s`) values(%s)'%(dic[key], '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+    df.公司代號=df.公司代號.astype(str)
+    sql='insert into `{}`(`{}`) values({})'.format(dic[key], '`,`'.join(list(df)), ','.join('?'*len(list(df))))
     c.executemany(sql, df.values.tolist())
     conn.commit()
-    sql="drop table `%s0`"%dic[key]
+
+conn = connect('C:\\Users\\ak66h_000\\Documents\\db\\summary.sqlite3')
+c = conn.cursor()
+for key in dic:
+    df = read_sql_query("SELECT * from `{}`".format(dic[key]), conn)
+    df.年 = df.年.astype(int)
+    df.季 = df.季.astype(int)
+    df.公司代號 = df.公司代號.astype(str)
+    sql = 'ALTER TABLE `{}` RENAME TO `{}0`'.format(dic[key], dic[key])
+    c.execute(sql)
+    sql = 'create table `{}` (`{}`, PRIMARY KEY ({}))'.format(dic[key], '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+    c.execute(sql)
+    sql = 'insert into `{}`(`{}`) values({})'.format(dic[key], '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+    c.executemany(sql, df.values.tolist())
+    conn.commit()
+    sql = "drop table `{}0`".format(dic[key])
 print('finish')
 for key in dic:
-    sql="drop table `%s0`"%dic[key]
+    sql = "drop table `{}0`".format(dic[key])
     c.execute(sql)
 
 

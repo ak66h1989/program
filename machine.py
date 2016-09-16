@@ -1,6 +1,6 @@
 from sqlite3 import *
 import os
-os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+os.chdir('C:/Users/ak66h_000/Documents/db/')
 # os.chdir('D:\\')
 conn = connect('mysum.sqlite3')
 c = conn.cursor()
@@ -136,7 +136,7 @@ pyplot.ylabel('y')
 pyplot.title('Simple Earth Example')
 pyplot.show()
 error = array(y_test) - model.predict(array(x_test))
-1-error.std()/y_test.var()
+print('R^2', 1-error.std()/y_test.var())
 model.predict([array(x)[-1]])
 
 #----gbm----
