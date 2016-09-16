@@ -5,16 +5,20 @@ from django.core.urlresolvers import reverse
 # from .models import Forr, Forr1
 
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+import os
+path='C:/Users/ak66h_000/Documents/db/'
+os.chdir(path)
+database='mysum'
+conn = connect('{}.sqlite3'.format(database))
 c = conn.cursor()
 
-db=[]
+db = []
 c.execute("SELECT name FROM sqlite_master WHERE type='table';")
 for i in range(len(c.fetchall())):
     c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tb=c.fetchall()[i][0]
+    tb = c.fetchall()[i][0]
     db.append(tb)
-
+tb
 
 import requests
 from bs4 import BeautifulSoup
@@ -30,7 +34,7 @@ import time
 
 forr = read_sql_query("SELECT * from `forr`", conn).replace('', nan)
 ycol = ['r1']
-dropcol=[j for j in ['年月日', '證券代號', 'lnr', 'lnr025', 'lnr05', 'lnr1', 'lnr2', 'lnr3', 'lnr6', 'r025', 'r05', 'r1', 'r2', 'r3', 'r6', 'r025.s', 'r05.s', 'r1.s', 'r2.s', 'r3.s', 'r6.s'] if j not in list(ycol)]
+dropcol = [j for j in ['年月日', '證券代號', 'lnr', 'lnr025', 'lnr05', 'lnr1', 'lnr2', 'lnr3', 'lnr6', 'r025', 'r05', 'r1', 'r2', 'r3', 'r6', 'r025.s', 'r05.s', 'r1.s', 'r2.s', 'r3.s', 'r6.s'] if j not in list(ycol)]
 df = forr.drop(dropcol, axis=1).drop(['投信鉅額交易', '漲跌(+/-)', '外資鉅額交易'], axis=1).dropna()
 # df = forr.drop(dropcol, axis=1).dropna()
 y = df[ycol]
@@ -40,15 +44,15 @@ df_train = df.loc[~df.index.isin(df_test.index)]
 y_train, y_test = df_train[list(y)], df_test[list(y)]
 x_train, x_test = df_train[list(x)], df_test[list(x)]
 
-h=[''.join('<th>{}</th>'.format(i) for i in list(x))]
-h=''.join('<tr>{}</tr>'.format(i) for i in h)
-h=''.join('<thead>{}</thead>'.format(h))
-r=[]
+h = [''.join('<th>{}</th>'.format(i) for i in list(x))]
+h = ''.join('<tr>{}</tr>'.format(i) for i in h)
+h = ''.join('<thead>{}</thead>'.format(h))
+r = []
 for i in range(3000, 3100):
-    c = array(round(x, 3).ix[[i,]]).tolist()[0]
+    c = array(round(x, 3).ix[[i, ]]).tolist()[0]
     r.append(''.join('<td> {}</td>'.format(i) for i in c))
-r=''.join('<tr>{}</tr>'.format(i) for i in r)
-r=''.join('<tbody>{}</tbody>'.format(r))
+r = ''.join('<tr>{}</tr>'.format(i) for i in r)
+r = ''.join('<tbody>{}</tbody>'.format(r))
 data = h+r
 table = ''.join('<table id="table_id" class="display">{}</table>'.format(data))
 style = """<head>
@@ -68,7 +72,7 @@ table td {
 </head>"""
 html = "<html>"+style+"<body>{}</body></html>" .format(table)
 
-d=dict()
+d = dict()
 
 def data(request):
     firstrow=request.POST['firstrow']
@@ -100,7 +104,7 @@ def data(request):
     </style>
     </head>"""
     html = "<html>"+style+"<body>{}</body></html>" .format(table)
-    d['table']= html
+    d['table'] = html
     # return HttpResponse(html)
     # d['nr']=nr
     return render(request, 'index.html', d)
