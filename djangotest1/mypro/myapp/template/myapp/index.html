@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>I come from template!!</title>
+        <style>
+            body {
+               background-color: lightyellow;
+            }
+            em {
+                color: LightSeaGreen;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        {{ test }}
+
+        <form action="{% url 'myapp:test'%}" method="post">
+        {% csrf_token %}
+        <input type="checkbox" name="choice" value="Bike">
+        <input type="checkbox" name="choice" value="Car">
+        <input type="submit" value="Vote">
+        </form>
+
+    {% for item in l %}
+    {{ item }}<br>
+    {% endfor %}
+    </body>
+</html>

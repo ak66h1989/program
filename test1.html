@@ -1,147 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-
-    
-    
-    function f1(){
-    $("#div2").append($(this));
-    $("#div2").append('<input type="checkbox" name="choice" value="'+$(this).text()+'" checked = "true"/>');
-    $(this).click(f2);
-}
-    function f2(){
-    $("#div1").append($(this));
-    $("#div1").append('<input type="checkbox" name="choice" value="'+$(this).text()+'" checked = "true"/>');
-    $(this).click(f1);
-}
-    
-
-    
-$(document).ready(function(){
-    $("#div0 button:eq(0)").click(function(){
-        $("#div1").children().remove();
-        $("#div1")
-        .append("<button type='button' class='btn btn-default'>List item 1</button>")
-        .append("<button type='button' class='btn btn-primary'>List item 2</button>")
-        .append("<button type='button' class='btn btn-success'>List item 3</button>");
-      $("#div1 button").click(f1);
-      $("#div2 button").click(f2);  
-        });
-    $("#div0 button:eq(1)").click(function(){
-        $("#div1").children().remove();
-        $("#div1")
-        .append("<button type='button' class='btn btn-info'>List item 4</button>")
-        .append("<button type='button' class='btn btn-warning'>List item 5</button>")
-        .append("<button type='button' class='btn btn-danger'>List item 6</button>")
-        .append("<button type='button' class='btn btn-link'>List item 7</button>");
-      $("#div1 button").click(f1); 
-      $("#div2 button").click(f2);        
-        });
-
-
-//        $('div').on('click', 'button', function() {
-//    alert($(this).text());
-//});
-
-    $("#b1").click(function(){
-        var val = [];
-    $(':checkbox:checked').each(function(i){
-      val[i] = $(this).val();
-        document.getElementById("div3").innerHTML=val;
-        });
-
-
-});
-
-//var val = [];
-//$('button').each(function(i) {
-//    val[i] = $(this).val();
-//   alert(val[i]);
-//});
-
-}   
-);
-  
-
-//    function f1(){
-//    $("#div1 button").click(function(){
-//    $(this).remove();
-//    var b=$("<button>"+$(this).text()+"</button>");
-//    b.appendTo("#div2");
-//    f2();
-//        });
-//    
-//}
-//    function f2(){
-//    $("#div2 button").click(function(){
-//    $(this).remove();
-//    var b=$("<button>"+$(this).text()+"</button>");
-//    b.appendTo("#div1");
-//    f1();
-//        });
-//        
-//}
-//
-//$(document).ready(function(){f1();f2();});
-
-</script>
-<style>
-/*.city {
-    float: left;
-    margin: 5px;
-    padding: 0px;
-    width: 100px;
-    height: 300px;
-
-}*/
-
-/*div {
-    width: 300px;
-    height: 300px;
-}*/
-</style>
-
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
+<html><head><title>testdoc</title>
+<style type="text/css">
+    /*body { font:16px Calibri;}*/
+    /*table { border-collapse:separate; border-top: 3px solid grey; }*/
+    th {
+		/*position:absolute;*/
+		/*left:0px;*/
+		/*text-overflow: ellipsis;*/
+		/*letter-spacing:1em;*/
+    }
+    div {
+        /*width: 600px;*/
+        overflow-x:scroll;
+        margin-left:1em;
+		margin-top:4em;
+        /*overflow-y:visible;*/
+        /*padding-bottom:1px;*/
+		text-overflow: ellipsis;
+    }
+    .headcol {
+        position:absolute;
+        /*width:5em;*/
+        left:0px;
+        top:auto;
+    }
+    /*.headcol:before {content: 'Row ';}*/
+    .long { background:yellow; letter-spacing:1em; }
+</style></head>
 <body>
-
-<div class="row">
-    <div id='div0' style="background-color:pink;color:white;padding:10px;" class="col-md-4">
-        <button>1</button>
-        <button>2</button>
-    </div>
-
-
-    <div id='div1' style="background-color:purple;color:white;padding:10px;" class="col-md-4">
-<!--        <button>List item 1</button>
-        <button>List item 2</button>
-        <button>List item 3</button>-->
-    </div>
-
-    <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
-<!--        <button>List item 4</button>
-        <button>List item 5</button>
-        <button>List item 6</button>-->
-    </div>
-</div>
-
-<button type="button" class="btn btn-default" id='b1'>Default</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-link">Link</button>
-
-<div id='div3'></div>
-
+	<h1>123</h1>
+<div><table>
+	<tr><th class="headcol">123456</th><th class="long">QWERTYUIOPASDFG</th><th class="long">QWERTYUIOPASDFGHJKLZXCVBNM</th></tr>
+    <tr><td class="headcol">1</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">2</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">3</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">4</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">5</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">6</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">7</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">8</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+    <tr><td class="headcol">9</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td><td class="long">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+</table></div>
 </body>
 </html>

@@ -487,18 +487,18 @@ c = conn.cursor()
 # df0['年']=df0['年'].astype(int)
 
 table='ifrs前後-綜合損益表'
-df = read_sql_query("SELECT * from `%s`"%table, conn)
+df = read_sql_query("SELECT * from `{}`".format(table, conn)
 df.年=df.年.astype(int)
 df.季=df.季.astype(int)
 # df.公司代號=df.公司代號.astype(int)
-sql='ALTER TABLE `%s` RENAME TO `%s0`'%(table, table)
+sql='ALTER TABLE `{}` RENAME TO `{}0`'.format(table, table)
 c.execute(sql)
-sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(table, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+sql='create table `{}` (`{}`, PRIMARY KEY ({}))'.format(table, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
 c.execute(sql)
-sql='insert into `%s`(`%s`) values(%s)'%(table, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+sql='insert into `{}`(`{}`) values({})'.format(table, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
 c.executemany(sql, df.values.tolist())
 conn.commit()
-sql="drop table `%s0`"%table
+sql="drop table `{}0`".format(table
 c.execute(sql)
 
 table='ifrs前後-綜合損益表'

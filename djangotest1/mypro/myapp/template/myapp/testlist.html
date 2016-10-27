@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<style>
+
+li { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+
+</style>
+
+<script>
+
+function f1(){
+$("#div2 ul").append("<li>"+$(this).parent().html()+"</li>");
+var x=$('<input type=checkbox name=choice class='+$(this).text()+' value='+$(this).text()+' checked = true>');
+$("#div2").append(x);
+$(this).parent().remove();
+}
+function f2(){
+$("#div1 ul").append('<li>'+$(this).parent().html()+'</li>');
+$("."+$(this).text()+":lt(1)").remove();
+$(this).parent().remove();
+}
+
+$(document).ready(function(){
+    $("#div0 button:eq(0)").click(function(){
+        $("#div1 ul").children().remove();
+        $("#div1 ul")
+        .append("<li><button type='button' class='btn btn-default'>item1</button></li>")
+        .append("<li><button type='button' class='btn btn-primary'>item2</button></li>")
+        .append("<li><button type='button' class='btn btn-success'>item3</button></li>");
+
+    });
+
+    $("#div0 button:eq(1)").click(function(){
+        $("#div1 ul").children().remove();
+        $("#div1 ul")
+        .append("<li><button type='button' class='btn btn-info'>item4</button></li>")
+        .append("<li><button type='button' class='btn btn-warning'>item5</button></li>")
+        .append("<li><button type='button' class='btn btn-danger'>item6</button></li>")
+        .append("<li><button type='button' class='btn btn-link'>item7</button></li>");
+    });
+
+    $("#div1").on('click', 'button', f1);  //$("#div1 button").on('click', f1);  wrong
+    $("#div2").on('click', 'button', f2);  //$("#div2 button").on('click', f2);  wrong
+
+    $("ul").sortable({
+     cancel: ".fixed"
+    });
+
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div class="row">
+    <div id='div0' style="background-color:pink;color:white;padding:10px;" class="col-md-4">
+        <button>1</button>
+        <button>2</button>
+    </div>
+
+    <div id='div1' style="background-color:purple;color:white;padding:10px;" class="col-md-4">
+        <ul></ul>
+    </div>
+    <form action="{% url 'myapp:test'%}" method="post">
+        {% csrf_token %}
+        <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
+            <ul></ul>
+        </div>
+        <input type="submit">
+    </form>
+
+
+</div>
+
+    {% for item in l %}
+    {{ item }}<br>
+    {% endfor %}
+
+    <form action="{% url 'myapp:listfield'%}" method="post">
+        {% csrf_token %}
+        <h4>mops</h4>
+        {% for item in mops %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>mysum</h4>
+        {% for item in mysum %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>summary</h4>
+        {% for item in summary %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <h4>tse</h4>
+        {% for item in tse %}
+        <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+        {% endfor %}
+        <input type="submit" value="Show fields">
+    </form>
+
+</body>
+</html>

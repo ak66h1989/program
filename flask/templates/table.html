@@ -1,0 +1,87 @@
+    <div id="tabs-9" class="tab-pane">
+
+        <form action = "/rep1/" method = "POST">
+            公司代號:<input type="text" name=compid_report1 value=5522>
+            <input type="submit" value="query" id=sel>
+            {% if d.report1 is defined %}
+            <span id=income1>{{d.tb1[0]}}>>>{{d.compid_report1}}{{d.compname1}}</span>
+            
+            <span><a href=#balence1>To balence sheet</a></span>
+            {% endif %}
+        </form>    
+        <span><button id=enable>fix column</button></span>
+            {% if d.report1 is defined %}
+
+        <div class="row" id=inc>
+            <table id="report2" class="display compact nowrap">   
+                <thead>
+                    <tr>
+                        <th style="text-align: center">{{d.report1[0][0][0][0]|safe}}</th>
+                        {% for i in d.report1[0][0][1:] %}
+                        <th style="text-align: center;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in d.report1[0][1:] %}                    
+                    <tr>
+                        <td><div>{{item[0][0]|safe}}</div></td>
+                        {% for i in item[1:] %}
+                        <td><div style="width:{{i[1]|safe}}%;background-color:{{i[2]|safe}};">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!--<span id=balence1>{{d.tb1[1]}}>>>{{d.compid_report1}}{{d.compname1}}</span>-->
+        <!--<span><a href=#income1>To income statement</a></span>-->
+        <!--<div>-->
+
+        <!--</div>-->
+    {% endif %}
+
+    </div>
+
+    <div id="tabs-10" class="tab-pane">
+        <form action = "/rep1/" method = "POST">
+            公司代號:<input type="text" name=compid_report1 value=5522>
+            <input type="submit" value="query">
+            {% if d.report1 is defined %}
+            <span id=income1>{{d.tb1[1]}}>>>{{d.compid_report1}}{{d.compname1}}</span>
+            
+            <span><a href=#balence1>To income statement</a></span>
+            {% endif %}
+        </form>
+        
+        <span><button id=enable1>fix column</button></span>
+      {% if d.report1 is defined %}     
+        <div class="row" id=bal>
+            <table id="report3" class="display compact nowrap">                      
+                
+                <thead>
+                    <tr>
+                        <th style="text-align: center">{{d.report1[1][0][0][0]|safe}}</th>
+                        {% for i in d.report1[1][0][1:] %}
+                        <th style="text-align: center;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in d.report1[1][1:] %}                    
+                    <tr>
+                        <td><div>{{item[0][0]|safe}}</div></td>
+                        {% for i in item[1:] %}
+                        <td><div style="width:{{i[1]|safe}}%;background-color:{{i[2]|safe}};">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+      {% endif %}  
+    </div>
