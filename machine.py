@@ -384,7 +384,7 @@ phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
 mo = phoneNumRegex.search('My number is 415-555-4242.')
 re.search(r'\d\d\d-\d\d\d-\d\d\d\d','My number is 415-555-4242.')
 print('Phone number found: ' + mo.group())
-$
+
 
 cd C:\Users\ak66h_000\OneDrive\webscrap\mysite
 python manage.py shell
@@ -395,3 +395,29 @@ Choice.objects.all()
 from django.utils import timezone
 q = Choice(choice_text="What's new?1", votes=1, question_id=1)
 q.save()
+
+from bokeh import *
+from bokeh.plotting import figure
+from bokeh.resources import CDN
+from bokeh.embed import file_html
+
+from bokeh.plotting import figure
+from bokeh.embed import components
+
+plot = figure()
+plot.circle([1,2], [3,4])
+html = file_html(plot, CDN, "my plot")
+print(html)
+show(plot)
+
+html = file_html(plot, CDN, "my plot")
+
+plot = figure()
+plot.circle([1,2], [3,4])
+
+script, div = components(plot)
+print(script)
+print(div)
+import os
+os.getcwd()
+os.listdir()

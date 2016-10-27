@@ -20,7 +20,7 @@ def mymerge(x, y):
     m = merge(x, y, on=[col for col in list(x) if col in list(y)], how='outer')
     return m
 
-x='2316'
+x = '2316'
 df = read_sql_query('SELECT * from `每日收盤行情(全部(不含權證、牛熊證))` where 證券代號='+ x, conn)
 df = read_sql_query('SELECT * from `個股日本益比、殖利率及股價淨值比` where 證券代號='+ x, conn)
 df = read_sql_query('SELECT * from `當日融券賣出與借券賣出成交量值(元)` where 證券代號='+ x, conn)

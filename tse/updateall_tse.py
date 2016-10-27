@@ -11,25 +11,25 @@ from pandas import *
 import re
 import datetime
 
-lastdate = datetime.datetime(2016, 8, 22)  #last time 9/03
+lastdate = datetime.datetime(2016, 9, 14)  #last time 9/03
 delta = datetime.datetime.now() - lastdate
 ###----大盤統計資訊 + 大盤成交統計 in one new----
 
 #----update using datetime----
-tablename0=['年月日', '指數', '收盤指數', '漲跌(+/-)', '漲跌點數', '漲跌百分比(%)']
-tablename1=['年月日', '報酬指數', '收盤指數', '漲跌(+/-)', '漲跌點數', '漲跌百分比(%)']
-tablename2=['年月日', '成交統計', '成交金額(元)', '成交股數(股)', '成交筆數']
+tablename0 = ['年月日', '指數', '收盤指數', '漲跌(+/-)', '漲跌點數', '漲跌百分比(%)']
+tablename1 = ['年月日', '報酬指數', '收盤指數', '漲跌(+/-)', '漲跌點數', '漲跌百分比(%)']
+tablename2 = ['年月日', '成交統計', '成交金額(元)', '成交股數(股)', '成交筆數']
 # thead is irregular in tse, in early years, 1 thead contains 1 tr, in later years, 1 thead sometimes contains 2 tr
-table=0
+table = 0
 for t in range(delta.days):
     date = lastdate + datetime.timedelta(days=t + 1)
     try:
         url = 'http://www.twse.com.tw/ch/trading/exchange/MI_INDEX/MI_INDEX.php'
         month, day = date.month, date.day
         if len(str(month)) == 1:
-            month='0'+str(month)
+            month = '0'+str(month)
         if len(str(day)) == 1:
-            day='0'+str(day)
+            day = '0'+str(day)
         input_date = str(date.year - 1911) + '/' + str(month) + '/' + str(day)
         print(date.year, date.month, date.day, input_date)
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'}
@@ -40,7 +40,7 @@ for t in range(delta.days):
         soup = BeautifulSoup(plain_text, 'html.parser')
         date = soup.find_all('thead')[0].find_all('tr')[0].text
         ymd = re.findall(r"\d\d\d?\d?", date)
-        col=[]
+        col = []
         for th in soup.find_all('table')[table].find_all('thead'):
             for tr in th.find_all('tr'):
                 h = ['年月日']

@@ -129,7 +129,6 @@ for key in dic:
     except Exception as e:
         print(dic[key], e)
 
-
 df.dtypes
 
 df = df.sort_values(['公司代號', '年', '季']).reset_index(drop=True)

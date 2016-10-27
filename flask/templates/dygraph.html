@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript"
+  src="{{url_for('static', filename='dygraph-combined-dev.js')}}"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <style>
+  #resizable { width: 150px; height: 150px; padding: 0.5em; }
+  #resizable h3 { text-align: center; margin: 0; }
+  </style>
+
+  <script>
+  $( function() {
+    $( "#resizable" ).resizable();
+  } );
+  </script>
+
+
+</head>
+
+<body>
+
+<div id="graphdiv" style="width:1800px; height:700px;"></div>
+
+<div id="resizable" style="width:1800px; height:700px;"></div>
+
+<script>
+new Dygraph(document.getElementById("graphdiv"),
+          {{d.data|safe}},
+          {
+            labels: {{d.labels|safe}},
+            axes: {
+                x: {
+                    valueFormatter: Dygraph.dateString_,
+                    axisLabelFormatter: Dygraph.dateAxisFormatter,
+                    ticker: Dygraph.dateTicker
+                }
+          },
+          <!--showRangeSelector: true,-->
+          <!--labelsDivWidth:1600,-->
+          legend: 'follow',
+          labelsSeparateLines:true,
+          connectSeparatedPoints:false
+          });
+</script>
+
+<script>
+  new Dygraph(document.getElementById("resizable"),
+              [
+                [new Date("2009/07/12"),10,100,10],
+                [new Date("2009/07/13"),20,'NaN',30],
+                [new Date("2009/07/14"),'NaN',60,40],
+                [new Date("2009/07/15"),70,80,20]
+              ],
+              {
+                labels: [ "x", "A", "B", "C" ],
+                //fractions: true,
+                //errorBars: true,
+                showRangeSelector: true,
+                valueRange: [0, 100],
+                showRoller: true,
+                connectSeparatedPoints:false
+              });
+
+
+</script>
+
+{{d.data|safe}},
+{
+labels: {{d.labels|safe}}
+}
+</body>
+
+</html>
+

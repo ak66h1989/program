@@ -81,8 +81,7 @@ def test(request):
 def listfield(request):
     dbtable = request.POST['dbtable']  #string object, empty is not allowed
     conn = connect('{}.sqlite3'.format(dic[dbtable]))
-    c = conn.cursor()
-    # df = read_sql_query("SELECT * from `{}`".format(dbtable), c)
+    # df = read_sql_query("SELECT * from `{}`".format(dbtable), conn)
     # d['fields'] = list(df)
     return render(request, 'myapp/testlist.html', d)
 

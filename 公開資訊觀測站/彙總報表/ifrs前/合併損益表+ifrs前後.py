@@ -1,5 +1,5 @@
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+conn = connect('C:/Users/ak66h_000/Documents/db/mops.sqlite3')
 c = conn.cursor()
 
 from numpy import *

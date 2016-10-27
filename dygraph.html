@@ -1,0 +1,65 @@
+
+<html>
+<head>
+<script type="text/javascript" src="dygraph-combined-dev.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <style>
+/*  #resizable { width: 150px; height: 150px; padding: 0.5em; }
+  #resizable h3 { text-align: center; margin: 0; }*/
+  </style>
+
+  <script>
+  $( function() {
+    $( "#resizable" ).resizable();
+  } );
+  </script>
+</head>
+<body>
+<!--<div id="graphdiv2"style="width:500px; height:300px;"></div>-->
+<script>
+  
+  $(document).ready(function(){
+      var i = 1;
+        $("button").click(function(){
+          
+        $('body').append('<div id = graphdiv'+i+'></div>');
+         
+          var g = new Dygraph(document.getElementById("graphdiv"+i),
+                [
+                  [1,10,100],
+                  [2,20,80],
+                  [3,50,60],
+                  [4,70,80]
+                ],
+                {
+                  labels: [ "x", "A", "B" ],
+                  title:'abc',
+                  //fractions: true,
+                  //errorBars: true,
+                  //showRangeSelector: true,
+                  valueRange: [20, 100],
+                  showRoller: true,
+                  rollPeriod: 15
+                });
+      
+      $('#graphdiv'+i).append(i);    
+      i+=1;
+      
+      
+      });
+
+});
+
+
+</script>
+<!--<script type="text/javascript">-->
+ 
+<!--</script>-->
+<!--<div id="resizable">1</div>-->
+<button>click</button>
+</body>
+</html>

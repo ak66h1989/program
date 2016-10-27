@@ -1,37 +1,100 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <!--<meta charset="utf-8">-->
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-  <!--<title>jQuery UI Sortable - Default functionality</title>-->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
-  <style>
-  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-  #sortable li span { position: absolute; margin-left: -1.3em; }
-  </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
-  </script>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+<style>
+/* your existing container */
+#wrap {
+    overflow: auto;
+    height: 400px;
+}
+
+/* css for demo */
+td {
+    /*background-color: green;*/
+    width: 200px;
+    height: 100px;
+}  
+</style>
 </head>
+
 <body>
- 
-<ul id="sortable">
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-</ul>
- 
- 
+
+<h1>123</h1>
+
+  <div id="wrap">
+    <table>
+      <thead>
+        <tr class="header">
+          <th>
+            Table attribute name
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>align</td>
+          <td>left, center, right</td>
+          <td>Not supported in HTML5. Deprecated in HTML 4.01. Specifies the alignment of a table according to surrounding text</td>
+        </tr>
+        <tr>
+          <td>bgcolor</td>
+          <td>rgb(x,x,x), #xxxxxx, colorname</td>
+          <td>Not supported in HTML5. Deprecated in HTML 4.01. Specifies the background color for a table</td>
+        </tr>
+        <tr>
+          <td>border</td>
+          <td>1,""</td>
+          <td>Specifies whether the table cells should have borders or not</td>
+        </tr>
+        <tr>
+          <td>cellpadding</td>
+          <td>pixels</td>
+          <td>Not supported in HTML5. Specifies the space between the cell wall and the cell content</td>
+        </tr>
+        <tr>
+          <td>cellspacing</td>
+          <td>pixels</td>
+          <td>Not supported in HTML5. Specifies the space between cells</td>
+        </tr>
+        <tr>
+          <td>frame</td>
+          <td>void, above, below, hsides, lhs, rhs, vsides, box, border</td>
+          <td>Not supported in HTML5. Specifies which parts of the outside borders that should be visible</td>
+        </tr>
+        <tr>
+          <td>rules</td>
+          <td>none, groups, rows, cols, all</td>
+          <td>Not supported in HTML5. Specifies which parts of the inside borders that should be visible</td>
+        </tr>
+        <tr>
+          <td>summary</td>
+          <td>text</td>
+          <td>Not supported in HTML5. Specifies a summary of the content of a table</td>
+        </tr>
+        <tr>
+          <td>width</td>
+          <td>pixels, %</td>
+          <td>Not supported in HTML5. Specifies the width of a table</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<script>    
+document.getElementById("wrap").addEventListener("scroll",function(){
+   var translate = "translate(0,"+this.scrollTop+"px)";
+   this.querySelector("thead").style.transform = translate;
+});
+              
+</script>
 </body>
+
 </html>

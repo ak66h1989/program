@@ -11,8 +11,10 @@ from bs4 import BeautifulSoup
 from numpy import *
 from pandas import *
 from functools import *
+# from pandas.io import data, wb
 # from pandas_datareader import data, wb
-import pandas.io.data as web
+# import pandas.io.data as web
+import pandas_datareader.data as web
 
 ## --- read from sqlite ---
 def mymerge(x, y):
@@ -194,7 +196,23 @@ index = reduce(mymerge, l).sort_values(['年月日'])
 index.年月日=to_datetime(index.年月日).apply(lambda x: x.date())
 print('index')
 
-forr=m[col]
+#---- bic ----
+conn = connect('bic.sqlite3')
+c = conn.cursor()
+sql="SELECT * FROM '%s'"
+bic = read_sql_query(sql% ('景氣指標及燈號-指標構成項目'), conn)
+del bic['年月']
+m['年月日']=m['年月日'].astype(str)
+m['年'], m['月'] = m['年月日'].str.split('-').str[0].astype(int), m['年月日'].str.split('-').str[1].astype(int)
+m.dtypes
+m=mymerge(m,bic)
+del m['年']
+del m['月']
+del bic['年']
+del bic['月']
+m.年月日=to_datetime(m.年月日, format='%Y/%m/%d').apply(lambda x: x.date())
+
+forr=m[col+list(bic)]
 forr['lnmo'] = log(forr['調整收盤價']/forr['調整收盤價'].shift(120))
 forr['lnr'] = log(forr['調整收盤價']/forr['調整收盤價'].shift())
 forr['lnr025'] = log(forr['調整收盤價'].shift(-5)/forr['調整收盤價'])*48
@@ -328,13 +346,13 @@ f(forr, 'MA60')
 f(forr, 'MA120')
 
 forr['newhl']=forr['reverse']*2
-i=forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
-a=array(i)
+i = forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
+a = array(i)
 l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
 i = array([i for i, j in enumerate(l) if j > 0])
 forr.ix[a[i], 'newhl'] = 1
-i=forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
-a=array(i)
+i = forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
+a = array(i)
 l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
 i = array([i for i, j in enumerate(l) if j < 0])
 forr.ix[a[i], 'newhl'] = -1
@@ -383,13 +401,29 @@ forr['spanldiff'] = forr[['調整開盤價', '調整收盤價']].max(axis=1).dif
 
 print('forr')
 
+tablename='forr'
 forr = mymerge(forr, index).sort_values(['年月日'])
+forr['漲跌(+/-)'] = forr['漲跌(+/-)'].replace('＋', 1).replace('－', -1).replace('X', 0).replace(' ', None).astype(float)
+forr['外資鉅額交易']=forr['外資鉅額交易'].replace('yes', 1).replace('no', 0).astype(float)
+forr['投信鉅額交易']=forr['投信鉅額交易'].replace('yes', 1).replace('no', 0).astype(float)
 # list(forr)
 conn = connect('mysum.sqlite3')
 c = conn.cursor()
-sql = 'DROP TABLE forr'
+
+sql='ALTER TABLE `%s` RENAME TO `%s0`'%(tablename, tablename)
 c.execute(sql)
-forr.to_sql('forr', conn, index=False)
+sql='create table `%s` (`%s`, PRIMARY KEY (%s))'%(tablename, '`,`'.join(list(forr)), '`年月日`, `證券代號`')
+c.execute(sql)
+sql='insert into `%s`(`%s`) values(%s)'%(tablename, '`,`'.join(list(forr)), ','.join('?'*len(list(forr))))
+c.executemany(sql, forr.values.tolist())
+conn.commit()
+sql="drop table `%s0`"%tablename
+c.execute(sql)
+
+# sql = 'DROP TABLE forr'
+# c.execute(sql)
+# forr.to_sql('forr', conn, index=False)
+list(forr)
 # forr.to_sql('forr1', connect('C:/Users/ak66h_000/OneDrive/webscrap/djangogirls/mysite/db.sqlite3'))
 # forr.to_sql('forr', connect('C:/Users/ak66h_000/OneDrive/testpydev/src/db.sqlite3'), index=False)
 # forr.to_csv('C:/Users/ak66h_000/Dropbox/forspark.csv', index=False)
