@@ -11,7 +11,7 @@ from pandas import *
 import re
 import datetime
 
-lastdate = datetime.datetime(2016, 8, 12)  #last time 8/22
+lastdate = datetime.datetime(2016, 8, 22)  #last time 9/03
 delta = datetime.datetime.now() - lastdate
 ###----大盤統計資訊 + 大盤成交統計 in one new----
 

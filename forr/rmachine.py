@@ -2,7 +2,7 @@
 from sqlite3 import *
 import os
 os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
-# os.chdir('D:\\')
+# os.chdir('D:/')
 conn = connect('mops.sqlite3')
 c = conn.cursor()
 
@@ -32,25 +32,8 @@ def fill(s):
     return Series(l, name=s.name)
 id='2316'
 com = "'%s'"%(id)
-sql = "SELECT * FROM '%s' WHERE 證券代號 LIKE %s" % ('會計師查核報告', com)
-ac = read_sql_query(sql, conn).replace('--', 'NaN').sort_values(['年', '季', '證券代號'])
-ac[['年', '季']]=ac[['年', '季']].astype(str)
-ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('-', '/', regex=True)
-ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('\xa0', '', regex=True)
-# ac['年'] = ac['\u3000 核閱或查核日期'].str.split('\').str[0]
-# ac['月'] = ac['\u3000 核閱或查核日期'].str.split('\').str[1]
-# ac['日'] = ac['\u3000 核閱或查核日期'].str.split('\').str[2]
-# for y in range(91, 103):
-#     ac['年'] = ac['年'].replace(str(y), str(y + 1911), regex=True)
-# ac['年'] = ac['年'].replace('\xa0', '', regex=True)
-# ac['\u3000 核閱或查核日期'] = ac['年'] + '\' + ac['月'] + '\' + ac['日']
-ac1 = ac[ac['證券代號'] == id].rename(columns={'\u3000 核閱或查核日期': '年月日'})
-# com = "'5522%'"
 sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s" % ('ifrs前後-綜合損益表', com)
 inc = read_sql_query(sql, conn).replace('--', 'NaN')
-# inc['年'] = [x.split('/')[0] for x in inc['年季']]
-# inc['季'] = [x.split('/')[1] for x in inc['年季']]
-# inc['公司代號'] = inc['公司代號'].astype(str).replace('/.0', '', regex=True)
 col = ['年', '季', '公司代號', '公司名稱', '營業收入', '營業成本', '營業毛利（毛損）', '未實現銷貨（損）益', '已實現銷貨（損）益', '營業毛利（毛損）淨額', '營業費用',
        '其他收益及費損淨額', '營業利益（損失）', '營業外收入及支出', '稅前淨利（淨損）', '所得稅費用（利益）', '繼續營業單位本期淨利（淨損）', '停業單位損益', '合併前非屬共同控制股權損益',
        '本期淨利（淨損）', '其他綜合損益（淨額）', '合併前非屬共同控制股權綜合損益淨額', '本期綜合損益總額', '淨利（淨損）歸屬於母公司業主', '淨利（淨損）歸屬於共同控制下前手權益',
@@ -80,8 +63,7 @@ def change1(df):
     h = hstack((a0, v))
     return DataFrame(h, columns=list(df0) + list(df1))
 
-
-inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True)  #'年', '季' must be string
+inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True)  #'季' must be string
 inc['grow_s'] = inc['本期綜合損益總額'].pct_change(1)
 inc['grow_hy'] = inc['本期綜合損益總額'].rolling(window=2).sum().pct_change(2)
 inc[col1] = inc[col1].rolling(window=4).sum()
@@ -97,6 +79,13 @@ print('mops')
 
 #--- summary ---
 conn = connect('summary.sqlite3')
+sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s" % ('會計師查核報告', com)
+ac = read_sql_query(sql, conn).replace('--', 'NaN').rename(columns={'公司代號': '證券代號', '公司簡稱': '證券名稱', '核閱或查核日期': '年月日'}).sort_values(['年', '季', '證券代號']).drop(['簽證會計師事務所名稱', '簽證會計師','簽證會計師.1', '核閱或查核報告類型'], axis=1)
+ac[['年', '季']]=ac[['年', '季']].astype(str)
+# ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('-', '/', regex=True)
+# ac['\u3000 核閱或查核日期'] = ac['\u3000 核閱或查核日期'].replace('\xa0', '', regex=True)
+# com = "'5522%'"
+sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s"
 fin = read_sql_query(sql % ('財務分析', com), conn)
 report = mymerge(inc, bal)
 report['流動比率'] = report['流動資產'] / report['流動負債']
@@ -105,7 +94,7 @@ report['權益報酬率'] = report['綜合損益總額歸屬於母公司業主']
 report['profitbility'] = report.綜合損益總額歸屬於母公司業主 / (report.權益總額.shift(4))
 report['investment'] = report.權益總額.pct_change(4)
 report = report.rename(columns={'公司代號': '證券代號'})
-report = mymerge(ac1, report)
+report = mymerge(ac, report)
 remcol = ['Unnamed: 21', '待註銷股本股數（單位：股）', 'Unnamed: 22', ]
 report = report.drop(remcol, axis=1)
 report[['年', '季', '綜合損益總額歸屬於母公司業主', '權益總額', 'profitbility', '權益報酬率']]
@@ -134,6 +123,8 @@ value['股價淨值比'] = value['股價淨值比'].replace('-', nan)
 # fore['證券代號'] = fore['證券代號'].str.strip()
 # trust['證券代號'] = trust['證券代號'].str.strip()
 # close['證券名稱'] = close['證券名稱'].str.strip()
+sql="SELECT * FROM '%s' WHERE 股票代號 LIKE %s"
+xdr = read_sql_query(sql% ('除權息計算結果表', com), conn).rename(columns={'股票代號': '證券代號', '股票名稱': '證券名稱'})
 list(close)
 list(value)
 list(ins)
@@ -143,8 +134,9 @@ list(deal)
 list(fin)
 list(trust)
 print('tse')
-
-m=mymerge(close, value)
+list(ac)
+m=mymerge(close, xdr)
+m=mymerge(m, value)
 m=mymerge(m, deal)
 m[['自營商(自行買賣)賣出股數', '自營商(自行買賣)買賣超股數', '自營商(自行買賣)買進股數', '自營商(避險)賣出股數', '自營商(避險)買賣超股數', '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數']] = m[['自營商(自行買賣)賣出股數', '自營商(自行買賣)買賣超股數', '自營商(自行買賣)買進股數', '自營商(避險)賣出股數', '自營商(避險)買賣超股數', '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數']].fillna(0)
 m=mymerge(m, fore)
@@ -156,6 +148,7 @@ m=mymerge(m, rindex)
 m=mymerge(m, report)
 list(m)
 print('merge')
+m.dtypes
 
 m.年月日=to_datetime(m.年月日, format='%Y/%m/%d').apply(lambda x: x.date()) # should convert to datetime before sort, or the result is  wrong
 m=m.sort_values(['年月日','證券代號']).reset_index(drop=True) # reset_index make the index ascending
@@ -171,13 +164,18 @@ m = m.replace('--', nan)
 m = m[col+[x for x in list(m) if x not in col]]
 col=['年月日', '證券代號', '證券名稱', '公司名稱', '年', '季', '漲跌(+/-)', '外資鉅額交易', '投信鉅額交易']
 m[[x for x in list(m) if x not in col]] = m[[x for x in list(m) if x not in col]].astype(float)
-col=['年月日', '證券代號','time', '成交股數', '成交筆數', '成交金額', '開盤價', '最高價', '最低價', '收盤價', '漲跌(+/-)', '漲跌價差', '最後揭示買價', '最後揭示買量', '最後揭示賣價',
+col=['年月日', '證券代號','time', '成交股數', '成交筆數', '成交金額', '開盤價', '最高價', '最低價', '收盤價', '調整收盤價', '漲跌(+/-)', '漲跌價差', '最後揭示買價', '最後揭示買量', '最後揭示賣價',
   '最後揭示賣量', '本益比', '殖利率(%)', '股價淨值比', '自營商(自行買賣)賣出股數', '自營商(自行買賣)買賣超股數', '自營商(自行買賣)買進股數', '自營商(避險)賣出股數', '自營商(避險)買賣超股數',
   '自營商(避險)買進股數', '自營商賣出股數', '自營商買賣超股數', '自營商買進股數', '外資鉅額交易', '外資買進股數', '外資賣出股數', '外資買賣超股數', '投信鉅額交易', '投信買進股數',
   '投信賣出股數', '投信買賣超股數', '基本每股盈餘（元）','每股參考淨值', '流動比率', '負債佔資產比率', '權益報酬率', '毛利率', '營業利益率', '綜合稅後純益率', 'grow_s', 'grow_hy', 'grow_y', 'grow',
     '本期綜合損益總額.wma', '本期綜合損益總額.ma', 'profitbility', 'investment', '建材營造類指數', '漲跌點數', '漲跌百分比(%)', '建材營造類報酬指數', 'r漲跌點數', 'r漲跌百分比(%)']
-m[['profitbility', '權益報酬率']]
+# m[['profitbility', '權益報酬率']]
 print('before dropna')
+list(m)
+m['a'] = m['權值+息值'].replace(NaN, 0)
+m['b'] = m['a'].cumsum()
+m['調整收盤價']=m.收盤價+m.b
+m = m.drop(['a', 'b'], axis=1)
 m=m.dropna(axis=1, how='all')
 
 TWII = web.DataReader("^TWII", "yahoo").reset_index()[['Date', 'Adj Close']].rename(columns={'Date': '年月日', 'Adj Close':'TWII'})
@@ -197,14 +195,14 @@ index.年月日=to_datetime(index.年月日).apply(lambda x: x.date())
 print('index')
 
 forr=m[col]
-forr['lnmo'] = log(forr['收盤價']/forr['收盤價'].shift(120))
-forr['lnr'] = log(forr['收盤價']/forr['收盤價'].shift())
-forr['lnr025'] = log(forr['收盤價'].shift(-5)/forr['收盤價'])*48
-forr['lnr05'] = log(forr['收盤價'].shift(-10)/forr['收盤價'])*24
-forr['lnr1'] = log(forr['收盤價'].shift(-20)/forr['收盤價'])*12
-forr['lnr2'] = log(forr['收盤價'].shift(-40)/forr['收盤價'])*6
-forr['lnr3'] = log(forr['收盤價'].shift(-60)/forr['收盤價'])*4
-forr['lnr6'] = log(forr['收盤價'].shift(-120)/forr['收盤價'])*2
+forr['lnmo'] = log(forr['調整收盤價']/forr['調整收盤價'].shift(120))
+forr['lnr'] = log(forr['調整收盤價']/forr['調整收盤價'].shift())
+forr['lnr025'] = log(forr['調整收盤價'].shift(-5)/forr['調整收盤價'])*48
+forr['lnr05'] = log(forr['調整收盤價'].shift(-10)/forr['調整收盤價'])*24
+forr['lnr1'] = log(forr['調整收盤價'].shift(-20)/forr['調整收盤價'])*12
+forr['lnr2'] = log(forr['調整收盤價'].shift(-40)/forr['調整收盤價'])*6
+forr['lnr3'] = log(forr['調整收盤價'].shift(-60)/forr['調整收盤價'])*4
+forr['lnr6'] = log(forr['調整收盤價'].shift(-120)/forr['調整收盤價'])*2
 # forr['lnr025'] = (forr['lnr'].rolling(window=5).mean()*240).shift(-5)
 # forr['lnr05'] = (forr['lnr'].rolling(window=10).mean()*240).shift(-10)
 # forr['lnr1'] = (forr['lnr'].rolling(window=20).mean()*240).shift(-20)
@@ -217,31 +215,31 @@ forr['lnr6'] = log(forr['收盤價'].shift(-120)/forr['收盤價'])*2
 # forr['r2'] = exp(forr['lnr2'])-1
 # forr['r3'] = exp(forr['lnr3'])-1
 # forr['r6'] = exp(forr['lnr6'])-1
-forr['r025'] = (forr['收盤價'].shift(-5)/forr['收盤價'])**48-1
-forr['r05'] = (forr['收盤價'].shift(-10)/forr['收盤價'])**24-1
-forr['r1'] = (forr['收盤價'].shift(-20)/forr['收盤價'])**12-1
-forr['r2'] = (forr['收盤價'].shift(-40)/forr['收盤價'])**6-1
-forr['r3'] = (forr['收盤價'].shift(-60)/forr['收盤價'])**4-1
-forr['r6'] = (forr['收盤價'].shift(-120)/forr['收盤價'])**2-1
+forr['r025'] = (forr['調整收盤價'].shift(-5)/forr['調整收盤價'])**48-1
+forr['r05'] = (forr['調整收盤價'].shift(-10)/forr['調整收盤價'])**24-1
+forr['r1'] = (forr['調整收盤價'].shift(-20)/forr['調整收盤價'])**12-1
+forr['r2'] = (forr['調整收盤價'].shift(-40)/forr['調整收盤價'])**6-1
+forr['r3'] = (forr['調整收盤價'].shift(-60)/forr['調整收盤價'])**4-1
+forr['r6'] = (forr['調整收盤價'].shift(-120)/forr['調整收盤價'])**2-1
 forr['r025.s']= (forr.r025-forr.r025.mean())/forr.r025.std()
 forr['r05.s']= (forr.r05-forr.r05.mean())/forr.r05.std()
 forr['r1.s']= (forr.r1-forr.r1.mean())/forr.r1.std()
 forr['r2.s']= (forr.r2-forr.r2.mean())/forr.r2.std()
 forr['r3.s']= (forr.r3-forr.r3.mean())/forr.r3.std()
 forr['r6.s']= (forr.r6-forr.r6.mean())/forr.r6.std()
-forr['h_l'] = (forr.最高價-forr.最低價)/forr.收盤價
-forr['P'] = (forr.最高價+forr.最低價+2*forr.收盤價)/4
-forr['pch'] = (forr.收盤價-forr.收盤價.shift())/forr.收盤價.shift()
-forr['ch'] = forr.收盤價.diff()
+forr['h_l'] = (forr.最高價-forr.最低價)/forr.調整收盤價
+forr['P'] = (forr.最高價+forr.最低價+2*forr.調整收盤價)/4
+forr['pch'] = (forr.調整收盤價-forr.調整收盤價.shift())/forr.調整收盤價.shift()
+forr['ch'] = forr.調整收盤價.diff()
 forr['ch_u'], forr['ch_d'] = forr['ch'], forr['ch']
 forr.ix[forr.ch_u < 0, 'ch_u'], forr.ix[forr.ch_d > 0, 'ch_d'] = 0, 0
 forr['ch_d'] = forr['ch_d'].abs()
 forr['rsi'] = forr.ch_u.ewm(alpha=1/14).mean()/(forr.ch_u.ewm(alpha=1/14).mean()+forr.ch_d.ewm(alpha=1/14).mean())*100 #與r和凱基同,ema的公式與一般的ema不同。公式見http://www.fmlabs.com/reference/default.htm?url=RSI.htm
-forr['MA5'] = forr.收盤價.rolling(window=5).mean()
-forr['MA10'] = forr.收盤價.rolling(window=10).mean()
-forr['MA20'] = forr.收盤價.rolling(window=20).mean()
-forr['MA60'] = forr.收盤價.rolling(window=60).mean()
-forr['MA120'] = forr.收盤價.rolling(window=120).mean()
+forr['MA5'] = forr.調整收盤價.rolling(window=5).mean()
+forr['MA10'] = forr.調整收盤價.rolling(window=10).mean()
+forr['MA20'] = forr.調整收盤價.rolling(window=20).mean()
+forr['MA60'] = forr.調整收盤價.rolling(window=60).mean()
+forr['MA120'] = forr.調整收盤價.rolling(window=120).mean()
 forr['max9'] = forr.最高價.rolling(window=9).max()
 forr['min9'] = forr.最低價.rolling(window=9).min()
 forr['EMA12'] = forr.P.ewm(alpha=2/13).mean()
@@ -250,19 +248,19 @@ forr['DIF'] = forr['EMA12']-forr['EMA26']
 forr['MACD'] = forr.DIF.ewm(alpha=0.2).mean()
 forr['MACD1'] = (forr['EMA12']-forr['EMA26'])/forr['EMA26']*100
 forr['OSC'] = forr.DIF-forr.MACD
-forr['rsv'] = (forr.收盤價-forr.min9)/(forr.max9-forr.min9)
+forr['rsv'] = (forr.調整收盤價-forr.min9)/(forr.max9-forr.min9)
 forr['k']=forr.rsv.ewm(alpha=1/3).mean()
 forr['d']=forr.k.ewm(alpha=1/3).mean()
-forr['P1'] = (forr.最高價+forr.最低價+forr.收盤價)/3
+forr['P1'] = (forr.最高價+forr.最低價+forr.調整收盤價)/3
 forr['mavg']=forr.P1.rolling(window=20).mean()
-forr['up']=forr.mavg+forr.P1.rolling(window=20).std()*2
-forr['dn']=forr.mavg-forr.P1.rolling(window=20).std()*2
+forr['up']=forr.mavg+forr.P1.rolling(window=20).std()
+forr['dn']=forr.mavg-forr.P1.rolling(window=20).std()
 forr['pctB'] = (forr.P1-forr.dn)/(forr.up-forr.dn)
-forr['c_up'] = forr.收盤價-forr.up
-forr['c_dn'] = forr.收盤價-forr.dn
-forr['std5'] = forr.收盤價.rolling(window=5).std()
-forr['std10'] = forr.收盤價.rolling(window=10).std()
-forr['std20'] = forr.收盤價.rolling(window=20).std()
+forr['c_up'] = (forr.調整收盤價-forr.up)/forr.up
+forr['c_dn'] = (forr.調整收盤價-forr.dn)/forr.up
+forr['std5'] = forr.調整收盤價.rolling(window=5).std()
+forr['std10'] = forr.調整收盤價.rolling(window=11).std()
+forr['std20'] = forr.調整收盤價.rolling(window=20).std()
 forr['sign']=sign(forr['pch'])
 forr['trend']=forr['sign']
 i=forr[forr['trend']==0].index
@@ -332,16 +330,16 @@ f(forr, 'MA120')
 forr['newhl']=forr['reverse']*2
 i=forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
 a=array(i)
-l = (forr['收盤價'][a] - forr['收盤價'][a].shift()).tolist()
+l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
 i = array([i for i, j in enumerate(l) if j > 0])
 forr.ix[a[i], 'newhl'] = 1
 i=forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
 a=array(i)
-l = (forr['收盤價'][a] - forr['收盤價'][a].shift()).tolist()
+l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
 i = array([i for i, j in enumerate(l) if j < 0])
 forr.ix[a[i], 'newhl'] = -1
 forr.ix[(forr['newhl'] == 2) | (forr['newhl'] == -2), 'newhl'] = 0
-print(forr[['收盤價', 'trend', 'reverse', 'newhl']])
+print(forr[['調整收盤價', 'trend', 'reverse', 'newhl']])
 
 def f(df, c):
     df['newhl_{}'.format(c)] = df['reverse_{}'.format(c)] * 2
@@ -361,6 +359,27 @@ f(forr, 'MA5')
 f(forr, 'MA10')
 f(forr, 'MA20')
 f(forr, 'MA60')
+
+forr['d'] = forr.調整收盤價-forr.收盤價
+forr['調整開盤價'] = forr.開盤價 + forr.d
+forr['調整收盤價'] = forr.收盤價 + forr.ｄ
+forr['調整最高價'] = forr.最高價 + forr.d
+forr['調整最低價'] = forr.最低價 + forr.ｄ
+forr['span'] = abs(forr.調整收盤價-forr.調整開盤價)/forr.調整收盤價
+forr['span_hl'] = abs(forr.調整最高價-forr.調整最低價)/forr.調整收盤價
+forr['ushadow'] = (forr.調整最高價 - forr[['調整開盤價', '調整收盤價']].max(axis=1))/forr.調整收盤價
+forr['lshadow'] = (forr[['調整開盤價', '調整收盤價']].min(axis=1) - forr.調整最低價)/forr.調整收盤價
+forr['ushadow/span'] =forr['ushadow']/(forr['span']+0.1**10*forr.調整收盤價)
+forr['lshadow/span'] =forr['lshadow']/(forr['span']+0.1**10*forr.調整收盤價)
+del forr['d']
+forr['h_l_1'] = forr['h_l'].shift()
+forr['h_l_2'] = forr['h_l'].shift(2)
+forr['ushadow_1'] = forr['ushadow'].shift()
+forr['lshadow_1'] = forr['lshadow'].shift()
+forr['ushadow/span_1'] = forr['ushadow/span'].shift()
+forr['lshadow/span_1'] = forr['lshadow/span'].shift()
+
+
 print('forr')
 
 forr = mymerge(forr, index).sort_values(['年月日'])

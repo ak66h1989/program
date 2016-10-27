@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
+</head>
+<body>
+<div id="graphdiv"></div>
+<script>
+  new Dygraph(document.getElementById("graphdiv"),
+              [
+                [1,10,100],
+                [2,20,80],
+                [3,50,60],
+                [4,70,80]
+              ],
+              {
+                labels: [ "x", "A", "B" ]
+              });
+</script>
+</body>
+</html>

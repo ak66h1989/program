@@ -3,15 +3,21 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
+
+    
     
     function f1(){
     $("#div2").append($(this));
+    $("#div2").append('<input type="checkbox" name="choice" value="'+$(this).text()+'" checked = "true"/>');
     $(this).click(f2);
 }
     function f2(){
     $("#div1").append($(this));
+    $("#div1").append('<input type="checkbox" name="choice" value="'+$(this).text()+'" checked = "true"/>');
     $(this).click(f1);
 }
+    
+
     
 $(document).ready(function(){
     $("#div0 button:eq(0)").click(function(){
@@ -34,6 +40,26 @@ $(document).ready(function(){
       $("#div2 button").click(f2);        
         });
 
+
+//        $('div').on('click', 'button', function() {
+//    alert($(this).text());
+//});
+
+    $("#b1").click(function(){
+        var val = [];
+    $(':checkbox:checked').each(function(i){
+      val[i] = $(this).val();
+        document.getElementById("div3").innerHTML=val;
+        });
+
+
+});
+
+//var val = [];
+//$('button').each(function(i) {
+//    val[i] = $(this).val();
+//   alert(val[i]);
+//});
 
 }   
 );
@@ -107,7 +133,7 @@ $(document).ready(function(){
     </div>
 </div>
 
-<button type="button" class="btn btn-default">Default</button>
+<button type="button" class="btn btn-default" id='b1'>Default</button>
 <button type="button" class="btn btn-primary">Primary</button>
 <button type="button" class="btn btn-success">Success</button>
 <button type="button" class="btn btn-info">Info</button>
@@ -115,6 +141,7 @@ $(document).ready(function(){
 <button type="button" class="btn btn-danger">Danger</button>
 <button type="button" class="btn btn-link">Link</button>
 
+<div id='div3'></div>
 
 </body>
 </html>

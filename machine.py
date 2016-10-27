@@ -1,6 +1,6 @@
 from sqlite3 import *
 import os
-os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
+os.chdir('C:/Users/ak66h_000/Documents/db/')
 # os.chdir('D:\\')
 conn = connect('mysum.sqlite3')
 c = conn.cursor()
@@ -136,7 +136,7 @@ pyplot.ylabel('y')
 pyplot.title('Simple Earth Example')
 pyplot.show()
 error = array(y_test) - model.predict(array(x_test))
-1-error.std()/y_test.var()
+print('R^2', 1-error.std()/y_test.var())
 model.predict([array(x)[-1]])
 
 #----gbm----
@@ -240,7 +240,7 @@ p2.line(np.arange(n_estimators) + 1, cv_score, legend="cv loss", line_color="gre
 p2.line(np.arange(n_estimators) + 1, test_score, legend="test loss", line_color="orange")
 vline1 = Span(location=oob_best_iter, dimension='height', line_color='blue',line_dash='dashed', line_width=2)
 vline2 = Span(location=cv_best_iter, dimension='height', line_color='green',line_dash='dashed', line_width=2)
-vline3 = Span(location=test_best_iter, dimension='height', line_color='orange',line_dash='dashed', line_width=2)
+vline3 = Span(location=test_best_iter, dimension='height', line_color='orange', line_dash='dashed', line_width=2)
 output_file("gbm.html")
 p2.renderers.extend([vline1, vline2, vline3])
 show(p2)

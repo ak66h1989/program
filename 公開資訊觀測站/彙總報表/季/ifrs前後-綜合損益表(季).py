@@ -2,9 +2,11 @@ from pandas import *
 from sqlite3 import *
 from numpy import *
 import os
+#---- update ----
 os.chdir('C:\\Users\\ak66h_000\\Documents\\db\\')
-os.chdir('D:\\')
+# os.chdir('D:\\')
 conn = connect('mops.sqlite3')
+c = conn.cursor()
 sql = "SELECT * FROM `%s` " % ('ifrs前後-綜合損益表')
 inc = read_sql_query(sql, conn).replace('--', nan).replace('', nan)
 # inc['年'] = [x.split('/')[0] for x in inc['年季']]
@@ -30,26 +32,24 @@ inc.dtypes
 for i in col1:
     if inc[i].dtypes is dtype('O'):
         inc[[i]] = inc[[i]].astype(float)
-i=inc.ix[inc.公司代號=='2316'].index
-inc.ix[i-1]
 
+inc.年, inc.季, inc.公司代號 = inc.年.astype(str), inc.季.astype(str), inc.公司代號.astype(str)
 
-def change0(s):
-    if s.dtypes == 'object':
-        return s
-    else:
-        return s-s
-inc.apply(change0)
-inc.groupby(['公司代號', '年']).apply(change0)    # apply applies function to each series of one dataframe(dataframe object)
-inc.dtypes
-inc[['公司代號']].dtypes=='0'
-def change1(df):
-    df1 = df[[x for x in list(df) if df[x].dtype != 'object']]
-    a1 = array(df1)
-    v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
-    return DataFrame(v, columns=list(df1))
-inc0 = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True);inc0
-list(inc0)
+# def change0(s):
+#     if s.dtypes == 'object':
+#         return s
+#     else:
+#         return s-s
+# inc.apply(change0)
+# inc.groupby(['公司代號', '年']).apply(change0)    # apply applies function to each series of one dataframe(dataframe object)
+#
+# def change1(df):
+#     df1 = df[[x for x in list(df) if df[x].dtype != 'object']]
+#     a1 = array(df1)
+#     v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
+#     return DataFrame(v, columns=list(df1))
+# inc0 = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True);inc0
+# list(inc0)
 
 def change1(df):
     df0 = df[[x for x in list(df) if df[x].dtype == 'object']]
@@ -59,51 +59,20 @@ def change1(df):
     v = vstack((a1[0], a1[1:] - a1[0:len(df) - 1]))
     h = hstack((a0, v))
     return DataFrame(h, columns=list(df0) + list(df1))
-inc = inc.groupby(['公司代號', '年']).apply(change1).reset_index(drop=True).sort_values(['年', '季', '公司代號']);inc  # apply applies function to each datafrme(group) of one dataframe(groupby object)
-
-
+inc = inc.groupby(['公司代號', '年']).apply(change1).sort_values(['年', '季', '公司代號']).reset_index(drop=True);inc  # apply applies function to each datafrme(group) of one dataframe(groupby object)
 
 table='ifrs前後-綜合損益表(季)'
-# ----create table----
-names = list(inc)
-c = conn.cursor()
-sql = "create table `" + table + "`(" + "'" + names[0] + "'"
-for n in names[1:len(names)]:
-    sql = sql + ',' + "'" + n + "'"
-sql = sql + ', PRIMARY KEY (`年`, `季`, `公司代號`))'
+# df = read_sql_query("SELECT * from `{}`".format(table), conn)
+df=inc
+df['年'], df['季'], df['公司代號']= df['年'].astype(int), df['季'].astype(str), df['公司代號'].astype(str)
+df=df.drop_duplicates(subset=['年','季', '公司代號']).sort_values(['年','季', '公司代號'])
+sql='ALTER TABLE `{}` RENAME TO `{}0`'.format(table, table)
 c.execute(sql)
-# ----inserting data----
-sql = 'INSERT INTO `' + table + '` VALUES (?'
-n = [',?'] * (len(names) - 1)
-for h in n:
-    sql = sql + h
-sql = sql + ')'
-c.executemany(sql, inc.values.tolist())
+sql='create table `{}` (`{}`, PRIMARY KEY ({}))'.format(table, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+c.execute(sql)
+sql='insert into `{}`(`{}`) values({})'.format(table, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+c.executemany(sql, df.values.tolist())
 conn.commit()
-print('done')
-
-
-inc.公司代號=inc.公司代號.astype(str)
-sql='insert into `%s`(`%s`) values(%s)'%(table, '`,`'.join(list(inc)), ','.join('?'*len(list(inc))))
-c.executemany(sql, inc.values.tolist())
-conn.commit()
+sql="drop table `{}0`".format(table)
+c.execute(sql)
 print('finish')
-len(inc['營業收入'])
-len(inc['營業收入'][1:] - inc['營業收入'][0:len(inc['營業收入']) - 1])
-len(inc['營業收入'][0:len(inc['營業收入']) - 1])
-a1=array(inc['營業收入'])
-h= hstack((a1[0], a1[1:] - a1[0:len(a1) - 1]))
-Series([a1[0], a1[1:] - a1[0:len(a1) - 1]])
-a1[0:1].append(a1[0:1])
-concat([a1[0], a1[0]])
-
-sf = Series([1, 1, 2, 3, 3, 3])
-sf.groupby(sf).filter(lambda x: x.sum() > 0)
-sf.filter(lambda x: x.sum() > 0)
-tsdf = DataFrame(np.random.randn(1000, 3),
-index=date_range('1/1/2000', periods=1000),
-columns=['A', 'B', 'C'])
-tsdf[::2]
-tsdf.ix[::2] = np.nan
-grouped = tsdf.groupby(lambda x: x.year)
-grouped.fillna(method='pad')
