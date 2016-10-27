@@ -1,515 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/db.sqlite3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/images/sort_asc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/images/sort_asc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/images/sort_both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/images/sort_desc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/images/sort_desc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/exporter/test.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/d3.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/examples/demo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_444444_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_555555_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_777620_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_777777_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_cc0000_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_444444_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_555555_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_777620_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_777777_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_cc0000_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_444444_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_555555_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_777620_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_777777_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_cc0000_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/images/ui-icons_ffffff_256x240.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/db.sqlite3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mysum.sqlite3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/summary.sqlite3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201602.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201602.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bid.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/boxplot.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/debug.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/manage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/apps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/migrations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/template/myapp/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/template/myapp/testlist.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/tests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/mypro/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/mypro/settings.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/mypro/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/djangotest1/mypro/mypro/wsgi.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dygraph-combined-dev.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dygraph.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/beauty.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/dygraph.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/fapp.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/css/colReorder.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/js/dataTables.colReorder.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/ColReorder-1.3.2/js/dataTables.colReorder.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/dataTables.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/jquery.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/jquery.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/css/jquery.dataTables_themeroller.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/dataTables.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/jquery.dataTables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/DataTables-1.10.12/js/jquery.dataTables.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/css/fixedColumns.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/js/dataTables.fixedColumns.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/css/fixedHeader.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/js/dataTables.fixedHeader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/css/responsive.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/dataTables.responsive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/dataTables.responsive.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/Responsive-2.1.0/js/responsive.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/Gruntfile.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/c3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/c3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/c3.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/c3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/component.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/chart-bubble/bubble.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/chart-bubble/c3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/chart-bubble/c3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/chart-bubble/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/exporter/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/exporter/phantom-exporter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/extensions/js/c3ext.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/css/c3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/css/index.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test.tsv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test2.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test2_ts.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test3.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test_2.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test_3.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/data/c3_test_ts.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/c3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/c3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/extensions" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/require.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/samples/plugin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/samples/requirejs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/js/samples/zoom_reduction.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_axis_label.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_axis_range.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_data_colors.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_flow.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_flow_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_legend.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_tooltip_show.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_transform.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_xgrid_lines.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/api_ygrid_lines.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/area_zerobased.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_padding.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_range.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_extent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_localtime.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_range_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_tick_culling.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_tick_fit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_tick_rotate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_x_tick_values.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_y2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/axes_y_default.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/bar_zerobased.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/bindto.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/categorized.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area_spline.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area_spline_stacked.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area_stacked.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area_step.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_area_step_stacked.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_bar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_bar_stacked.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_combination.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_donut.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_gauge.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_pie.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_pie_sort.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_scatter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_spline.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_step.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/chart_step_category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/custom_x_categorized.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/custom_x_scale.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/custom_xs_scale.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_columned.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_hide.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_json.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_label.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_label_format.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_load.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_load_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_region.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_region_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_rowed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/data_url.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/domain_y.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/element.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/emptydata.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/grid_focus.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/grid_x_lines.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/grid_x_lines_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/grids.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/grids_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/interaction_enabled.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/legend.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/padding.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/padding_update.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/plugin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/point_r.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/regions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/regions_timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/requirejs.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/selection.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/simple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/subchart.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/subchart_onbrush.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/timeseries.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/timeseries_date.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/timeseries_descendent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/timeseries_raw.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/tooltip_grouped.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/tooltip_show.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/zoom.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/zoom_category.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/zoom_onzoom.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/htdocs/samples/zoom_reduction.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/karma.conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.axis-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.data-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.focus-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.grid-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.load-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.region-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/api.zoom-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/arc-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/axis-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/c3-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/c3-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/class-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/core-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/data-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/domain-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/grid-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/interaction-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/legend-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/shape.bar-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/shape.line-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/svg-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/title-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/tooltip-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/type-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/spec/zoom-spec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.axis.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.category.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.color.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.flow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.focus.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.grid.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.group.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.legend.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.region.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.selection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.show.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.tooltip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.transform.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.x.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/api.zoom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/arc.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/axis.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/c3.axis.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/cache.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/category.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/class.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/clip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/color.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/config.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/data.convert.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/data.load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/domain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/drag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/format.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/grid.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/head.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/interaction.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/legend.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/polyfill.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/region.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scale.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/arc.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/area.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/axis.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/bar.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/brush.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/chart.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/focus.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/grid.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/legend.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/line.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/main.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/point.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/region.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/select_drag.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/text.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/title.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/scss/tooltip.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/selection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/shape.bar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/shape.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/shape.line.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/size.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/subchart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/tail.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/text.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/title.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/tooltip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/ua.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/util.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/c3/c3-0.4.11/src/zoom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/API.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/CHANGES.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/d3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/d3/d3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/datatables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/datatables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/datatables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/datatables.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/dy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/dygraph-combined-dev.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/extras/synchronizer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-2.2.3/jquery-2.2.3.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-2.2.3/jquery-2.2.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/databar.jquery.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/examples/demo.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-For-Creating-Excel-Like-Data-Bars-Databar/jquery.databar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-To-Render-Data-Bar-From-Tabluar-Data-tableMeter/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-To-Render-Data-Bar-From-Tabluar-Data-tableMeter/README.rdoc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-To-Render-Data-Bar-From-Tabluar-Data-tableMeter/example.tableMeter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jQuery-Plugin-To-Render-Data-Bar-From-Tabluar-Data-tableMeter/jquery.tableMeter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-3.1.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/AUTHORS.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/external/jquery/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.structure.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1.custom/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/AUTHORS.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/external/jquery/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.structure.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.structure.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/jquery-ui.theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery-ui-1.12.1/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery.gridster.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/static/jquery.gridster.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/annotation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/bokeh.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/bootstrap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/c3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/c3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/c3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/d3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/datatable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/dygraph-combined-dev.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/dygraph.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/gridster.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/hello.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/jqueryui.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/mline.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/mline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/mp.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/plot.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/plot1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/plot1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/tab9-10.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/table.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/test2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/test2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/testlist.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask/templates/ys.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/AUTHORS.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/external/jquery/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.structure.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.structure.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/jquery-ui.theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jquery-ui-1.12.1/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jqueryui.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/manage.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/apps.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/migrations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/models.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/templates/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/tests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/myapp/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/mypro/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/mypro/settings.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/mypro/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mypro/mypro/wsgi.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scrap.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/selen.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/temperatures.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcgi.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcgi.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前/合併損益表.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前/合併資產負債表.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-綜合損益表(季).py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-綜合損益表.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-資產負債表.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表1.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/flask/app.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201301.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201301.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201302.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201302.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201303.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201303.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201304.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201304.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201401.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201401.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201402.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201402.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201403.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201403.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201404.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201404.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201501.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201501.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201502.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201502.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201503.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201503.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201504.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201504.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201601.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-其他業/綜合損益表-其他業201601.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201301.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201301.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201302.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201302.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201303.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201303.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201304.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201304.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201401.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201401.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201402.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201402.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201403.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201403.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201404.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201404.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201501.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201501.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201502.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201502.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201503.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201503.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201504.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201504.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201601.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-其他業/資產負債表-其他業201601.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel.py" afterPath="$PROJECT_DIR$/excel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forr/forr.py" afterPath="$PROJECT_DIR$/forr/forr.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/forr/rmachine.py" afterPath="$PROJECT_DIR$/forr/rmachine.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine.py" afterPath="$PROJECT_DIR$/machine.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/polls/views.py" afterPath="$PROJECT_DIR$/mysite/polls/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test1.html" afterPath="$PROJECT_DIR$/test1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test1.py" afterPath="$PROJECT_DIR$/test1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tse/updateall_tse.py" afterPath="$PROJECT_DIR$/tse/updateall_tse.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/income.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/income.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前/合併損益表+ifrs前後.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前/合併損益表+ifrs前後.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/季/ifrs前後-綜合損益表.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/季/ifrs前後-綜合損益表.py" />
-    </list>
+    <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="" />
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -534,7 +26,7 @@
       <file leaf-file-name="machine.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
+            <state relative-caret-position="7353">
               <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -546,7 +38,7 @@
       <file leaf-file-name="fapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6593">
+            <state relative-caret-position="247">
               <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
@@ -556,7 +48,7 @@
       <file leaf-file-name="rmachine.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forr/rmachine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
+            <state relative-caret-position="5149">
               <caret line="271" column="32" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
               <folding>
                 <element signature="e#19#40#0" expanded="true" />
@@ -568,7 +60,7 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
+            <state relative-caret-position="4199">
               <caret line="221" column="12" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
               <folding />
             </state>
@@ -588,7 +80,7 @@
       <file leaf-file-name="test1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
+            <state relative-caret-position="347">
               <caret line="186" column="63" selection-start-line="186" selection-start-column="63" selection-end-line="186" selection-end-column="63" />
               <folding />
             </state>
@@ -666,7 +158,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -699,32 +190,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webscrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webscrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webscrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webscrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1022,12 +490,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2521322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25479743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39285713" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1042,6 +510,24 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1346,7 +832,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/machine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
+        <state relative-caret-position="7353">
           <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -1356,7 +842,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask/fapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6593">
+        <state relative-caret-position="247">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
@@ -1364,7 +850,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/forr/rmachine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="5149">
           <caret line="271" column="32" selection-start-line="271" selection-start-column="32" selection-end-line="271" selection-end-column="32" />
           <folding>
             <element signature="e#19#40#0" expanded="true" />
@@ -1374,7 +860,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
+        <state relative-caret-position="4199">
           <caret line="221" column="12" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
           <folding />
         </state>
@@ -1390,7 +876,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
+        <state relative-caret-position="347">
           <caret line="186" column="63" selection-start-line="186" selection-start-column="63" selection-end-line="186" selection-end-column="63" />
           <folding />
         </state>
