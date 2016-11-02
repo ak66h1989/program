@@ -18,7 +18,7 @@
                     <tr>
                         <th style="text-align: center">{{d.report1[0][0][0][0]|safe}}</th>
                         {% for i in d.report1[0][0][1:] %}
-                        <th style="text-align: center;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
+                        <th style="text-align: right;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
                         {% endfor %}
                     </tr>
                 </thead>
@@ -27,7 +27,7 @@
                     <tr>
                         <td><div>{{item[0][0]|safe}}</div></td>
                         {% for i in item[1:] %}
-                        <td><div style="width:{{i[1]|safe}}%;background-color:{{i[2]|safe}};">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
+                        <td><div style="background-image: linear-gradient( to right, {{i[2]|safe}} {{i[1]|safe}}%,  #FFF 0px);text-align: right;">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
                         {% endfor %}
                     </tr>
                     {% endfor %}
@@ -65,7 +65,7 @@
                     <tr>
                         <th style="text-align: center">{{d.report1[1][0][0][0]|safe}}</th>
                         {% for i in d.report1[1][0][1:] %}
-                        <th style="text-align: center;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
+                        <th style="text-align: right;width: 100%;">{{i[0]|safe}}</th><th style="text-align: right">%</th>
                         {% endfor %}
                     </tr>
                 </thead>
@@ -74,7 +74,7 @@
                     <tr>
                         <td><div>{{item[0][0]|safe}}</div></td>
                         {% for i in item[1:] %}
-                        <td><div style="width:{{i[1]|safe}}%;background-color:{{i[2]|safe}};">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
+                        <td><div style="background-image: linear-gradient( to right, {{i[2]|safe}} {{i[1]|safe}}%,  #FFF 0px);text-align: right;">{{i[0]|safe}}</div></td><td style="text-align: right">{{i[3]|safe}}</td>
                         {% endfor %}
                     </tr>
                     {% endfor %}

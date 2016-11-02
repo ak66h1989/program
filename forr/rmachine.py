@@ -196,9 +196,7 @@ index = reduce(mymerge, l).sort_values(['年月日'])
 index.年月日=to_datetime(index.年月日).apply(lambda x: x.date())
 print('index')
 
-<<<<<<< HEAD
 forr=m[col]
-=======
 #---- bic ----
 conn = connect('bic.sqlite3')
 c = conn.cursor()
@@ -216,7 +214,6 @@ del bic['月']
 m.年月日=to_datetime(m.年月日, format='%Y/%m/%d').apply(lambda x: x.date())
 
 forr=m[col+list(bic)]
->>>>>>> 18826ccb3775b555ea7afd9cf07b763ab1c9b79a
 forr['lnmo'] = log(forr['調整收盤價']/forr['調整收盤價'].shift(120))
 forr['lnr'] = log(forr['調整收盤價']/forr['調整收盤價'].shift())
 forr['lnr025'] = log(forr['調整收盤價'].shift(-5)/forr['調整收盤價'])*48
@@ -350,7 +347,6 @@ f(forr, 'MA60')
 f(forr, 'MA120')
 
 forr['newhl']=forr['reverse']*2
-<<<<<<< HEAD
 i=forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
 a=array(i)
 l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
@@ -358,15 +354,6 @@ i = array([i for i, j in enumerate(l) if j > 0])
 forr.ix[a[i], 'newhl'] = 1
 i=forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
 a=array(i)
-=======
-i = forr.ix[forr['reverse'] ==1, 'reverse'].index.tolist()
-a = array(i)
-l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
-i = array([i for i, j in enumerate(l) if j > 0])
-forr.ix[a[i], 'newhl'] = 1
-i = forr.ix[forr['reverse'] ==-1, 'reverse'].index.tolist()
-a = array(i)
->>>>>>> 18826ccb3775b555ea7afd9cf07b763ab1c9b79a
 l = (forr['調整收盤價'][a] - forr['調整收盤價'][a].shift()).tolist()
 i = array([i for i, j in enumerate(l) if j < 0])
 forr.ix[a[i], 'newhl'] = -1
@@ -410,12 +397,8 @@ forr['ushadow_1'] = forr['ushadow'].shift()
 forr['lshadow_1'] = forr['lshadow'].shift()
 forr['ushadow/span_1'] = forr['ushadow/span'].shift()
 forr['lshadow/span_1'] = forr['lshadow/span'].shift()
-<<<<<<< HEAD
-
-=======
 forr['spandiff'] = forr.span.diff()
 forr['spanldiff'] = forr[['調整開盤價', '調整收盤價']].max(axis=1).diff()
->>>>>>> 18826ccb3775b555ea7afd9cf07b763ab1c9b79a
 
 print('forr')
 
@@ -424,6 +407,9 @@ forr = mymerge(forr, index).sort_values(['年月日'])
 forr['漲跌(+/-)'] = forr['漲跌(+/-)'].replace('＋', 1).replace('－', -1).replace('X', 0).replace(' ', None).astype(float)
 forr['外資鉅額交易']=forr['外資鉅額交易'].replace('yes', 1).replace('no', 0).astype(float)
 forr['投信鉅額交易']=forr['投信鉅額交易'].replace('yes', 1).replace('no', 0).astype(float)
+forr.年月日=forr.年月日.astype(str)
+forr.證券代號=forr.證券代號.astype(str)
+forr = forr.drop_duplicates(['年月日', '證券代號'])
 # list(forr)
 conn = connect('mysum.sqlite3')
 c = conn.cursor()
@@ -447,5 +433,4 @@ list(forr)
 # forr.to_csv('C:/Users/ak66h_000/Dropbox/forspark.csv', index=False)
 # forr.to_json('C:/Users/ak66h_000/Dropbox/forspark.json',force_ascii=False)
 print('finish')
-
 

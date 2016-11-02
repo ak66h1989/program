@@ -12,27 +12,41 @@
 <!--<script type="text/javascript" src="{{url_for('static', filename='jquery-3.1.1.min.js')}}"></script>-->
 <!--do not use jquery-3.1.1-->
 <!--<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>-->
-<script type="text/javascript" src="../static/jQuery-2.2.3/jquery-2.2.3.min.js"></script>
+<!-- <script type="text/javascript" src="../static/jQuery-2.2.3/jquery-2.2.3.min.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
 
 <!--bootstrap-->
 <!--need jquery-->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!--dygraphs-->
 <!--<script type="text/javascript" src="{{url_for('static', filename='dygraph-combined-dev.js')}}"></script>-->
-<script type="text/javascript" src="../static/dygraph-combined-dev.js"></script>
+<!-- <script type="text/javascript" src="../static/dygraph-combined-dev.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/dygraphs/dygraph-combined-dev.js"></script>
 <!--dygraphs synchronizer--><!--cannot put before dygraph-combined-dev.js-->
 <!--<script type="text/javascript" src="{{url_for('static', filename='extras/synchronizer.js')}}"></script>-->
-<script type="text/javascript" src="../static/extras/synchronizer.js"></script>
+<!--copy latest version from github-->
+<!-- <script type="text/javascript" src="../static/extras/synchronizer.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/dygraphs/extras/synchronizer.js"></script>
 
 <!--jquery-ui-->
 <!--<link rel="stylesheet" href="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.css')}}">
 <script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/external/jquery/jquery.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>-->
-<link rel="stylesheet" href="../static/jquery-ui-1.12.1/jquery-ui.min.css">
+<!-- <link rel="stylesheet" href="../static/jquery-ui-1.12.1/jquery-ui.min.css">
 <script src="../static/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-<script src="../static/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script src="../static/jquery-ui-1.12.1/jquery-ui.min.js"></script> -->
+<link rel="stylesheet" href="../static/bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+<!-- <script src="../static/bower_components/jquery-ui/external/jquery/jquery.js"></script> -->
+<script src="../static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+<!--react-->
+<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
 <!--datatable-->
 <!--need to load jqeury first unless download package include jquery-->
@@ -42,11 +56,11 @@
 <!--myjsfile-->
 
 <script>
-  //$( function() {
-  //    $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
-  //} );
-    
-</script> 
+  $( function() {
+      $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
+  } );
+
+</script>
 
 {% include "index.html" %}
 
@@ -62,19 +76,19 @@
     .inline { float:left; }
     /*#div13 { display: inline;}*/
     /*#div12 input[type=checkbox] { display: none; }*/
-    
+
     .few .dygraph-legend > span.highlight { border: 1px solid grey; }
     /*table { margin-left: 15px; }*/
     #inc, #bal { margin-left: 15px; }
 </style>
-<script>  
+<script>
 //$( function() {
-//    $('a[href={{d.tab|safe}}]').click();  
+//    $('a[href={{d.tab|safe}}]').click();
 //} );
-</script>       
-        
+</script>
+
 </head>
-<body>   
+<body>
 <div id="tabs">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#tabs-1">data</a></li>
@@ -87,8 +101,9 @@
         <li><a data-toggle="tab" href="#tabs-8">report</a></li>
         <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
         <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
+        <li><a data-toggle="tab" href="#tabs-11">react</a></li>
     </ul>
-  <div class="tab-content">
+  <!-- <div class="tab-content"> -->
     <div id="tabs-1" class="tab-pane active">
         <div class="row">
             <div id='div0' style="background-color:pink;color:white;padding:10px;" class="col-md-4">
@@ -132,7 +147,7 @@
             <div id=div4 style="background-color:green;color:black" class="col-md-5">
                 <ul>
                     {% for item in d.fields %}
-                    <li><button class='btn btn-default'>{{ item }}</button></li>
+                    <li><button class='btn btn-info'>{{ item }}</button></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -141,7 +156,7 @@
                 <div id=div5  style="background-color:red;color:black" class="col-md-5">
                     <ul></ul>
                 </div>
-                Width :<input type="number" name= width value="1800" step=50 style="width: 50px;">px<br>
+                Width :<input type="number" name= width value="1700" step=50 style="width: 50px;">px<br>
                 Height :<input type="number" name= height value="600" step=50 style="width: 50px;">px<br>
                 <input type="checkbox" name=rangeselector value=true checked = true>Sow range selector<br>
                 <input type="submit" value="query">
@@ -150,11 +165,12 @@
 
     </div>
     <div id="tabs-2" class="tab-pane">
-
+<button id=sy>synchronize</button>
+<button id=dsy>dsynchronize</button>
         <div id="graphdiv">
-           {% include "mline.html" %} 
+           {% include "mline.html" %}
         </div>
-        
+
     </div>
     <div id="tabs-3" class="tab-pane">
         <div class="row">
@@ -200,7 +216,7 @@
 
     </div>
     <div id="tabs-4" class="tab-pane">
-        
+
         {% include "bokeh.html" %}
         <!--{{d.div|safe}}-->
         {{d.script|safe}}
@@ -250,13 +266,13 @@
                 </div>
                 <input type="submit" value="query">
             </form>
-        </div>    
+        </div>
         <div id=div13>
             {% include "mp.html" %}
         </div>
     </div>
     <div id="tabs-6" class="tab-pane">
-        
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -275,11 +291,11 @@
                 {% endfor %}
             </tbody>
         </table>
-     
-        
+
+
     </div>
     <div id="tabs-7" class="tab-pane">
-        
+
         <div class="row">
             <div id=div14 style="background-color:blue;color:yellow" class="col-md-2">
                 <form action = "/listfield2/" method = "POST">    <!--should contain '/' in tail-->
@@ -330,12 +346,12 @@
                 <input type="submit" value="change all">
             </form>
         </div>
-        
+
         {% include "ys.html" %}
 
     </div>
     <div id="tabs-8" class="tab-pane">
-             
+
         <form action = "/rep/" method = "POST">
             公司代號:<input type="text" name=compid_report value=5522>
             <input type="submit" value="query">
@@ -386,21 +402,34 @@
                 {% endfor %}
             </tbody>
         </table>
-        
+
        {% endif %}
 
     </div>
-    
+
 {% include "table.html" %}
-    
-  </div>
 
+  <!--</div>-->
+    <div id="tabs-11" class="tab-pane active">
+        <div id="root"></div>
+        <script type="text/babel">
+
+          ReactDOM.render(
+            <h1>Hello, world!</h1>,
+            document.getElementById('root')
+          );
+
+        </script>
+    </div>
 </div>
-
+<link rel="stylesheet" type="text/css" href="../static/bower_components/datatables/media/css/dataTables.jqueryui.min.css">
+<script type="text/javascript" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../static/bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
 {% if d.report1 is defined %}
 
-  <link rel="stylesheet" type="text/css" href="../static/datatables.min.css">
-  <script type="text/javascript" src="../static/datatables.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="../static/datatables.min.css">
+  <script type="text/javascript" src="../static/datatables.min.js"></script> -->
+
         <script>
         $(document).ready(function() {
             var table =$('#report2').DataTable( {
@@ -420,7 +449,7 @@
                 //],
                 //bSort : false
             } );
-            
+
             var table1 =$('#report3').DataTable( {
                 colReorder: true,
                 scrollY:        820,
@@ -438,17 +467,17 @@
                 //],
                 //bSort : false
             } );
-  
+
              $('#enable').click( function (e) {
-    
+
              alert(1);
             //table.colReorder.reset();
                 new $.fn.dataTable.FixedColumns( table, {
     //fixedColumns: false
     //fixedColumns: true
             });
-        } ); 
-  
+        } );
+
                $('#enable1').click( function (e) {
 
              alert(1);
@@ -457,22 +486,22 @@
     //fixedColumns: false
     //fixedColumns: true
             });
-        } ); 
-  
-  
         } );
-                                 
+
+
+        } );
+
         </script>
 
-{% endif %} 
+{% endif %}
 
 
 {{d.tab|safe}}
 {{d.cl|safe}}
 <!--        <form action = "/datatable/" method = "POST">-->
 <!--            <input type="submit" value="query">-->
-<!--        </form>-->      
-        
+<!--        </form>-->
+
 
 
 </body>

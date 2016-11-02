@@ -1,14 +1,19 @@
 
 <!-- Load c3.css -->
 <link href="{{url_for('static', filename='c3/c3-0.4.11/c3.css')}}" rel="stylesheet" type="text/css">
+<!-- <script type="text/javascript" src="../static/bower_components/c3/c3.min.css"></script> -->
 
 <!-- Load d3.js and c3.js -->
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="{{url_for('static', filename='c3/c3-0.4.11/c3.min.js')}}"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- need d3.v3 -->
+<!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+<script type="text/javascript" src="../static/d3.v3/d3.v3.min.js"></script>
+<!-- <script type="text/javascript" src="../static/bower_components/d3/d3.min.js"></script> -->
+<!-- <script src="{{url_for('static', filename='c3/c3-0.4.11/c3.min.js')}}"></script> -->
+<script type="text/javascript" src="../static/bower_components/c3/c3.min.js"></script>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
 {% for l in d.mllys %}
 <div id = chart{{l[0]|safe}} class=inline></div>
@@ -19,7 +24,7 @@
 
 {% for l in d.mllys %}
     <script>
-    
+
     var chart = c3.generate({
         bindto: '#chart{{l[0]|safe}}',
         data: {
@@ -50,6 +55,6 @@
         }
     });
 
-    
+
     </script>
 {% endfor %}

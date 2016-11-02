@@ -11,11 +11,7 @@ from pandas import *
 import re
 import datetime
 
-<<<<<<< HEAD
-lastdate = datetime.datetime(2016, 8, 22)  #last time 9/03
-=======
-lastdate = datetime.datetime(2016, 9, 14)  #last time 9/03
->>>>>>> 18826ccb3775b555ea7afd9cf07b763ab1c9b79a
+lastdate = datetime.datetime(2016, 3, 10)  #last time 9/03
 delta = datetime.datetime.now() - lastdate
 ###----大盤統計資訊 + 大盤成交統計 in one new----
 
@@ -62,8 +58,10 @@ for t in range(delta.days):
             df.columns = df.ix[0, :]
             df = df.ix[1:len(df), :]
             df = df.replace(',', '', regex=True)
-            print(df)
-            if (list(df) == tablename0) or (list(df) == tablename1):  # 不可以這樣寫 if list(df) == tablename0 or tablename1:
+            print(df.head(10))
+            print(list(df))
+            # if (list(df) == tablename0) or (list(df) == tablename1):
+            if list(df) == tablename0:
                 try:
                     df['指數'] = df['指數'].str.strip()
                     c.executemany('INSERT INTO `大盤統計資訊` VALUES (?,?,?,?,?,?)', df.values.tolist())
@@ -72,11 +70,16 @@ for t in range(delta.days):
                 except Exception as e:
                     print(e)
                     pass
+            elif list(df) == tablename1:
+                df['報酬指數'] = df['報酬指數'].str.strip()
+                c.executemany('INSERT INTO `大盤統計資訊` VALUES (?,?,?,?,?,?)', df.values.tolist())
+                conn.commit()
+                print(date, list(df), 1)
             elif list(df) == tablename2:
                 df['成交統計'] = df['成交統計'].str.strip()
                 c.executemany('INSERT INTO `大盤成交統計` VALUES (?,?,?,?,?)', df.values.tolist())
                 conn.commit()
-                print(date, list(df),1)
+                print(date, list(df),2)
             else:
                 print('does not match any table')
     except Exception as e:
@@ -361,6 +364,7 @@ for t in range(delta.days):
         pass
 
 print('finish')
+
 
 
 

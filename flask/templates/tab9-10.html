@@ -25,7 +25,7 @@
                     {% for item in d.report1[0][1:] %}                    
                     <tr>
                         {% for i, j, k, m in item %}
-                        <td><div style="width:{{j}}%;background-color:{{k}};">{{i|safe}}</div></td><td style="text-align: right">{{m}}</td>
+                        <td><div style="background-image: linear-gradient( to right, {{k}} {{j}}%,  #FFF 0px);text-align: right;">{{i|safe}}</div></td><td style="text-align: right">{{m}}</td>
                         <!--<td><div style="width:{{j}}%;background-color:{{k}};float:left;display:inline;">{{i|safe}}</div><div style="float:right;display:inline;">1%</div></td>-->
                         <!--<td><span style="width:{{j}}%;background-color:{{k}};float:left;text-align:right">{{i|safe}}</span><span style="float:right;text-align:right;width:15px;">1%</span></td>-->
                         {% endfor %}
