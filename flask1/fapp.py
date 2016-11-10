@@ -37,16 +37,6 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run()
 
-# @app.route('/bokeh/')
-# def bokeh():
-#     plot = figure()
-#     plot.circle([1, 2], [3, 4])
-#     script, div = components(plot)
-#     d['script'], d['div'] = script, div
-#     print(div)
-#     d['cl'] = ".plotdiv"
-#     return render_template('testlist.html', d=d)
-
 @app.route('/bokeh/', methods=['POST'])
 def bokeh():
     # from bokeh import *
@@ -941,10 +931,50 @@ def rep1():
         df4.ix[:, 1:] = df4.ix[:, 1:].applymap('{:,.0f}'.format)
         df = df.fillna('')
         df4 = df4.replace('nan', '')
-        l = vstack((array([list(df)]), array(df))).transpose().tolist()
-        lp = vstack((array([list(df4)]), array(df4))).transpose().tolist()
-        lw = vstack((array([list(df1)]), array(df1))).transpose().tolist()
-        lc = vstack((array([list(df2)]), array(df2))).transpose().tolist()
+        # l = vstack((array([list(df)]), array(df))).transpose().tolist()
+        # lp = vstack((array([list(df4)]), array(df4))).transpose().tolist()
+        # lw = vstack((array([list(df1)]), array(df1))).transpose().tolist()
+        # lc = vstack((array([list(df2)]), array(df2))).transpose().tolist()
+
+        if table == 'ifrs前後-綜合損益表(季)-一般業':
+            lspan=['<span class=inc{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
+
+            l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
+            lspan = [None for i in list(df)]
+            lp = vstack((array([list(df4)]), array(df4), array([lspan]))).transpose().tolist()
+            lw = vstack((array([list(df1)]), array(df1), array([lspan]))).transpose().tolist()
+            lc = vstack((array([list(df2)]), array(df2), array([lspan]))).transpose().tolist()
+
+            lspan=[]
+            for x in l:
+                # print(x)
+                lspan.append(['null' if i=='' else i for i in x])
+            l[3][2]==''
+            lspan[1]
+            lspan[1][1:-1]
+            for i in lspan[1:]:
+                print(i[1:-1])
+            d['lspan'] = lspan
+        if table == 'ifrs前後-資產負債表-一般業':
+            lspan = ['<span class=bal{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
+
+            l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
+            lspan = [None for i in list(df)]
+            lp = vstack((array([list(df4)]), array(df4), array([lspan]))).transpose().tolist()
+            lw = vstack((array([list(df1)]), array(df1), array([lspan]))).transpose().tolist()
+            lc = vstack((array([list(df2)]), array(df2), array([lspan]))).transpose().tolist()
+
+            lspan = []
+            for x in l:
+                # print(x)
+                lspan.append(['null' if i == '' else i for i in x])
+            l[3][2] == ''
+            lspan[1]
+            lspan[1][1:-1]
+            for i in lspan[1:]:
+                print(i[1:-1])
+            d['lspan1'] = lspan
+
         shape(lp)
         for i in lw:
             i[0]=0.0

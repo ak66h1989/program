@@ -53,19 +53,28 @@
 <!--need to download extentions like fixedColumns, fixedHeader, responsive-->
 <!--useless when put here-->
 
+<!--sparkline-->
+<script type="text/javascript" src="../static/jquery.sparkline.js"></script>
+<!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
+
+
 <!--myjsfile-->
 
 <script>
   $( function() {
-      $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
+      // $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
+      // for sparline to work in tabs
+      $( "#tabs").tabs({
+          activate: function( event, ui ) {
+              $.sparkline_display_visible();
+              }
+      });
   } );
 
 </script>
 
 {% include "index.html" %}
 
-<!--sparkline-->
-<script type="text/javascript" src="../static/jquery.sparkline.js"></script>
 
 <style>
     li { list-style-type: none; margin: 0; padding: 0;}
@@ -87,8 +96,32 @@
 //} );
 </script>
 
+</script>
+
+    <script type="text/javascript">
+    $(function() {
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline();
+
+        /* Sparklines can also take their values from the first argument
+        passed to the sparkline() function */
+        var myvalues = [10,8,5,null,4,4,1];
+        $('.dynamicsparkline').sparkline(myvalues, {width:'100px'});
+
+        /* The second argument gives options such as chart type */
+        $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green', width:'10px'} );
+
+        /* Use 'html' instead of an array of values to pass options
+        to a sparkline with data in the tag */
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
+    });
+    </script>
+
+
 </head>
 <body>
+
 <div id="tabs">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#tabs-1">data</a></li>
@@ -165,11 +198,11 @@
 
     </div>
     <div id="tabs-2" class="tab-pane">
-<button id=sy>synchronize</button>
-<button id=dsy>dsynchronize</button>
-        <div id="graphdiv">
-           {% include "mline.html" %}
-        </div>
+      <button id=sy>synchronize</button>
+      <button id=dsy>dsynchronize</button>
+      <div id="graphdiv">
+         {% include "mline.html" %}
+      </div>
 
     </div>
     <div id="tabs-3" class="tab-pane">
@@ -421,7 +454,9 @@
 
         </script>
     </div>
-</div>
+
+
+    </div>
 <link rel="stylesheet" type="text/css" href="../static/bower_components/datatables/media/css/dataTables.jqueryui.min.css">
 <script type="text/javascript" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../static/bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
@@ -495,14 +530,11 @@
 
 {% endif %}
 
-
 {{d.tab|safe}}
 {{d.cl|safe}}
 <!--        <form action = "/datatable/" method = "POST">-->
 <!--            <input type="submit" value="query">-->
 <!--        </form>-->
-
-
 
 </body>
 </html>

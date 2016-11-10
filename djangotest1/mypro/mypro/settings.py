@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,7 +53,7 @@ ROOT_URLCONF = 'mypro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/ak66h_000/Dropbox/webscrap/djangotest1/mypro/myapp/template'],
+        'DIRS': ['C:/Users/ak66h_000/Dropbox/webscrap/djangotest1/mypro/myapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +62,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'environment': 'mypro.jinja2.Environment',
         },
     },
 ]
@@ -118,3 +118,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATIC_URL = 'C:/Users/ak66h_000/Dropbox/webscrap/djangotest1/mypro/myapp/templates/static/'
+# STATIC_ROOT = 'C:/Users/ak66h_000/Dropbox/webscrap/djangotest1/mypro/myapp/templates/static/'
