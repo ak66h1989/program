@@ -209,3 +209,25 @@ def application(environ, start_response):
 
 httpd = make_server('localhost', 8000, application)
 httpd.serve_forever()
+
+from pandas import *
+from numpy import *
+from sqlite3 import *
+import os
+path = 'C:/Users/ak66h_000/Documents/db/'
+os.chdir(path)
+database = 'mysum'
+conn = connect('{}.sqlite3'.format(database))
+c = conn.cursor()
+mysum = []
+
+c.execute("SELECT sql FROM sqlite_master WHERE name='forweb'")
+s = list(c.fetchall()[0])[0]
+l = s.replace('`', '').split('PRIMARY KEY')[0].split(',')[:-1]
+l[0] = l[0].split('(')[1]
+l = [s.strip() for s in l ]
+
+import re
+a=re.findall("\(.+\)", 'CREATE TABLE `forweb` (`年月日`,`證券代號`,`time`,`成交股數`)')[0]
+a.replace('(','').replace(')','').replace('`','').split(',')
+re.findall("(`.+`,)", a)
