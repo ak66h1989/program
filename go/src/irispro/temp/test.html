@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--jquery-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--do not use jquery-3.1.1-->
+<!--<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>-->
+<!-- <script type="text/javascript" src="../static/jQuery-2.2.3/jquery-2.2.3.min.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+
+<!--bootstrap-->
+<!--need jquery-->
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!--dygraphs-->
+<!-- <script type="text/javascript" src="../static/dygraph-combined-dev.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/dygraphs/dygraph-combined-dev.js"></script>
+<!--dygraphs synchronizer--><!--cannot put before dygraph-combined-dev.js-->
+<!--copy latest version from github-->
+<!-- <script type="text/javascript" src="../static/extras/synchronizer.js"></script> -->
+<script type="text/javascript" src="../static/bower_components/dygraphs/extras/synchronizer.js"></script>
+
+<!--jquery-ui-->
+<!-- <link rel="stylesheet" href="../static/jquery-ui-1.12.1/jquery-ui.min.css">
+<script src="../static/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+<script src="../static/jquery-ui-1.12.1/jquery-ui.min.js"></script> -->
+<link rel="stylesheet" href="../static/bower_components/jquery-ui/themes/base/jquery-ui.min.css">
+<!-- <script src="../static/bower_components/jquery-ui/external/jquery/jquery.js"></script> -->
+<script src="../static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+<!--react-->
+<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<!--datatable-->
+<!--need to load jqeury first unless download package include jquery-->
+<!--need to download extentions like fixedColumns, fixedHeader, responsive-->
+<!--useless when put here-->
+
+<!--sparkline-->
+<script type="text/javascript" src="../static/jquery.sparkline.js"></script>
+<!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
+
+
+<!--myjsfile-->
+    <!--template "index" .-->
+
+
+<script>
+  $( function() {
+      // $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
+      // for sparline to work in tabs
+      $( "#tabs").tabs({
+          activate: function( event, ui ) {
+              $.sparkline_display_visible();
+              }
+      });
+  } );
+
+</script>
+
+<style>
+    li { list-style-type: none; margin: 0; padding: 0;}
+    #div4 li { display: inline;}
+    #div7 li { display: inline;}
+    #div11 li { display: inline;}
+    a {float: right; color: blue;}
+    .inline { float:left; }
+    /*#div13 { display: inline;}*/
+    /*#div12 input[type=checkbox] { display: none; }*/
+
+    .few .dygraph-legend > span.highlight { border: 1px solid grey; }
+    /*table { margin-left: 15px; }*/
+    #inc, #bal { margin-left: 15px; }
+</style>
+
+
+    <script type="text/javascript">
+    $(function() {
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline();
+
+        /* Sparklines can also take their values from the first argument
+        passed to the sparkline() function */
+        var myvalues = [10,8,5,null,4,4,1];
+        $('.dynamicsparkline').sparkline(myvalues, {width:'100px'});
+
+        /* The second argument gives options such as chart type */
+        $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green', width:'10px'} );
+
+        /* Use 'html' instead of an array of values to pass options
+        to a sparkline with data in the tag */
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
+    });
+    </script>
+
+
+</head>
+<body>
+
+  <div id="tabs">
+      <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#tabs-1">data</a></li>
+          <li><a data-toggle="tab" href="#tabs-2">mline</a></li>
+          <li><a data-toggle="tab" href="#tabs-3">plot1</a></li>
+          <li><a data-toggle="tab" href="#tabs-4">bokeh</a></li>
+          <li><a data-toggle="tab" href="#tabs-5">split</a></li>
+          <li><a data-toggle="tab" href="#tabs-6">table</a></li>
+          <li><a data-toggle="tab" href="#tabs-7">ys</a></li>
+          <li><a data-toggle="tab" href="#tabs-8">report</a></li>
+          <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
+          <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
+          <li><a data-toggle="tab" href="#tabs-11">react</a></li>
+      </ul>
+    <!-- <div class="tab-content"> -->
+      <div id="tabs-1" class="tab-pane active">
+          <div class="row">
+              <div id='div0' style="background-color:pink;color:white;padding:10px;" class="col-md-4">
+                  <button>1</button>
+                  <button>2</button>
+              </div>
+
+              <div id='div1' style="background-color:purple;color:white;padding:10px;" class="col-md-4">
+                  <ul></ul>
+              </div>
+              <form action = "/test/" method = "POST">
+                  <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
+                      <ul></ul>
+                  </div>
+                  <input type="submit" class='btn btn-default'>
+              </form>
+          </div>
+
+          <div class="row">
+              <div id=div3 style="background-color:blue;color:yellow" class="col-md-2">
+                  <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
+                      <h4>mops</h4>
+                      {{ range .mops }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>mysum</h4>
+                      {{ range .mysum }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>summary</h4>
+                      {{ range .summary }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>tse</h4>
+                      {{ range .tse }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <input type="submit" value="Show fields" class='btn btn-default'>
+                  </form>
+              </div>
+              <div id=div4 style="background-color:green;color:black" class="col-md-5">
+                  <ul>
+                      {{ range .fields }}
+                      <li><button class='btn btn-info'>{{ . }}</button></li>
+                      {{ end }}
+                  </ul>
+
+              </div>
+
+              <form action = "/mline/" method = "POST">    <!--div should be inside form-->
+                  <div id=div5  style="background-color:red;color:black" class="col-md-5">
+                      <ul></ul>
+                  </div>
+                  Width :<input type="number" name= width value="1700" step=50 style="width: 50px;">px<br>
+                  Height :<input type="number" name= height value="600" step=50 style="width: 50px;">px<br>
+                  <input type="checkbox" name=rangeselector value="true" checked = true>Sow range selector<br>
+                  <input type="submit" value="query">
+              </form>
+          </div>
+
+      </div>
+      <div id="tabs-2" class="tab-pane">
+        <button id=sy>synchronize</button>
+        <button id=dsy>dsynchronize</button>
+        <div id="graphdiv">
+            <!--template "mline"-->
+
+        </div>
+      </div>
+      <div id="tabs-3" class="tab-pane">
+          <div class="row">
+              <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
+                  <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
+                      <h4>mops</h4>
+                      {{ range .mops }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>mysum</h4>
+                      {{ range .mysum }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>summary</h4>
+                      {{ range .summary }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>tse</h4>
+                      {{ range .tse }}
+                      <input type="radio" name=dbtable value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <input type="submit" value="Show fields" class='btn btn-default'>
+                  </form>
+              </div>
+              <div id=div7 style="background-color:green;color:black" class="col-md-5">
+                  <form action = "/plot1/" method = "POST">
+                      <ul>
+                          {{ range .fields }}
+                          <li><input class='btn btn-default' type = submit name=plot1 value={{ . }}></li>
+                          {{ end }}
+                      </ul>
+                  </form>
+              </div>
+              <div id=div8  style="background-color:red;color:black" class="col-md-5">
+                  <ul></ul>
+              </div>
+          </div>
+          <div id=div9>
+
+
+          </div>
+
+      </div>
+
+      <div id="tabs-4" class="tab-pane">
+
+
+      </div>
+      <div id="tabs-5" class="tab-pane">
+          <div class="row">
+              <div id=div10 style="background-color:blue;color:yellow" class="col-md-2">
+                  <form action = "/listfield1/" method = "POST">    <!--should contain '/' in tail-->
+                      <h4>mops</h4>
+                      {{ range .mops1 }}
+                      <input type="radio" name=dbtable1 value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>mysum</h4>
+                      {{ range .mysum1 }}
+                      <input type="radio" name=dbtable1 value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>summary</h4>
+                      {{ range .summary1 }}
+                      <input type="radio" name=dbtable1 value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <h4>tse</h4>
+                      {{ range .tse1 }}
+                      <input type="radio" name=dbtable1 value={{ . }}>{{ . }}<br>
+                      {{ end }}
+                      <input type="submit" value="Show fields" class='btn btn-default'>
+                  </form>
+              </div>
+              <div id=div11 style="background-color:green;color:black" class="col-md-5">
+                  <ul>
+                      {{ range .fields1 }}
+                      <li><button class='btn btn-default'>{{ . }}</button></li>
+                      {{ end }}
+                  </ul>
+              </div>
+
+              <form action = "/mp/" method = "POST">    <!--div should be inside form-->
+                  <div id=div12  style="background-color:red;color:black" class="col-md-5">
+                      <ul>
+                          {{ range .cols1 }}
+                          <li><button class='btn btn-default'>{{ . }}</button></li>
+                          {{ end }}
+                          {{ range .cols3 }}
+                          <input type=checkbox name=cols1 class={{index . 1 }} value={{index . 0 }} checked = true>
+                          {{ end }}
+                      </ul>
+                  </div>
+                  <input type="submit" value="query">
+              </form>
+          </div>
+          <div id=div13>
+
+          </div>
+      </div>
+
+      <div id="tabs-6" class="tab-pane">
+
+          <table id="table_id" class="display">
+              <thead>
+                  <tr>
+                      {{ range .labels }}
+                      <th>{{.}}</th>
+                      {{ end }}
+                  </tr>
+              </thead>
+              <tbody>
+                  {{ range .data }}
+                  <tr>
+                      {{ range . }}
+                      <td>{{.}}</td>
+                      {{ end }}
+                  </tr>
+                  {{ end }}
+              </tbody>
+          </table>
+
+
+      </div>
+
+
+  </div>
+
+  <div class="well">Basic Well</div>
+{{.a}}
+{{.h.Name}}
+{{.h.Age}}
+{{range .hs}}
+  {{.Age}}
+{{end}}
+</body>
+</html>

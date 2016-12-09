@@ -1,3 +1,4 @@
+{{ define "index" }}
 <script>
     function f1(){
         $("#div2 ul").append("<li>"+$(this).parent().html()+"</li>");
@@ -79,10 +80,10 @@
 
         $("#div11").on('click', 'button', f5);
         $("#div12").on('click', 'button', f6);
-        
+
         $("#div15").on('click', 'button', f7);
         $("#div16").on('click', 'button', f8);
-        
+
         $("ul").sortable({
          cancel: ".fixed"
         });
@@ -90,3 +91,4 @@
     });
 
 </script>
+{{ end }}

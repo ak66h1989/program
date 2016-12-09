@@ -1,0 +1,12 @@
+
+{{ define "testmline" }}
+
+        <div>123</div>
+
+        <script>
+          $(function(){
+            $("#tabs a[href={{.tab}}]").click();
+          });
+        </script>
+{{.tab}}
+{{ end }}

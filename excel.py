@@ -146,8 +146,9 @@ print('done')
 # xlwings = read_sql_query("SELECT * from `xlwings`", conn)
 # Range('xlwings', (1,1)).options(index=False).value = xlwings
 
-wb = Workbook('C:\\Users\\ak66h_000\\Desktop\\dashboard.xlsm')
-Range('new', (1, 1)).options(index=False).value = xlwings
+# wb = Workbook('C:\\Users\\ak66h_000\\Desktop\\dashboard.xlsm')
+# Range('new', (1, 1)).options(index=False).value = xlwings
+Book('C:\\Users\\ak66h_000\\Desktop\\dashboard.xlsm').sheets['new'].range(1,1).options(index=False).value = xlwings
 print('finish')
 
 # m[m['公司代號']=='2316']

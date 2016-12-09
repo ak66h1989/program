@@ -25,6 +25,22 @@ func init() {
 	orm.RegisterDataBase("tse", "sqlite3", "tse.sqlite3?charset=utf8")
 }
 
+func dbtables(db string) []string{
+	o := orm.NewOrm()
+	o.Using(db)
+	var lists []orm.ParamsList
+	var slice []string
+	num, err := o.Raw("SELECT name FROM sqlite_master where type= 'table'").ValuesList(&lists)
+	if err == nil && num > 0 {
+		for i,v:=range lists{
+			slice=append(slice, fmt.Sprintf("%v",v[0]))
+			fmt.Println(slice[i])
+		}
+		return slice
+	}
+	return  nil
+}
+
 func columns(table string) []string{
 	o := orm.NewOrm()
 	var lists []orm.ParamsList
@@ -54,22 +70,6 @@ func columns(table string) []string{
 	return nil
 }
 
-func dbtables(db string) []string{
-	o := orm.NewOrm()
-	o.Using(db)
-	var lists []orm.ParamsList
-	var slice []string
-	num, err := o.Raw("SELECT name FROM sqlite_master where type= 'table'").ValuesList(&lists)
-	if err == nil && num > 0 {
-		for i,v:=range lists{
-			slice=append(slice, fmt.Sprintf("%v",v[0]))
-			fmt.Println(slice[i])
-		}
-		return slice
-	}
-	return  nil
-}
-
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()       //解析url传递的参数，对于POST则解析响应包的主体（request body）
 	//注意:如果没有调用ParseForm方法，下面无法获取表单的数据
@@ -97,6 +97,20 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func home(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("method:", r.Method) //获取请求的方法
+	r.ParseForm()
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("views/test1.html", "views/index1.html")
+		//t:= template.Must(template.ParseFiles("views/test1.html", "views/index1.html"))
+		log.Println(t.Execute(w, nil))
+	} else {
+		//请求的是登陆数据，那么执行登陆的逻辑判断
+		fmt.Println("username:", r.Form["username"])
+		fmt.Println("password:", r.Form["password"])
+	}
+}
+
 
 func main() {
 
@@ -115,9 +129,10 @@ func main() {
 	fmt.Println(tse)
 	os.Chdir("C:/Users/ak66h_000/Dropbox/webscrap/go/src/mypro/") //need to change dir back
 
-	http.HandleFunc("/", sayhelloName)       //设置访问的路由
+	http.HandleFunc("/", home)
+	http.HandleFunc("/hello", sayhelloName)       //设置访问的路由
 	http.HandleFunc("/login", login)         //设置访问的路由
-	err := http.ListenAndServe(":9090", nil) //设置监听的端口
+	err := http.ListenAndServe(":8080", nil) //设置监听的端口
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}

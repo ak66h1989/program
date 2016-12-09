@@ -1,0 +1,23 @@
+<!-- ./templates/mypage.html -->
+<html>
+<head>
+    <title>Hello Django from Iris</title>
+
+</head>
+<body>
+{% if is_admin %}
+<p>{{username}} is an admin!</p>
+{% endif %}
+
+{% for i in s %}
+{{i}}
+{% endfor %}
+g{{num}}
+<script>
+    var g{{num}}
+</script>
+
+{% include "inc.html" %}
+</body>
+</html>
+
