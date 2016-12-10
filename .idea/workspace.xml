@@ -2,109 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/annotation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/bokeh.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/bootstrap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/c3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/c3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/c3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/d3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/datatable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/dygraph-combined-dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/dygraph.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/dygraphlr.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/gridster.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/hello.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/index.tpl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/jqueryui.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/mline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/mp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/plot.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/plot1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/plot1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/react.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/renameforjulia.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/sparkline.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/tab9-10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/table.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/test2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/test2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/mypro/views/ys.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/index.tpl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/routers/index.tpl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/annotation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/bokeh.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/bootstrap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/c3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/c3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/c3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/d3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/datatable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/dygraph-combined-dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/dygraph.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/dygraphlr.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/gridster.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/hello.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/index.tpl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/jqueryui.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/mline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/mp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/plot.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/plot1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/plot1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/react.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/renameforjulia.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/sparkline.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/tab9-10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/table.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/test2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/test2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/testlist.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/go/src/myproject/views/ys.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-綜合損益表(季).py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-綜合損益表.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-未知業/綜合損益表-未知業201602.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表/資產負債表-未知業/資產負債表-未知業201602.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/github.com/kataras/go-template" afterPath="$PROJECT_DIR$/go/src/github.com/kataras/go-template" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/github.com/mattn/go-isatty" afterPath="$PROJECT_DIR$/go/src/github.com/mattn/go-isatty" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/github.com/miekg/dns" afterPath="$PROJECT_DIR$/go/src/github.com/miekg/dns" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/golang.org/x/crypto" afterPath="$PROJECT_DIR$/go/src/golang.org/x/crypto" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/golang.org/x/net" afterPath="$PROJECT_DIR$/go/src/golang.org/x/net" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/gowiki/wiki.exe" afterPath="$PROJECT_DIR$/go/src/gowiki/wiki.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/mypro/main.exe" afterPath="$PROJECT_DIR$/go/src/mypro/main.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/myproject.exe" afterPath="$PROJECT_DIR$/go/src/myproject/myproject.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/testbeego.exe" afterPath="$PROJECT_DIR$/go/src/myproject/testbeego.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-一般業/綜合損益表-一般業201603.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-一般業/綜合損益表-一般業201603.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-證券業/綜合損益表-證券業201603.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-證券業/綜合損益表-證券業201603.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-銀行業/綜合損益表-銀行業201603.csv" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表/綜合損益表-銀行業/綜合損益表-銀行業201603.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/webscrap.iml" afterPath="$PROJECT_DIR$/.idea/webscrap.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/irispro/testiris.exe" afterPath="$PROJECT_DIR$/go/src/irispro/testiris.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debug.log" afterPath="$PROJECT_DIR$/debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/excel.py" afterPath="$PROJECT_DIR$/excel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/forweb.py" afterPath="$PROJECT_DIR$/flask1/forweb.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html" afterPath="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/mline.html" afterPath="$PROJECT_DIR$/flask1/templates/mline.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testlist.html" afterPath="$PROJECT_DIR$/flask1/templates/testlist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/.idea/workspace.xml" afterPath="$PROJECT_DIR$/go/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/gowiki/view.html" afterPath="$PROJECT_DIR$/go/src/gowiki/view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/gowiki/wiki.go" afterPath="$PROJECT_DIR$/go/src/gowiki/wiki.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/mypro/main.go" afterPath="$PROJECT_DIR$/go/src/mypro/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/mypro/views/index.html" afterPath="$PROJECT_DIR$/go/src/mypro/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/mypro/views/mline.html" afterPath="$PROJECT_DIR$/go/src/mypro/views/mline.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/mypro/views/testlist.html" afterPath="$PROJECT_DIR$/go/src/mypro/views/testlist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/controllers/default.go" afterPath="$PROJECT_DIR$/go/src/myproject/controllers/default.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/routers/router.go" afterPath="$PROJECT_DIR$/go/src/myproject/routers/router.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/testbeego.go" afterPath="$PROJECT_DIR$/go/src/myproject/testbeego.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/views/index.html" afterPath="$PROJECT_DIR$/go/src/myproject/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/myproject/views/mline.html" afterPath="$PROJECT_DIR$/go/src/myproject/views/mline.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/selen.py" afterPath="$PROJECT_DIR$/selen.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tse/updateall_tse.py" afterPath="$PROJECT_DIR$/tse/updateall_tse.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-資產負債表.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-資產負債表.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表1.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/綜合損益表1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表.py" afterPath="$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表.py" />
     </list>
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -147,35 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="machine.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1634">
-              <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="excel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/excel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2850">
-              <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fapp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="350" column="18" lean-forward="true" selection-start-line="350" selection-start-column="18" selection-end-line="350" selection-end-column="18" />
+            <state relative-caret-position="570">
+              <caret line="409" column="26" lean-forward="true" selection-start-line="409" selection-start-column="26" selection-end-line="409" selection-end-column="26" />
               <folding>
                 <element signature="e#89#112#0" expanded="true" />
               </folding>
@@ -183,11 +61,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="react.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/react.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="mline.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="50" column="8" lean-forward="true" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+            <state relative-caret-position="589">
+              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -195,12 +83,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mline.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mline.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-              <folding />
+            <state relative-caret-position="418">
+              <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,8 +98,8 @@
       <file leaf-file-name="selen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+            <state relative-caret-position="684">
+              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -220,8 +110,8 @@
       <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1843">
-              <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state relative-caret-position="3800">
+              <caret line="200" column="23" lean-forward="false" selection-start-line="200" selection-start-column="15" selection-end-line="200" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -295,7 +185,6 @@
         <option value="$PROJECT_DIR$/djangotest1/mypro/templates/jinja2/myapp/testlist.html" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/mypro/jinja2.py" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/views.py" />
-        <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/plot1.html" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mp.html" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/table.html" />
@@ -317,6 +206,7 @@
         <option value="$PROJECT_DIR$/selen.py" />
         <option value="$PROJECT_DIR$/flask1/fapp.py" />
         <option value="$PROJECT_DIR$/flask1/templates/mline.html" />
+        <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html" />
       </list>
     </option>
   </component>
@@ -328,8 +218,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -346,6 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -569,7 +460,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -878,26 +768,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17537314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847533" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3001066" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -934,13 +824,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/盤後資訊/個股日成交資訊.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tse/balance.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1171,9 +1054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2850">
           <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,17 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1634">
           <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1843">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,40 +1088,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html">
+    <entry file="file://$PROJECT_DIR$/flask1/templates/react.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+        <state relative-caret-position="228">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/selen.py">
+    <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+        <state relative-caret-position="3800">
+          <caret line="200" column="23" lean-forward="false" selection-start-line="200" selection-start-column="15" selection-end-line="200" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="409" column="26" lean-forward="true" selection-start-line="409" selection-start-column="26" selection-end-line="409" selection-end-column="26" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#89#112#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="50" column="8" lean-forward="true" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="8" />
+        <state relative-caret-position="589">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
+    <entry file="file://$PROJECT_DIR$/selen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="350" column="18" lean-forward="true" selection-start-line="350" selection-start-column="18" selection-end-line="350" selection-end-column="18" />
+        <state relative-caret-position="684">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
-            <element signature="e#89#112#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
