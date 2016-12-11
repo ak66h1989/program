@@ -148,33 +148,41 @@ $(function() {
                 <div id='div2' style="background-color:black;color:white;padding:10px;" class="col-md-4">
                     <ul></ul>
                 </div>
-                <input type="submit" class='btn btn-default'>
+                <input type="submit" class='btn btn-default'/>
             </form>
         </div>
 
-        <div class="row">
+        <div class="row" id="tab1row2">
             <div id=div3 style="background-color:blue;color:yellow" class="col-md-2">
-                <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
+              <script type="text/babel">
+              const element = (
+                <form action = "/listfield/" method = "POST">
                     <h4>mops</h4>
                     {% for item in d.mops %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>mysum</h4>
                     {% for item in d.mysum %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>summary</h4>
                     {% for item in d.summary %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>tse</h4>
                     {% for item in d.tse %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'>
+                    <input type="submit" value="Show fields" class='btn btn-default'/>
                 </form>
+              );
+              ReactDOM.render(
+                 element,
+                 document.getElementById('div3')
+              );
+              </script>
             </div>
-            <div id=div4 style="background-color:green;color:black" class="col-md-5">
+            <div id="div4" style="background-color:green;color:black" class="col-md-5">
                 <ul>
                     {% for item in d.fields %}
                     <li><button class='btn btn-info'>{{ item }}</button></li>
@@ -182,24 +190,21 @@ $(function() {
                 </ul>
             </div>
 
-            <form action = "/mline/" method = "POST">    <!--div should be inside form-->
-                <div id=div5  style="background-color:red;color:black" class="col-md-5">
+            <form action = "/mline/" method = "POST">
+                <div id="div5"  style="background-color:red;color:black" class="col-md-5">
                     <ul></ul>
                 </div>
-                Width :<input type="number" name= width value="1700" step=50 style="width: 50px;">px<br>
-                Height :<input type="number" name= height value="600" step=50 style="width: 50px;">px<br>
-                <input type="checkbox" name=rangeselector value=true checked = true>Sow range selector<br>
+                Width :<input type="number" name= "width" value="1700" step=50 style="width: 50px;"/>px<br/>
+                Height :<input type="number" name= "height" value="600" step=50 style="width: 50px;"/>px<br/>
+                <input type="checkbox" name="rangeselector" value=true checked = true>Sow range selector<br/>
                 <input type="submit" value="query">
             </form>
+
         </div>
 
     </div>
     <div id="tabs-2" class="tab-pane">
-      <button id=sy>synchronize</button>
-      <button id=dsy>dsynchronize</button>
-      <div id="graphdiv">
 
-      </div>
     {% include "mline.html" %}
     </div>
     <div id="tabs-3" class="tab-pane">
@@ -208,28 +213,28 @@ $(function() {
                   <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
                       <h4>mops</h4>
                       {% for item in d.mops %}
-                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                       {% endfor %}
                       <h4>mysum</h4>
                       {% for item in d.mysum %}
-                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                       {% endfor %}
                       <h4>summary</h4>
                       {% for item in d.summary %}
-                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                       {% endfor %}
                       <h4>tse</h4>
                       {% for item in d.tse %}
-                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
                       {% endfor %}
-                      <input type="submit" value="Show fields" class='btn btn-default'>
+                      <input type="submit" value="Show fields" class='btn btn-default'/>
                   </form>
               </div>
               <div id=div7 style="background-color:green;color:black" class="col-md-5">
                   <form action = "/plot1/" method = "POST">
                       <ul>
                           {% for item in d.fields %}
-                          <li><input class='btn btn-default' type = submit name=plot1 value={{ item }}></li>
+                          <li><input class='btn btn-default' type = submit name="plot1" value="{{ item }}"/></li>
                           {% endfor %}
                       </ul>
                   </form>
@@ -239,11 +244,10 @@ $(function() {
               </div>
           </div>
         <div id=div9>
-            <!--<div id = graphdiv1></div>-->
+
         {% include "plot1.html" %}
         {{d.labels1|safe}}
         </div>
-
     </div>
     <div id="tabs-4" class="tab-pane">
 
@@ -258,21 +262,21 @@ $(function() {
                 <form action = "/listfield1/" method = "POST">    <!--should contain '/' in tail-->
                     <h4>mops</h4>
                     {% for item in d.mops1 %}
-                    <input type="radio" name=dbtable1 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>mysum</h4>
                     {% for item in d.mysum1 %}
-                    <input type="radio" name=dbtable1 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>summary</h4>
                     {% for item in d.summary1 %}
-                    <input type="radio" name=dbtable1 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>tse</h4>
                     {% for item in d.tse1 %}
-                    <input type="radio" name=dbtable1 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'>
+                    <input type="submit" value="Show fields" class='btn btn-default'/>
                 </form>
             </div>
             <div id=div11 style="background-color:green;color:black" class="col-md-5">
@@ -290,11 +294,11 @@ $(function() {
                         <li><button class='btn btn-default'>{{ item }}</button></li>
                         {% endfor %}
                         {% for item in d.cols3 %}
-                        <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true>
+                        <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true/>
                         {% endfor %}
                     </ul>
                 </div>
-                <input type="submit" value="query">
+                <input type="submit" value="query"/>
             </form>
         </div>
         <div id=div13>
@@ -331,21 +335,21 @@ $(function() {
                 <form action = "/listfield2/" method = "POST">    <!--should contain '/' in tail-->
                     <h4>mops</h4>
                     {% for item in d.mops %}
-                    <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>mysum</h4>
                     {% for item in d.mysum %}
-                    <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>summary</h4>
                     {% for item in d.summary %}
-                    <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
                     <h4>tse</h4>
                     {% for item in d.tse %}
-                    <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
                     {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'>
+                    <input type="submit" value="Show fields" class='btn btn-default'/>
                 </form>
             </div>
             <div id=div15 style="background-color:green;color:black" class="col-md-5">
@@ -362,18 +366,18 @@ $(function() {
                 </div>
                 {% if d.mllys is defined %}
                     {% if d.mllys !=[] %}
-                    公司代號:<input type="text" name=compid value={{d.mllys[-1][2]|safe}}>
+                    公司代號:<input type="text" name=compid value={{d.mllys[-1][2]|safe}}/>
                     {% else %}
-                    公司代號:<input type="text" name=compid value=5522>
+                    公司代號:<input type="text" name=compid value=5522/>
                     {% endif %}
                 {% else %}
-                    公司代號:<input type="text" name=compid value=5522>
+                    公司代號:<input type="text" name=compid value=5522/>
                 {% endif %}
-                <input type="submit" value="query">
+                <input type="submit" value="query"/>
             </form>
             <form action = "/changeall/" method = "POST">
-                公司代號:<input type="text" name=compid1>
-                <input type="submit" value="change all">
+                公司代號:<input type="text" name=compid1/>
+                <input type="submit" value="change all"/>
             </form>
         </div>
 
@@ -383,8 +387,8 @@ $(function() {
     <div id="tabs-8" class="tab-pane">
 
         <form action = "/rep/" method = "POST">
-            公司代號:<input type="text" name=compid_report value=5522>
-            <input type="submit" value="query">
+            公司代號:<input type="text" name=compid_report value=5522/>
+            <input type="submit" value="query"/>
         </form>
 
         {% if d.report is defined %}
@@ -456,7 +460,7 @@ $(function() {
         <div>
         <h4>mops</h4>
         {% for item in d.mops %}
-        <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+        <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
         {% endfor %}
 
         </div>
@@ -546,7 +550,7 @@ $(function() {
 {{d.tab|safe}}
 {{d.cl|safe}}
 <!--        <form action = "/datatable/" method = "POST">-->
-<!--            <input type="submit" value="query">-->
+<!--            <input type="submit" value="query"/>-->
 <!--        </form>-->
 
 </body>
