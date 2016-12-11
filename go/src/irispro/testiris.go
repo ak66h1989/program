@@ -466,6 +466,7 @@ func ScaleController(ctx *iris.Context) {
 
 func main() {
 	os.Chdir("C:/Users/ak66h_000/Dropbox/webscrap/go/src/irispro/")
+	iris.StaticServe("./static")
 	//iris.Get("/hi", hi)
 	iris.UseTemplate(django.New()).Directory("./templates", ".html")
 

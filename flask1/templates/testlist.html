@@ -96,26 +96,25 @@
 //} );
 </script>
 
-    <script type="text/javascript">
-    $(function() {
-        /** This code runs when everything has been loaded on the page */
-        /* Inline sparklines take their values from the contents of the tag */
-        $('.inlinesparkline').sparkline();
+<script type="text/javascript">
+$(function() {
+    /** This code runs when everything has been loaded on the page */
+    /* Inline sparklines take their values from the contents of the tag */
+    $('.inlinesparkline').sparkline();
 
-        /* Sparklines can also take their values from the first argument
-        passed to the sparkline() function */
-        var myvalues = [10,8,5,null,4,4,1];
-        $('.dynamicsparkline').sparkline(myvalues, {width:'100px'});
+    /* Sparklines can also take their values from the first argument
+    passed to the sparkline() function */
+    var myvalues = [10,8,5,null,4,4,1];
+    $('.dynamicsparkline').sparkline(myvalues, {width:'100px'});
 
-        /* The second argument gives options such as chart type */
-        $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green', width:'10px'} );
+    /* The second argument gives options such as chart type */
+    $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green', width:'10px'} );
 
-        /* Use 'html' instead of an array of values to pass options
-        to a sparkline with data in the tag */
-        $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
-    });
-    </script>
-
+    /* Use 'html' instead of an array of values to pass options
+    to a sparkline with data in the tag */
+    $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
+});
+</script>
 
 </head>
 <body>
@@ -199,46 +198,46 @@
       <button id=sy>synchronize</button>
       <button id=dsy>dsynchronize</button>
       <div id="graphdiv">
-         {% include "mline.html" %}
-      </div>
 
+      </div>
+    {% include "mline.html" %}
     </div>
     <div id="tabs-3" class="tab-pane">
-        <div class="row">
-            <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
-                <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
-                    <h4>mops</h4>
-                    {% for item in d.mops %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
-                    {% endfor %}
-                    <h4>mysum</h4>
-                    {% for item in d.mysum %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
-                    {% endfor %}
-                    <h4>summary</h4>
-                    {% for item in d.summary %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
-                    {% endfor %}
-                    <h4>tse</h4>
-                    {% for item in d.tse %}
-                    <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
-                    {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'>
-                </form>
-            </div>
-            <div id=div7 style="background-color:green;color:black" class="col-md-5">
-                <form action = "/plot1/" method = "POST">
-                    <ul>
-                        {% for item in d.fields %}
-                        <li><input class='btn btn-default' type = submit name=plot1 value={{ item }}></li>
-                        {% endfor %}
-                    </ul>
-                </form>
-            </div>
-            <div id=div8  style="background-color:red;color:black" class="col-md-5">
-                <ul></ul>
-            </div>
-        </div>
+          <div class="row">
+              <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
+                  <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
+                      <h4>mops</h4>
+                      {% for item in d.mops %}
+                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      {% endfor %}
+                      <h4>mysum</h4>
+                      {% for item in d.mysum %}
+                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      {% endfor %}
+                      <h4>summary</h4>
+                      {% for item in d.summary %}
+                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      {% endfor %}
+                      <h4>tse</h4>
+                      {% for item in d.tse %}
+                      <input type="radio" name=dbtable value={{ item }}>{{ item }}<br>
+                      {% endfor %}
+                      <input type="submit" value="Show fields" class='btn btn-default'>
+                  </form>
+              </div>
+              <div id=div7 style="background-color:green;color:black" class="col-md-5">
+                  <form action = "/plot1/" method = "POST">
+                      <ul>
+                          {% for item in d.fields %}
+                          <li><input class='btn btn-default' type = submit name=plot1 value={{ item }}></li>
+                          {% endfor %}
+                      </ul>
+                  </form>
+              </div>
+              <div id=div8  style="background-color:red;color:black" class="col-md-5">
+                  <ul></ul>
+              </div>
+          </div>
         <div id=div9>
             <!--<div id = graphdiv1></div>-->
         {% include "plot1.html" %}
@@ -443,14 +442,30 @@
   <!--</div>-->
     <div id="tabs-11" class="tab-pane active">
         <div id="root"></div>
+        <div id="root1"></div>
+        <div id="root2"></div>
         <script type="text/babel">
-
           ReactDOM.render(
-            <h1>Hello, world!</h1>,
-            document.getElementById('root')
+            <div className="test"><h1>Hello, world!</h1></div>
+          ,
+            document.getElementById('root1')
           );
-
         </script>
+        <script type="text/babel">
+          ReactDOM.render(
+        <div>
+        <h4>mops</h4>
+        {% for item in d.mops %}
+        <input type="radio" name=dbtable2 value={{ item }}>{{ item }}<br>
+        {% endfor %}
+
+        </div>
+          ,
+            document.getElementById('root2')
+          );
+        </script>
+
+        <!-- {% include "react.html" %} -->
     </div>
 
 

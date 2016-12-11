@@ -37,6 +37,7 @@ driver.find_element_by_xpath("//a[@href='#tabs-9']").click()
 driver.find_element_by_xpath("//input[@id='sel']").click()
 
 driver.get("http://127.0.0.1:8080/")
+driver.get("http://127.0.0.1:5000/")
 driver.find_element_by_xpath("//input[@value='forweb']").click()
 driver.find_element_by_xpath("//input[@value='Show fields']").click()
 driver.find_element_by_xpath("//button[text()='開盤價']").click()
@@ -44,6 +45,9 @@ driver.find_element_by_xpath("//button[text()='收盤價']").click()
 driver.find_element_by_xpath("//input[@value='query']").click()
 
 driver.get("http://127.0.0.1:8080/hi")
+
+driver.get("http://127.0.0.1:5000/")
+driver.find_element_by_xpath("//a[@href='#tabs-11']").click()
 
 
 
