@@ -4,11 +4,8 @@ Created on Sat Aug 20 09:43:49 2016
 
 @author: ak66h_000
 """
-
-from flask import Flask
-from flask import request
-from flask import render_template
-
+from flask import Flask, jsonify, render_template, request
+from urllib import parse
 from pandas import *
 from numpy import *
 from sqlite3 import *
@@ -20,7 +17,6 @@ from bokeh.plotting import figure
 from bokeh.embed import components
 
 import datetime
-
 epoch = datetime.datetime.utcfromtimestamp(0)
 
 def unix_time_millis(dt):
@@ -224,6 +220,7 @@ def listfield():
         conn = connect('{}.sqlite3'.format(dic[dbtable]))
         df = read_sql_query("SELECT * from `{}`".format(dbtable), conn)
         d['fields'] = list(df)
+        d['tbdata'] = array(df).tolist()
         return render_template('testlist.html', d=d)
     else:
         return render_template('testlist.html', d=d)
@@ -319,6 +316,8 @@ def mline():
     # # cols=['年月日', '開盤價', '最高價']
     # df = read_sql_query('select `{}` from `{}`'.format('`,`'.join(cols), table), conn)
     # df = df[cols]
+    df.to_json(orient='records')
+    array(df).tolist()
     conn = connect('{}.sqlite3'.format(dic[dbtable]))
     df = read_sql_query("SELECT `{}` from `{}`".format('`,`'.join(cols), dbtable), conn)
     list(df)
@@ -371,51 +370,51 @@ def mline():
 #     d['labels'] = list(df1)
 #     d['y'] = list(df1)[1:]
 #     return render_template('testlist.html', d=d)
-
-@app.route('/scale/', methods=['POST'])
-def scale():
-    global mll, mll1, tab
-    for i, l in enumerate(mll1):
-        try:
-# without try, program will break if request.form['dy'+str(l[0])] is invalid
-            if request.form['dy'+str(l[0])] == 'raw':
-                mll1[i][6] = mll[i][6].copy()
-                print(mll[i][6])
-                print(i)
-                print(mll1[i][6].ix[:, 1:])
-                li = array(mll1[i][6]).tolist()
-                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
-                print(request.form['dy'+str(l[0])])
-                d['mll'] = mll1
-                return render_template('testlist.html', d=d)
-
-            if request.form['dy'+str(l[0])] == 'normalize':
-                df = mll1[i][6].copy()
-                print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
-                df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
-                mll1[i][6] = df.copy()
-                # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
-
-                print(mll1[i][6])
-                # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
-                print(i)
-                print(request.form['dy' + str(l[0])])
-                li = array(mll1[i][6]).tolist()
-                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
-                d['mll'] = mll1
-                return render_template('testlist.html', d=d)
-
-            if request.form['dy' + str(l[0])] == 'remove':
-                mll1.pop(i)
-                mll.pop(i)
-                d['mll'] = mll1
-                return render_template('testlist.html', d=d)
-
-            tab = '#tabs-2'
-            d['tab'] = tab
-        except Exception as e:
-            print(e)
-            pass
+#
+# @app.route('/scale/', methods=['POST'])
+# def scale():
+#     global mll, mll1, tab
+#     for i, l in enumerate(mll1):
+#         try:
+# # without try, program will break if request.form['dy'+str(l[0])] is invalid
+#             if request.form['dy'+str(l[0])] == 'raw':
+#                 mll1[i][6] = mll[i][6].copy()
+#                 print(mll[i][6])
+#                 print(i)
+#                 print(mll1[i][6].ix[:, 1:])
+#                 li = array(mll1[i][6]).tolist()
+#                 mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+#                 print(request.form['dy'+str(l[0])])
+#                 d['mll'] = mll1
+#                 return render_template('testlist.html', d=d)
+#
+#             if request.form['dy'+str(l[0])] == 'normalize':
+#                 df = mll1[i][6].copy()
+#                 print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+#                 df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+#                 mll1[i][6] = df.copy()
+#                 # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+#
+#                 print(mll1[i][6])
+#                 # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+#                 print(i)
+#                 print(request.form['dy' + str(l[0])])
+#                 li = array(mll1[i][6]).tolist()
+#                 mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+#                 d['mll'] = mll1
+#                 return render_template('testlist.html', d=d)
+#
+#             if request.form['dy' + str(l[0])] == 'remove':
+#                 mll1.pop(i)
+#                 mll.pop(i)
+#                 d['mll'] = mll1
+#                 return render_template('testlist.html', d=d)
+#
+#             tab = '#tabs-2'
+#             d['tab'] = tab
+#         except Exception as e:
+#             print(e)
+#             pass
 
 @app.route('/mp/', methods=['POST'])
 def mp():
@@ -1042,4 +1041,172 @@ def rep1():
 def datatable():
 
     return render_template('datatable.html', d=d)
+
+@app.route('/react/', methods=['GET', 'POST'])
+def react():
+
+    return render_template('react.html', d=d)
+
+@app.route('/ajax/')
+def ajax():
+    a = request.args.get('aa', 0, type=int)
+    b = request.args.get('bb', 0, type=int)
+    c = request.args.get('aa')
+    d = request.args.get('bb')
+    print(a, b, c, d)
+    return jsonify({'result1':a,'result2':b})
+
+@app.route('/ajax1/', methods=['GET', 'POST'])
+def ajax1():
+    try:
+        c = request.form['aa']
+        print(c)
+        print(c.split('&'))
+        print(1)
+    except Exception as e:
+        print(e)
+        pass
+    try:
+        a = request.args.getlist('aa')
+        print(a)
+        print(2)
+    except Exception as e:
+        print(e)
+        pass
+    try:
+        b = request.args.get('aa')
+        print(b)
+        print(3)
+        b = b.replace('=', '').replace('c1', '').split('&')
+        print(b)
+    except Exception as e:
+        print(e)
+        pass
+    return jsonify({'result1':b})
+
+@app.route('/mlinehighchart/', methods=['GET', 'POST'])
+def mlinehighchart():
+    global i, j, mll, mll1, tab, d
+    j += 1
+    print(j)
+    # global df
+    # global df1
+    cols = request.args.get('data')   # list object, empty is allowed
+    cols = cols.replace('=', '').replace('cols', '').replace('width', '').replace('height', '').replace('rangeselector', '')
+    cols = [parse.unquote(i) for i in cols.split('&')]
+    width = cols[-3]
+    height = cols[-2]
+    rangeselector = cols[-1]
+    print(width, height, rangeselector)
+    cols = cols[:-3]
+    # cols = request.form['cols']
+    # cols = request.args.get('cols', 0)
+    # d['cols'] = cols
+    if '年月日' in cols:
+        cols.remove('年月日')
+        cols.insert(0, '年月日')
+    else:
+        cols.insert(0, '年月日')
+
+    for c in cols:
+        print(c)
+
+    # database = 'mysum'
+    # conn = connect('{}.sqlite3'.format(database))
+    # table = 'forr'
+    # c = conn.cursor()
+    # # cols=['年月日', '開盤價', '最高價']
+    # df = read_sql_query('select `{}` from `{}`'.format('`,`'.join(cols), table), conn)
+    # df = df[cols]
+    conn = connect('{}.sqlite3'.format(dic[dbtable]))
+    df = read_sql_query("SELECT `{}` from `{}`".format('`,`'.join(cols), dbtable), conn)
+    list(df)
+    df.ix[:, 1:] = df.ix[:, 1:].astype(float)
+    d['labels'] = list(df)
+    d['data'] = array(df).tolist()
+    df['年月日'] = to_datetime(df['年月日'])
+    df['年月日'] = df['年月日'].apply(unix_time_millis)
+    df = df.dropna(subset=['年月日']).dropna(subset=cols[1:])
+    df1 = df.copy()
+    labels = list(df1)
+    l = array(df1).tolist()
+    data = [['NaN' if isnull(x) else x for x in i] for i in l]
+    data = [labels]+data
+    # data = str(data).replace('NaN', "null").replace("'", "")
+    # str(['NaN', 2]).replace('NaN',"null").replace("'","")
+    y = list(df1)[1:]
+    ymd = df1.年月日.tolist()
+    print(df1)
+
+    try:
+        rangeselector = request.form['rangeselector']
+        # rangeselector = request.args.get('rangeselector', 0)
+        print(rangeselector)
+    except:
+        rangeselector = 'false'
+        pass
+    print(rangeselector)
+    mll.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
+    mll1.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
+    d['mll'] = mll1
+    tab ='#tabs-13'
+    d['tab'] = tab
+    d['tableid'] = 'true'
+    # l=array(df).tolist()
+    # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
+    # return render_template('c3.html', d=d)
+    # return render_template('testlist.html', d=d)
+    return jsonify({'j':'dy'+str(j), 'data': data, 'labels': labels})
+
+@app.route('/scalehighchart/', methods=['GET', 'POST'])
+def scalehighchart():
+    global mll, mll1, tab
+    print('/scalehighchart........................................../')
+    for i, l in enumerate(mll1):
+        if l[0]==request.args.get('name'):
+            print("name........:",l[0])
+            if request.args.get('value') == 'raw':
+                mll1[i][6] = mll[i][6].copy()
+                # print(mll[i][6])
+                # print(i)
+                # print(mll1[i][6].ix[:, 1:])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [mll1[i][3]] + [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                # print(request.form[l[0]])
+                d['mll'] = mll1
+                tab = '#tabs-13'
+                d['tab'] = tab
+                print("raw........")
+                return jsonify({'j': request.args.get('name'), 'data': mll1[i][2], 'labels': mll1[i][3]})
+
+            if request.args.get('value') == 'normalize':
+                df = mll1[i][6].copy()
+                # print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+                mll1[i][6] = df.copy()
+                # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+
+                # print(mll1[i][6])
+                # # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                # print(i)
+                # print(request.form[l[0]])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [mll1[i][3]] + [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                d['mll'] = mll1
+                tab = '#tabs-13'
+                d['tab'] = tab
+                print( mll1[i][2][:100])
+                print("normalize........")
+                return jsonify({'j': request.args.get('name'), 'data': mll1[i][2], 'labels': mll1[i][3]})
+
+            if request.args.get('value') == 'remove':
+                mll1.pop(i)
+                mll.pop(i)
+                d['mll'] = mll1
+                tab = '#tabs-13'
+                d['tab'] = tab
+                print("remove........")
+                return ('', 204)
+
+
 

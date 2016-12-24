@@ -57,6 +57,14 @@
 <script type="text/javascript" src="../static/jquery.sparkline.js"></script>
 <!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
 
+<!--highcharts-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script type=text/javascript>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
 <!--myjsfile-->
 
@@ -115,10 +123,74 @@ $(function() {
     $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
 });
 </script>
+<!--<script>-->
+    <!--if (!String.prototype.format) {-->
+      <!--String.prototype.format = function() {-->
+        <!--var args = arguments;-->
+        <!--return this.replace(/{(\d+)}/g, function(match, number) {-->
+          <!--return typeof args[number] != 'undefined'-->
+            <!--? args[number]-->
+            <!--: match-->
+          <!--;-->
+        <!--});-->
+      <!--};-->
+    <!--}-->
+
+<!--$(document).ready(function(){-->
+    <!--var k=1;-->
+    <!--$('#b').click(function(){-->
+        <!--alert(0);-->
+        <!--var d1=`<div id = "dy{0}" className="few"></div>-->
+            <!--<form>-->
+                <!--<input type="submit" name="dy{0}" value="raw"/>-->
+                <!--<input type="submit" name="dy{0}" value="normalize"/>-->
+                <!--<input type="submit" name="dy{0}" value="remove"/>-->
+            <!--</form>`.format(k)-->
+        <!--$('#tabs-13').append(d1);-->
+        <!--$("#tabs-13 form").on('click', 'input', fa);-->
+        <!--var id="dy"+k;-->
+        <!--$(function () {-->
+            <!--Highcharts.chart(id, {-->
+
+                <!--chart: {-->
+                    <!--type: 'line'-->
+                <!--},-->
+
+                <!--title: {-->
+                    <!--text: 'Data input as column arrays'-->
+                <!--},-->
+                <!--plotOptions: {-->
+                    <!--series: {-->
+                        <!--connectNulls: true // by default-->
+                    <!--}-->
+                <!--},-->
+                <!--data: {-->
+                    <!--columns: [-->
+                        <!--['time', 1, 2, 3, 4], // categories-->
+                        <!--['a', 1, 2, 3, 4], // first series-->
+                        <!--['b', 5,4 , 'null', 2] // second series-->
+                    <!--]-->
+                <!--}-->
+            <!--});-->
+        <!--});-->
+        <!--k+=1;-->
+        <!--alert(1);-->
+    <!--});-->
+<!--})-->
+
+<!--</script>-->
+<script>
+
+function fa(){
+  alert($(this).attr('name'));
+  alert($(this).attr('value'));
+}
+
+</script>
+
 
 </head>
 <body>
-
 <div id="tabs">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#tabs-1">data</a></li>
@@ -126,12 +198,14 @@ $(function() {
         <li><a data-toggle="tab" href="#tabs-3">plot1</a></li>
         <li><a data-toggle="tab" href="#tabs-4">bokeh</a></li>
         <li><a data-toggle="tab" href="#tabs-5">split</a></li>
-        <li><a data-toggle="tab" href="#tabs-6">table</a></li>
+        <li><a data-toggle="tab" href="#tabs-6">mlinetable</a></li>
         <li><a data-toggle="tab" href="#tabs-7">ys</a></li>
         <li><a data-toggle="tab" href="#tabs-8">report</a></li>
         <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
         <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
         <li><a data-toggle="tab" href="#tabs-11">react</a></li>
+        <li><a data-toggle="tab" href="#tabs-12">table</a></li>
+        <li><a data-toggle="tab" href="#tabs-13">highchart</a></li>
     </ul>
   <!-- <div class="tab-content"> -->
     <div id="tabs-1" class="tab-pane active">
@@ -183,21 +257,29 @@ $(function() {
               </script>
             </div>
             <div id="div4" style="background-color:green;color:black" class="col-md-5">
+              <script type="text/babel">
+              const element1 = (
                 <ul>
                     {% for item in d.fields %}
-                    <li><button class='btn btn-info'>{{ item }}</button></li>
+                    <li><button className='btn btn-info'>{{ item }}</button></li>
                     {% endfor %}
                 </ul>
+              );
+              ReactDOM.render(
+                 element1,
+                 document.getElementById('div4')
+              );
+              </script>
             </div>
-
-            <form action = "/mline/" method = "POST">
+            <form id="mlineform">
+            <!--<form action = "/mlinehighchart/" method = "POST">-->
                 <div id="div5"  style="background-color:red;color:black" class="col-md-5">
                     <ul></ul>
                 </div>
                 Width :<input type="number" name= "width" value="1700" step=50 style="width: 50px;"/>px<br/>
                 Height :<input type="number" name= "height" value="600" step=50 style="width: 50px;"/>px<br/>
                 <input type="checkbox" name="rangeselector" value=true checked = true>Sow range selector<br/>
-                <input type="submit" value="query">
+                <input type="submit" value="query" id="mline"/>
             </form>
 
         </div>
@@ -205,36 +287,23 @@ $(function() {
     </div>
     <div id="tabs-2" class="tab-pane">
 
-    {% include "mline.html" %}
+
     </div>
     <div id="tabs-3" class="tab-pane">
           <div class="row">
               <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
-                  <form action = "/listfield/" method = "POST">    <!--should contain '/' in tail-->
-                      <h4>mops</h4>
-                      {% for item in d.mops %}
-                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                      {% endfor %}
-                      <h4>mysum</h4>
-                      {% for item in d.mysum %}
-                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                      {% endfor %}
-                      <h4>summary</h4>
-                      {% for item in d.summary %}
-                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                      {% endfor %}
-                      <h4>tse</h4>
-                      {% for item in d.tse %}
-                      <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                      {% endfor %}
-                      <input type="submit" value="Show fields" class='btn btn-default'/>
-                  </form>
+                <script type="text/babel">
+                ReactDOM.render(
+                   element,
+                   document.getElementById('div6')
+                );
+                </script>
               </div>
               <div id=div7 style="background-color:green;color:black" class="col-md-5">
                   <form action = "/plot1/" method = "POST">
                       <ul>
                           {% for item in d.fields %}
-                          <li><input class='btn btn-default' type = submit name="plot1" value="{{ item }}"/></li>
+                          <li><input class='btn btn-default' type = "submit" name="plot1" value="{{ item }}"/></li>
                           {% endfor %}
                       </ul>
                   </form>
@@ -259,7 +328,7 @@ $(function() {
     <div id="tabs-5" class="tab-pane">
         <div class="row">
             <div id=div10 style="background-color:blue;color:yellow" class="col-md-2">
-                <form action = "/listfield1/" method = "POST">    <!--should contain '/' in tail-->
+                <form action = "/listfield1/" method = "POST">
                     <h4>mops</h4>
                     {% for item in d.mops1 %}
                     <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
@@ -278,6 +347,7 @@ $(function() {
                     {% endfor %}
                     <input type="submit" value="Show fields" class='btn btn-default'/>
                 </form>
+
             </div>
             <div id=div11 style="background-color:green;color:black" class="col-md-5">
                 <ul>
@@ -307,25 +377,32 @@ $(function() {
     </div>
     <div id="tabs-6" class="tab-pane">
 
-        <table id="table_id" class="display">
-            <thead>
-                <tr>
-                    {% for item in d.labels %}
-                    <th>{{item}}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in d.data %}
-                <tr>
-                    {% for i in item %}
-                    <td>{{i}}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
+        <!-- <script type="text/babel">
+        const element2 = (
+          <table id="table_id" className="display">
+              <thead>
+                  <tr>
+                      {% for item in d.labels %}
+                      <th>{{item}}</th>
+                      {% endfor %}
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for item in d.data %}
+                  <tr>
+                      {% for i in item %}
+                      <td>{{i}}</td>
+                      {% endfor %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+        );
+        ReactDOM.render(
+           element2,
+           document.getElementById('tabs-6')
+        );
+        </script> -->
 
     </div>
     <div id="tabs-7" class="tab-pane">
@@ -469,11 +546,15 @@ $(function() {
           );
         </script>
 
-        <!-- {% include "react.html" %} -->
     </div>
+    <div id="tabs-12" class="tab-pane">
 
 
     </div>
+    <div id="tabs-13" class="tab-pane">
+        <!--{% include "highchart.html" %}-->
+    </div>
+  </div>
 <link rel="stylesheet" type="text/css" href="../static/bower_components/datatables/media/css/dataTables.jqueryui.min.css">
 <script type="text/javascript" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../static/bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
@@ -545,13 +626,198 @@ $(function() {
 
         </script>
 
+<!-- <script>
+$(document).ready(function(){
+    $('#table2').DataTable({
+      scrollY: 1000
+    });
+});
+</script> -->
+
 {% endif %}
+
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/ajax/', {
+        aa: $('input[name="a"]').val(),
+        bb: $('input[name="b"]').val()
+      }, function(data) {
+        $("#result").text(data.result1*data.result2);
+      });
+      return false;
+    });
+  });
+</script>
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>
+
+<!--<script type=text/javascript>-->
+<!--if (!String.prototype.format) {-->
+    <!--String.prototype.format = function() {-->
+        <!--var args = arguments;-->
+        <!--return this.replace(/{(\d+)}/g, function(match, number) {-->
+        <!--return typeof args[number] != 'undefined'-->
+          <!--? args[number]-->
+          <!--: match-->
+        <!--;-->
+        <!--});-->
+    <!--};-->
+<!--}-->
+<!--var i=1;-->
+<!--$(function() {-->
+<!--$('#b1').bind('click', function() {-->
+    <!--var d=`<div id = "dy{0}" className="few">{0}</div>-->
+      <!--<form action = "/scale1/" method = "POST">-->
+          <!--<input type="submit" name="dy{0}" value="raw"/>-->
+          <!--<input type="submit" name="dy{0}" value="normalize"/>-->
+          <!--<input type="submit" name="dy{0}" value="remove"/>-->
+      <!--</form>`.format(i)-->
+  <!--$('#tabs-13').append(d);-->
+
+  <!--$.getJSON($SCRIPT_ROOT + '/ajax1/', {-->
+    <!--aa: $('#formajax').serialize()-->
+  <!--}, function(data) {-->
+    <!--$("#result1").text(data.result1);-->
+  <!--});-->
+  <!--i+=1;-->
+  <!--return false;-->
+<!--});-->
+<!--});-->
+<!--</script>-->
+
+<h1>jQuery Example</h1>
+<form id="formajax">
+<input type=checkbox name="c1" value="x"> +
+   <input type=checkbox name="c1" value="y"> =
+   <button id=b1>answer</button>
+</form>
+    <div id="result1">??</div>
 
 {{d.tab|safe}}
 {{d.cl|safe}}
 <!--        <form action = "/datatable/" method = "POST">-->
 <!--            <input type="submit" value="query"/>-->
 <!--        </form>-->
+
+<script type=text/javascript>
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+        return typeof args[number] != 'undefined'
+          ? args[number]
+          : match
+        ;
+        });
+    };
+}
+var i=1;
+$(function() {
+    $('#mline').on('click', function() {
+
+        var d=`<div id = "dy{0}" className="few"></div>
+        <form>
+          <input type="button" name="dy{0}" value="raw"/>
+          <input type="button" name="dy{0}" value="normalize"/>
+          <input type="button" name="dy{0}" value="remove"/>
+        </form>`.format(i)      //use button instead of submit or the page will reload
+
+        $('#tabs-13').append(d);
+        $("#tabs-13 form").on('click', 'input', scalehighchart);
+        $('#tabs a[href="#tabs-13"]').click();
+        $.getJSON($SCRIPT_ROOT + '/mlinehighchart/', {
+        data: $("#mlineform").serialize(),
+        }, function(data) {
+            Highcharts.chart(data.j, {
+                credits: false,
+                title: {
+                    text: null
+                },
+                plotOptions: {
+                    series: {
+                        connectNulls: true
+                    }
+                },
+                data: {
+                  rows: data.data
+                }
+            });
+        });
+        i+=1;
+        return false;
+    });
+});
+</script>
+<script>
+
+function scalehighchart(){
+    if ($(this).attr('value')=="remove"){
+        $(this).parent().remove();
+        $('#'+$(this).attr('name')).remove();
+        $.getJSON($SCRIPT_ROOT + '/scalehighchart/', {
+        name: $(this).attr('name'),
+        value: $(this).attr('value')
+        }, function(data) {
+            Highcharts.chart(data.j, {
+                credits: false,
+                title: {
+                    text: null
+                },
+                plotOptions: {
+                    series: {
+                        connectNulls: true
+                    }
+                },
+                data: {
+                  rows: data.data
+                }
+            });
+        });
+    }else{
+        $.getJSON($SCRIPT_ROOT + '/scalehighchart/', {
+        name: $(this).attr('name'),
+        value: $(this).attr('value')
+        }, function(data) {
+            Highcharts.chart(data.j, {
+                credits: false,
+                title: {
+                    text: null
+                },
+                plotOptions: {
+                    series: {
+                        connectNulls: true
+                    }
+                },
+                data: {
+                  rows: data.data
+                }
+            });
+        });
+    }
+}
+
+</script>
+
+<!--<script type=text/javascript>-->
+
+  <!--$(function() {-->
+    <!--$('#mline').bind('click', function() {-->
+        <!--$.ajax({-->
+            <!--url: 'http://127.0.0.1:5000' + '/mlinehighchart/',-->
+            <!--complete : function(){-->
+                <!--alert(this.url)-->
+            <!--}-->
+        <!--});-->
+    <!--});-->
+  <!--});-->
+<!--</script>-->
+
+
+<button id="b">click</button>
 
 </body>
 </html>

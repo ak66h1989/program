@@ -1,0 +1,29 @@
+
+
+    {% for l in d.mll %}
+    <div id = "dy{{l[0]|safe}}" style="width:{{l[7]|safe}}px; height:{{l[8]|safe}}px;" className="few"></div>
+            <form action = "/scale/" method = "POST">
+                <input type="submit" name="dy{{l[0]|safe}}" value="raw"/>
+                <input type="submit" name="dy{{l[0]|safe}}" value="normalize"/>
+                <input type="submit" name="dy{{l[0]|safe}}" value="remove"/>
+            </form>
+    {% endfor %}
+
+<script>
+{% for l in d.mll %}
+$(function () {
+    Highcharts.chart('dy{{l[0]|safe}}', {
+
+
+
+        title: {
+            text: 'Data input as row arrays'
+        },
+
+        data: {
+            rows: {{l[2]|safe}}
+        }
+    });
+});
+{% endfor %}
+</script>

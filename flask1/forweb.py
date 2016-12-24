@@ -220,6 +220,11 @@ del bic['月']
 m.年月日=to_datetime(m.年月日, format='%Y/%m/%d').apply(lambda x: x.date())
 
 forweb=m[col+list(bic)]
+forweb['d'] = forweb.調整收盤價-forweb.收盤價
+forweb['調整開盤價'] = forweb.開盤價 + forweb.d
+forweb['調整收盤價'] = forweb.收盤價 + forweb.d
+forweb['調整最高價'] = forweb.最高價 + forweb.d
+forweb['調整最低價'] = forweb.最低價 + forweb.d
 forweb['e'] = forweb['收盤價']/forweb['本益比']
 forweb['lnmo'] = log(forweb['調整收盤價']/forweb['調整收盤價'].shift(120))
 forweb['lnr'] = log(forweb['調整收盤價']/forweb['調整收盤價'].shift())
@@ -395,29 +400,25 @@ f(forweb, 'MA10')
 f(forweb, 'MA20')
 f(forweb, 'MA60')
 
-forweb['d'] = forweb.調整收盤價-forweb.收盤價
-forweb['調整開盤價'] = forweb.開盤價 + forweb.d
-forweb['調整收盤價'] = forweb.收盤價 + forweb.d
-forweb['調整最高價'] = forweb.最高價 + forweb.d
-forweb['調整最低價'] = forweb.最低價 + forweb.d
+
 forweb['span'] = abs(forweb.調整收盤價-forweb.調整開盤價)/forweb.調整收盤價
 forweb['span_hl'] = abs(forweb.調整最高價-forweb.調整最低價)/forweb.調整收盤價
 forweb['ushadow'] = (forweb.調整最高價 - forweb[['調整開盤價', '調整收盤價']].max(axis=1))/forweb.調整收盤價
 forweb['lshadow'] = (forweb[['調整開盤價', '調整收盤價']].min(axis=1) - forweb.調整最低價)/forweb.調整收盤價
-# forweb['ushadow/span'] =forweb['ushadow']/(forweb['span']+0.1**10*forweb.調整收盤價)
-# forweb['lshadow/span'] =forweb['lshadow']/(forweb['span']+0.1**10*forweb.調整收盤價)
-forweb['span/ushadow'] =forweb['span']/forweb['ushadow']
-forweb['span/lshadow'] =forweb['span']/forweb['lshadow']
+forweb['ushadow/span'] =forweb['ushadow']/(forweb['span']+0.1**10*forweb.調整收盤價)
+forweb['lshadow/span'] =forweb['lshadow']/(forweb['span']+0.1**10*forweb.調整收盤價)
+# forweb['span/ushadow'] =forweb['span']/forweb['ushadow']
+# forweb['span/lshadow'] =forweb['span']/forweb['lshadow']
 forweb['span/hl'] =forweb['span']/forweb['span_hl']
 del forweb['d']
 forweb['h_l_1'] = forweb['h_l'].shift()
 forweb['h_l_2'] = forweb['h_l'].shift(2)
 forweb['ushadow_1'] = forweb['ushadow'].shift()
 forweb['lshadow_1'] = forweb['lshadow'].shift()
-# forweb['ushadow/span_1'] = forweb['ushadow/span'].shift()
-# forweb['lshadow/span_1'] = forweb['lshadow/span'].shift()
-forweb['span/ushadow_1'] = forweb['span/ushadow'].shift()
-forweb['span/lshadow_1'] = forweb['span/lshadow'].shift()
+forweb['ushadow/span_1'] = forweb['ushadow/span'].shift()
+forweb['lshadow/span_1'] = forweb['lshadow/span'].shift()
+# forweb['span/ushadow_1'] = forweb['span/ushadow'].shift()
+# forweb['span/lshadow_1'] = forweb['span/lshadow'].shift()
 forweb['spandiff'] = forweb.span.diff()
 forweb['spanudiff'] = forweb[['調整開盤價', '調整收盤價']].max(axis=1).diff()
 forweb['spanldiff'] = forweb[['調整開盤價', '調整收盤價']].min(axis=1).diff()

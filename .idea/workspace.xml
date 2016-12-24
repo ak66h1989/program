@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/mline.html" afterPath="$PROJECT_DIR$/flask1/templates/mline.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/highchart.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/testhigh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/fapp.py" afterPath="$PROJECT_DIR$/flask1/fapp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/forweb.py" afterPath="$PROJECT_DIR$/flask1/forweb.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/react.html" afterPath="$PROJECT_DIR$/flask1/templates/react.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testlist.html" afterPath="$PROJECT_DIR$/flask1/templates/testlist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/.idea/workspace.xml" afterPath="$PROJECT_DIR$/go/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/src/irispro/templates/mline.html" afterPath="$PROJECT_DIR$/go/src/irispro/templates/mline.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine.py" afterPath="$PROJECT_DIR$/machine.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/selen.py" afterPath="$PROJECT_DIR$/selen.py" />
     </list>
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,57 +35,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="資產負債表.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/公開資訊觀測站/彙總報表/資產負債表.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forweb.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/forweb.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6080">
-              <caret line="321" column="58" lean-forward="false" selection-start-line="321" selection-start-column="58" selection-end-line="321" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="fapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7771">
-              <caret line="409" column="26" lean-forward="false" selection-start-line="409" selection-start-column="26" selection-end-line="409" selection-end-column="26" />
+            <state relative-caret-position="741">
+              <caret line="1210" column="0" lean-forward="true" selection-start-line="1210" selection-start-column="0" selection-end-line="1210" selection-end-column="0" />
               <folding>
-                <element signature="e#89#112#0" expanded="true" />
+                <element signature="e#88#146#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="react.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/templates/react.html">
+      <file leaf-file-name="machine.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/machine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
+            <state relative-caret-position="665">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mline.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
+      <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="509">
+              <caret line="752" column="3" lean-forward="true" selection-start-line="752" selection-start-column="3" selection-end-line="752" selection-end-column="3" />
               <folding>
-                <marker date="1481459468724" expanded="true" signature="838:1682" ph="..." />
-                <marker date="1481459468724" expanded="true" signature="1692:1976" ph="..." />
-                <marker date="1481459468724" expanded="true" signature="1986:2067" ph="..." />
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="highchart.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/highchart.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,8 +84,8 @@
       <file leaf-file-name="selen.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/selen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state relative-caret-position="665">
+              <caret line="44" column="63" lean-forward="true" selection-start-line="44" selection-start-column="63" selection-end-line="44" selection-end-column="63" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -95,22 +93,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9367">
-              <caret line="498" column="32" lean-forward="false" selection-start-line="498" selection-start-column="32" selection-end-line="498" selection-end-column="32" />
+            <state relative-caret-position="1064">
+              <caret line="56" column="46" lean-forward="false" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html">
+      <file leaf-file-name="testhigh.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/testhigh.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1862">
-              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state relative-caret-position="95">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mline.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,6 +131,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -132,11 +143,18 @@
       <find>tse</find>
       <find>band</find>
       <find>[5]</find>
+      <find>labels</find>
+      <find>#result1</find>
+      <find>b1</find>
+      <find>scale</find>
+      <find>mlinehighchart</find>
+      <find>i</find>
     </findStrings>
     <replaceStrings>
       <replace>=</replace>
       <replace>Dropbox</replace>
       <replace>df1</replace>
+      <replace>k</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -145,8 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/beautifulsoup.py" />
-        <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/sqlite3.py" />
         <option value="$PROJECT_DIR$/institute.py" />
@@ -158,7 +174,6 @@
         <option value="$PROJECT_DIR$/三大法人/三大法人買賣超日報.py" />
         <option value="$PROJECT_DIR$/tse/incom.py" />
         <option value="$PROJECT_DIR$/tse/income.py" />
-        <option value="$PROJECT_DIR$/machine.py" />
         <option value="$PROJECT_DIR$/flask/static/jquery.sparkline.js" />
         <option value="$PROJECT_DIR$/forr/rmachine.py" />
         <option value="$PROJECT_DIR$/flask/templates/forweb.py" />
@@ -188,13 +203,17 @@
         <option value="$PROJECT_DIR$/tse/updateall_tse.py" />
         <option value="$PROJECT_DIR$/公開資訊觀測站/彙總報表/ifrs前後-資產負債表.py" />
         <option value="$PROJECT_DIR$/excel.py" />
-        <option value="$PROJECT_DIR$/flask1/forweb.py" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html" />
-        <option value="$PROJECT_DIR$/flask1/fapp.py" />
         <option value="$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/mline.html" />
+        <option value="$PROJECT_DIR$/machine.py" />
+        <option value="$PROJECT_DIR$/flask1/forweb.py" />
+        <option value="$PROJECT_DIR$/flask1/templates/ajax.html" />
         <option value="$PROJECT_DIR$/flask1/templates/mline.html" />
-        <option value="$PROJECT_DIR$/flask1/templates/testlist.html" />
+        <option value="$PROJECT_DIR$/flask1/templates/highchart.html" />
+        <option value="$PROJECT_DIR$/flask1/templates/testhigh.html" />
         <option value="$PROJECT_DIR$/selen.py" />
+        <option value="$PROJECT_DIR$/flask1/fapp.py" />
+        <option value="$PROJECT_DIR$/flask1/templates/testlist.html" />
       </list>
     </option>
   </component>
@@ -224,8 +243,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -446,12 +463,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="forr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webscrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dropbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webscrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="flask1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webscrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dropbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webscrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flask1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -460,6 +519,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -763,11 +823,11 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17857143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28997868" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847533" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3001066" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26012793" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -816,41 +876,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tse/balance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="75" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="176" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tse/income.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3781">
-          <caret line="199" column="12" lean-forward="false" selection-start-line="199" selection-start-column="12" selection-end-line="199" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/et --hard HEAD^^">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask/static/jquery.sparkline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2970" column="0" lean-forward="false" selection-start-line="2970" selection-start-column="0" selection-end-line="2970" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tse/index.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -865,24 +890,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/forr/forr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/renameforjulia.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="62" column="14" lean-forward="false" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forr/rmachine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="43" column="30" lean-forward="false" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1053,32 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="25" column="48" lean-forward="false" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/forweb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6080">
-          <caret line="321" column="58" lean-forward="false" selection-start-line="321" selection-start-column="58" selection-end-line="321" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1634">
-          <caret line="87" column="25" lean-forward="false" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7771">
-          <caret line="409" column="26" lean-forward="false" selection-start-line="409" selection-start-column="26" selection-end-line="409" selection-end-column="26" />
-          <folding>
-            <element signature="e#89#112#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,43 +1077,114 @@
     <entry file="file://$PROJECT_DIR$/flask1/templates/react.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="26" />
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forr/rmachine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="195" column="58" lean-forward="false" selection-start-line="195" selection-start-column="58" selection-end-line="195" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/forweb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="435" column="48" lean-forward="false" selection-start-line="435" selection-start-column="48" selection-end-line="435" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/ajax.html" />
+    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5362">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/mline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/templates/myapp/testlist.html">
+    <entry file="file://$PROJECT_DIR$/forr/forr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1862">
-          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="19">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="494">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <marker date="1481459468724" expanded="true" signature="838:1682" ph="..." />
-            <marker date="1481459468724" expanded="true" signature="1692:1976" ph="..." />
-            <marker date="1481459468724" expanded="true" signature="1986:2067" ph="..." />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="56" column="46" lean-forward="false" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/highchart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/testhigh.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="1210" column="0" lean-forward="true" selection-start-line="1210" selection-start-column="0" selection-end-line="1210" selection-end-column="0" />
+          <folding>
+            <element signature="e#88#146#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9367">
-          <caret line="498" column="32" lean-forward="false" selection-start-line="498" selection-start-column="32" selection-end-line="498" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="509">
+          <caret line="752" column="3" lean-forward="true" selection-start-line="752" selection-start-column="3" selection-end-line="752" selection-end-column="3" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/selen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+        <state relative-caret-position="665">
+          <caret line="44" column="63" lean-forward="true" selection-start-line="44" selection-start-column="63" selection-end-line="44" selection-end-column="63" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
