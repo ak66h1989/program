@@ -1087,7 +1087,6 @@ def ajax1():
 @app.route('/mlinehighchart/', methods=['GET', 'POST'])
 def mlinehighchart():
     global i, j, mll, mll1, tab, d
-    j += 1
     print('j:',j)
     # global df
     # global df1
@@ -1156,6 +1155,7 @@ def mlinehighchart():
     # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
     # return render_template('c3.html', d=d)
     # return render_template('testlist.html', d=d)
+    j += 1
     return jsonify({'j':'dy'+str(j), 'data': data, 'labels': labels})
 
 @app.route('/scalehighchart/', methods=['GET', 'POST'])

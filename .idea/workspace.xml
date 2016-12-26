@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/dygraphsajax.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/fapp.py" afterPath="$PROJECT_DIR$/flask1/fapp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/dygraph.html" afterPath="$PROJECT_DIR$/flask1/templates/dygraph.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/highchart.html" afterPath="$PROJECT_DIR$/flask1/templates/highchart.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testhigh.html" afterPath="$PROJECT_DIR$/flask1/templates/testhigh.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/mlineajax.html" afterPath="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testlist.html" afterPath="$PROJECT_DIR$/flask1/templates/testlist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/go/.idea/workspace.xml" afterPath="$PROJECT_DIR$/go/.idea/workspace.xml" />
     </list>
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +30,8 @@
       <file leaf-file-name="fapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="822">
-              <caret line="1327" column="0" lean-forward="true" selection-start-line="1327" selection-start-column="0" selection-end-line="1327" selection-end-column="0" />
+            <state relative-caret-position="1603">
+              <caret line="1157" column="10" lean-forward="false" selection-start-line="1157" selection-start-column="10" selection-end-line="1157" selection-end-column="10" />
               <folding>
                 <element signature="e#88#146#0" expanded="true" />
               </folding>
@@ -45,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testlist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14402">
-              <caret line="758" column="0" lean-forward="false" selection-start-line="758" selection-start-column="0" selection-end-line="758" selection-end-column="0" />
+            <state relative-caret-position="586">
+              <caret line="288" column="14" lean-forward="true" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -68,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mlineajax.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mlineajax.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/templates/mlineajax.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1987">
-              <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
+            <state relative-caret-position="912">
+              <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -81,8 +75,8 @@
       <file leaf-file-name="selen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+            <state relative-caret-position="684">
+              <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -208,9 +202,9 @@
         <option value="$PROJECT_DIR$/selen.py" />
         <option value="$PROJECT_DIR$/flask1/templates/dygraphsajax.html" />
         <option value="$PROJECT_DIR$/flask1/templates/highchart.html" />
-        <option value="$PROJECT_DIR$/flask1/templates/testlist.html" />
-        <option value="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
         <option value="$PROJECT_DIR$/flask1/fapp.py" />
+        <option value="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
+        <option value="$PROJECT_DIR$/flask1/templates/testlist.html" />
       </list>
     </option>
   </component>
@@ -1148,21 +1142,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14402">
-          <caret line="758" column="0" lean-forward="false" selection-start-line="758" selection-start-column="0" selection-end-line="758" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/selen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+        <state relative-caret-position="684">
+          <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -1171,8 +1154,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="1327" column="0" lean-forward="true" selection-start-line="1327" selection-start-column="0" selection-end-line="1327" selection-end-column="0" />
+        <state relative-caret-position="1603">
+          <caret line="1157" column="10" lean-forward="false" selection-start-line="1157" selection-start-column="10" selection-end-line="1157" selection-end-column="10" />
           <folding>
             <element signature="e#88#146#0" expanded="true" />
           </folding>
@@ -1181,9 +1164,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/mlineajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1987">
-          <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
+        <state relative-caret-position="912">
+          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="288" column="14" lean-forward="true" selection-start-line="288" selection-start-column="14" selection-end-line="288" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
