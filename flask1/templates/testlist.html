@@ -29,8 +29,8 @@
 <!--dygraphs synchronizer--><!--cannot put before dygraph-combined-dev.js-->
 <!--<script type="text/javascript" src="{{url_for('static', filename='extras/synchronizer.js')}}"></script>-->
 <!--copy latest version from github-->
-<!-- <script type="text/javascript" src="../static/extras/synchronizer.js"></script> -->
-<script type="text/javascript" src="../static/bower_components/dygraphs/extras/synchronizer.js"></script>
+<script type="text/javascript" src="../static/extras/synchronizer.js"></script> <!--this version can synchronize x without synchronizing y-->
+<!--<script type="text/javascript" src="../static/bower_components/dygraphs/extras/synchronizer.js"></script>-->
 
 <!--jquery-ui-->
 <!--<link rel="stylesheet" href="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.css')}}">
@@ -57,10 +57,14 @@
 <script type="text/javascript" src="../static/jquery.sparkline.js"></script>
 <!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
 
+<!--highstock--><!--need to put before highcharts-->
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <!--highcharts-->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 
 <script type=text/javascript>
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -286,7 +290,7 @@ function fa(){
 
     </div>
     <div id="tabs-2" class="tab-pane">
-
+    {% include "mlineajax.html" %}
 
     </div>
     <div id="tabs-3" class="tab-pane">
@@ -626,13 +630,7 @@ function fa(){
 
         </script>
 
-<!-- <script>
-$(document).ready(function(){
-    $('#table2').DataTable({
-      scrollY: 1000
-    });
-});
-</script> -->
+
 
 {% endif %}
 
@@ -699,125 +697,62 @@ $(document).ready(function(){
 
 {{d.tab|safe}}
 {{d.cl|safe}}
-<!--        <form action = "/datatable/" method = "POST">-->
-<!--            <input type="submit" value="query"/>-->
-<!--        </form>-->
 
-<script type=text/javascript>
-if (!String.prototype.format) {
-    String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) {
-        return typeof args[number] != 'undefined'
-          ? args[number]
-          : match
-        ;
-        });
-    };
-}
-var i=1;
-$(function() {
-    $('#mline').on('click', function() {
+<!--<script>-->
+<!--var sync;-->
+<!--var gs;-->
 
-        var d=`<div id = "dy{0}" className="few"></div>
-        <form>
-          <input type="button" name="dy{0}" value="raw"/>
-          <input type="button" name="dy{0}" value="normalize"/>
-          <input type="button" name="dy{0}" value="remove"/>
-        </form>`.format(i)      //use button instead of submit or the page will reload
+<!--window.update = function() {-->
+    <!--var chk = document.getElementById('chk-sync').checked;-->
 
-        $('#tabs-13').append(d);
-        $("#tabs-13 form").on('click', 'input', scalehighchart);
-        $('#tabs a[href="#tabs-13"]').click();
-        $.getJSON($SCRIPT_ROOT + '/mlinehighchart/', {
-        data: $("#mlineform").serialize(),
-        }, function(data) {
-            Highcharts.chart(data.j, {
-                credits: false,
-                title: {
-                    text: null
-                },
-                plotOptions: {
-                    series: {
-                        connectNulls: true
-                    }
-                },
-                data: {
-                  rows: data.data
-                }
-            });
-        });
-        i+=1;
-        return false;
-    });
-});
-</script>
-<script>
-
-function scalehighchart(){
-    if ($(this).attr('value')=="remove"){
-        $(this).parent().remove();
-        $('#'+$(this).attr('name')).remove();
-        $.getJSON($SCRIPT_ROOT + '/scalehighchart/', {
-        name: $(this).attr('name'),
-        value: $(this).attr('value')
-        }, function(data) {
-            Highcharts.chart(data.j, {
-                credits: false,
-                title: {
-                    text: null
-                },
-                plotOptions: {
-                    series: {
-                        connectNulls: true
-                    }
-                },
-                data: {
-                  rows: data.data
-                }
-            });
-        });
-    }else{
-        $.getJSON($SCRIPT_ROOT + '/scalehighchart/', {
-        name: $(this).attr('name'),
-        value: $(this).attr('value')
-        }, function(data) {
-            Highcharts.chart(data.j, {
-                credits: false,
-                title: {
-                    text: null
-                },
-                plotOptions: {
-                    series: {
-                        connectNulls: true
-                    }
-                },
-                data: {
-                  rows: data.data
-                }
-            });
-        });
-    }
-}
-
-</script>
-
-<!--<script type=text/javascript>-->
-
-  <!--$(function() {-->
-    <!--$('#mline').bind('click', function() {-->
-        <!--$.ajax({-->
-            <!--url: 'http://127.0.0.1:5000' + '/mlinehighchart/',-->
-            <!--complete : function(){-->
-                <!--alert(this.url)-->
-            <!--}-->
-        <!--});-->
-    <!--});-->
-  <!--});-->
+    <!--if(chk) {-->
+        <!--sync = Dygraph.synchronize(gs,{range: false});-->
+    <!--}-->
+    <!--else {-->
+        <!--sync.detach();-->
+	    <!--for (i = 0; i < 2; ++i) {-->
+			<!--gs[i].updateOptions({-->
+          <!--dateWindow: null,-->
+			    <!--valueRange: null-->
+		    <!--});-->
+        <!--}-->
+    <!--}-->
+<!--}-->
 <!--</script>-->
 
 
 <button id="b">click</button>
+<button id="dyb">dygraphsajax</button>
+<div id="dygraphsajax"></div>
+<!--<input type="checkbox" id="chk-sync" onchange="update()"><label for="chk-sync">Sync</label>-->
+<!--<script type=text/javascript>-->
+<!--gs = [];-->
+<!--var w=0;-->
+  <!--$(function() {-->
+    <!--$('#dyb').bind('click', function() {-->
+        <!--var d=`<div id = "dygraphsajax{0}" className="few"></div>`.format(w)-->
+        <!--var id ='dygraphsajax'+w-->
+        <!--$('#tabs-1').append(d);-->
+      <!--$.getJSON($SCRIPT_ROOT + '/dygraphsajax/', {-->
+        <!--aa: 0,-->
+        <!--bb: 1-->
+      <!--}, function(data) {-->
+          <!--gs.push(new Dygraph(document.getElementById(id),-->
+                <!--[-->
+                  <!--[1,10,100,10],-->
+                  <!--[2,20,'NaN',30],-->
+                  <!--[3,'NaN',60,40],-->
+                  <!--[4,70,80,20]-->
+                <!--],-->
+                <!--{-->
+                  <!--labels: [ "x", "A", "B", "C" ]-->
+                <!--}));-->
+      <!--});-->
+      <!--w+=1-->
+      <!--return false;-->
+    <!--});-->
+  <!--});-->
+<!--</script>-->
 
 </body>
 </html>

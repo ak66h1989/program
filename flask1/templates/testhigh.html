@@ -28,29 +28,33 @@
     $('#b').click(function(){
       var d=`<div id = "dy{0}" style="width:{{l[7]|safe}}px; height:{{l[8]|safe}}px;" className="few"></div>
                   <form>
-                      <input type="submit" name="dy{0}" value="raw"/>
-                      <input type="submit" name="dy{0}" value="normalize"/>
-                      <input type="submit" name="dy{0}" value="remove"/>
-                  </form>`.format(i)
+                      <input type="button" name="dy{0}" value="raw"/>
+                      <input type="button" name="dy{0}" value="normalize"/>
+                      <input type="button" name="dy{0}" value="remove"/></form>
+                  `.format(i)
 
-$('#tab-13').append(d);
-$("#tab-13 form").on('click', 'input', f);
+$('#tabs-13').append(d);
+$("#tabs-13").on('click', 'input', fa);
 var id="dy"+i;
       $(function () {
         Highcharts.chart(id, {
+          rangeSelector: {
 
+          },
             chart: {
-                type: 'line'
+                zoomType: 'x'
             },
-
+            credits: false,
             title: {
-                text: 'Data input as column arrays'
+                text: null
+
             },
             plotOptions: {
                 series: {
-                    connectNulls: true // by default
+                    connectNulls: true
                 }
             },
+
             data: {
                 columns: [
                     ['time', 1, 2, 3, 4], // categories
@@ -67,19 +71,20 @@ var id="dy"+i;
 </script>
 <script>
 
-function f(){
-  alert($(this).attr('name'));
-  alert($(this).attr('value'));
+function fa(){
+
+  if ($(this).attr('value')=="remove"){
+    $(this).parent().remove();
+    $('#'+$(this).attr('name')).remove();
+  }
 }
-    $('body').text(document.location.toString().toLowerCase());
+
 </script>
 
 </head>
 <body>
   <button id="b">click</button>
-  <div id =div1></div>
-  <div id =tab-13></div>
-
+  <div id =tabs-13></div>
 
 </body>
 </html>

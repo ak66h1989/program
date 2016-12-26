@@ -1088,7 +1088,7 @@ def ajax1():
 def mlinehighchart():
     global i, j, mll, mll1, tab, d
     j += 1
-    print(j)
+    print('j:',j)
     # global df
     # global df1
     cols = request.args.get('data')   # list object, empty is allowed
@@ -1208,5 +1208,135 @@ def scalehighchart():
                 print("remove........")
                 return ('', 204)
 
+@app.route('/scaleajax/', methods=['GET', 'POST'])
+def scaleajax():
+    global mll, mll1, tab
+    print('/scaleajax........................................../')
 
+    for i, l in enumerate(mll1):
+        print(i, l[0], request.args.get('name'))
+
+    for i, l in enumerate(mll1):
+        if l[0]==request.args.get('name'):
+            print("name........:",l[0])
+            if request.args.get('value') == 'raw':
+                mll1[i][6] = mll[i][6].copy()
+                # print(mll[i][6])
+                # print(i)
+                # print(mll1[i][6].ix[:, 1:])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                # print(request.form[l[0]])
+                d['mll'] = mll1
+                tab = '#tabs-2'
+                d['tab'] = tab
+                print("raw........")
+                return jsonify({'i': i, 'j': request.args.get('name'), 'data': mll1[i][2], 'labels': mll1[i][3], 'rangeselector': mll1[i][9]})
+
+            if request.args.get('value') == 'normalize':
+                df = mll1[i][6].copy()
+                # print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+                mll1[i][6] = df.copy()
+                # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+
+                # print(mll1[i][6])
+                # # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                # print(i)
+                # print(request.form[l[0]])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                d['mll'] = mll1
+                tab = '#tabs-2'
+                d['tab'] = tab
+                print( mll1[i][2][:100])
+                print("normalize........")
+                return jsonify({'i': i, 'j': request.args.get('name'), 'data': mll1[i][2], 'labels': mll1[i][3], 'rangeselector': mll1[i][9]})
+
+            if request.args.get('value') == 'remove':
+                mll1.pop(i)
+                mll.pop(i)
+                d['mll'] = mll1
+                tab = '#tabs-2'
+                d['tab'] = tab
+                print("remove........")
+                return jsonify({'i': i})
+
+@app.route('/dygraphsajax/', methods=['GET', 'POST'])
+def dygraphsajax():
+    return ('', 204)
+
+
+@app.route('/mlineajax/', methods=['GET', 'POST'])
+def mlineajax():
+    global i, j, mll, mll1, tab, d
+    j += 1
+    cols = request.args.get('data')   # list object, empty is allowed
+    if 'rangeselector' in cols:
+        print('yes')
+        cols = cols.replace('=', '').replace('cols', '').replace('width', '').replace('height', '').replace('rangeselector', '')
+        cols = [parse.unquote(i) for i in cols.split('&')]
+        width = cols[-3]
+        height = cols[-2]
+        rangeselector = cols[-1]
+        cols = cols[:-3]
+    else:
+        print('no')
+        cols = cols.replace('=', '').replace('cols', '').replace('width', '').replace('height', '')
+        cols = [parse.unquote(i) for i in cols.split('&')]
+        width = cols[-2]
+        height = cols[-1]
+        rangeselector = None
+        cols = cols[:-2]
+    print('width:', width, 'height:', height, 'rangeselector:', rangeselector)
+
+    if '年月日' in cols:
+        cols.remove('年月日')
+        cols.insert(0, '年月日')
+    else:
+        cols.insert(0, '年月日')
+
+    for c in cols:
+        print(c)
+
+    # database = 'mysum'
+    # conn = connect('{}.sqlite3'.format(database))
+    # table = 'forr'
+    # c = conn.cursor()
+    # # cols=['年月日', '開盤價', '最高價']
+    # df = read_sql_query('select `{}` from `{}`'.format('`,`'.join(cols), table), conn)
+    # df = df[cols]
+
+    conn = connect('{}.sqlite3'.format(dic[dbtable]))
+    df = read_sql_query("SELECT `{}` from `{}`".format('`,`'.join(cols), dbtable), conn)
+    list(df)
+    df.ix[:, 1:] = df.ix[:, 1:].astype(float)
+    d['labels'] = list(df)
+    d['data'] = array(df).tolist()
+    df['年月日'] = to_datetime(df['年月日'])
+    df['年月日'] = df['年月日'].apply(unix_time_millis)
+    df = df.dropna(subset=['年月日']).dropna(subset=cols[1:])
+    df1 = df.copy()
+    l = array(df1).tolist()
+    data = [['NaN' if isnull(x) else x for x in i] for i in l]   # don't transfer data to string
+    # data = str(data).replace('NaN', "null").replace("'", "")
+    # str(['NaN', 2]).replace('NaN',"null").replace("'","")
+    labels = list(df1)
+    y = list(df1)[1:]
+    ymd = df1.年月日.tolist()
+    list(df1)
+
+    print('rangeselector:',rangeselector)
+    mll.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
+    mll1.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
+    d['mll'] = mll1
+    tab ='#tabs-2'
+    d['tab'] = tab
+    d['tableid']='true'
+
+    # l=array(df).tolist()
+    # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
+    # return render_template('c3.html', d=d)
+    return jsonify({'j': 'dy' + str(j), 'data': data, 'labels': labels, 'rangeselector':rangeselector})
+    # return render_template('dygraph.html', d=d)
 
