@@ -234,7 +234,8 @@ function fa(){
             <div id=div3 style="background-color:blue;color:yellow" class="col-md-2">
               <script type="text/babel">
               const element = (
-                <form action = "/listfield/" method = "POST">
+                //<form action = "/listfield/" method = "POST">
+                <form id = "listfieldform">
                     <h4>mops</h4>
                     {% for item in d.mops %}
                     <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
@@ -261,19 +262,35 @@ function fa(){
               </script>
             </div>
             <div id="div4" style="background-color:green;color:black" class="col-md-5">
-              <script type="text/babel">
-              const element1 = (
-                <ul>
-                    {% for item in d.fields %}
-                    <li><button className='btn btn-info'>{{ item }}</button></li>
-                    {% endfor %}
-                </ul>
-              );
-              ReactDOM.render(
-                 element1,
-                 document.getElementById('div4')
-              );
-              </script>
+              <!--<script type="text/babel">-->
+              <!--const element1 = (-->
+                <!--<ul>-->
+                    <!--{% for item in d.fields %}-->
+                    <!--<li><button className='btn btn-info'>{{ item }}</button></li>-->
+                    <!--{% endfor %}-->
+                <!--</ul>-->
+              <!--);-->
+              <!--ReactDOM.render(-->
+                 <!--element1,-->
+                 <!--document.getElementById('div4')-->
+              <!--);-->
+              <!--</script>-->
+            <script>
+            $(function() {
+                $('#div3 form input[type="submit"]').on('click', function() {
+                    $.getJSON($SCRIPT_ROOT + '/listfieldajax/', {
+                    data: $("#listfieldform").serialize(),
+                    }, function(data) {
+                        var roots = data.fields.map(function(x){
+                            return "<li><button class='btn btn-info'>"+x+"</button></li>";
+                        });
+                        var y = document.getElementById("div4");
+                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                    });
+                return false;
+                });
+            });
+            </script>
             </div>
             <form id="mlineform">
             <!--<form action = "/mlinehighchart/" method = "POST">-->

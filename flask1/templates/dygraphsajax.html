@@ -19,66 +19,23 @@
 
 <body>
 
-<form id="mlineform">
-    <div id="div5"  style="background-color:red;color:black" class="col-md-5">
-        <ul></ul>
-    </div>
-    Width :<input type="number" name= "width" value="1700" step=50 style="width: 50px;"/>px<br/>
-    Height :<input type="number" name= "height" value="600" step=50 style="width: 50px;"/>px<br/>
-    <input type="checkbox" name="rangeselector" value=true checked = true>Sow range selector<br/>
-    <input type="submit" value="query" id="mline"/>
-</form> 
-    
-<button id=b>click</button>    
-    
-<script type=text/javascript>
-if (!String.prototype.format) {
-    String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) {
-        return typeof args[number] != 'undefined'
-          ? args[number]
-          : match
-        ;
-        });
-    };
-}
-    
-var i = 0;
-var gs=[];  
- $('#b').on('click', function() {
-     
-       var d=`<div id = "dy{0}" className="few" style="width:{1}px;height:{2}px;"></div>
-        <form>
-          <input type="button" name="dy{0}" value="raw"/>
-          <input type="button" name="dy{0}" value="normalize"/>
-          <input type="button" name="dy{0}" value="remove"/>
-        </form>`.format(i, $('#mlineform input[name="width"]').val(), $('#mlineform input[name="height"]').val());
+<div id="graphdiv" style="width:500px; height:400px;"></div>
 
-        $('#tabs-2').append(d);
-        
-     
-        var id= 'dy'+i; 
-        console.log(id);
-         
-           gs.push(new Dygraph(document.getElementById(id),
+<script>
+
+  var g=new Dygraph(document.getElementById("graphdiv"),
                 [
-                  [1,10,100,10],
+                  [1,10,100,100],
                   [2,20,'NaN',30],
                   [3,'NaN',60,40],
                   [4,70,80,20]
                 ],
                 {
-                  labels: [ "x", "A", "B", "C" ],
-                showRangeSelector: null
-                }));
-  i+=1;   
-     })
-
-
+                  labels: [ "x", "A", "B", "C" ]
+                });
 
 </script>
-<div id='tabs-2'></div>
+
 
 </body>
 
