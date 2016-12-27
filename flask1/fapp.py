@@ -1022,6 +1022,216 @@ def rep1():
     d['tab'] = '#tabs-9'
     return render_template('testlist.html', d=d)
 
+@app.route('/rep1ajax/', methods=['GET', 'POST'])
+def rep1ajax():
+    global report1, tb1, d, compid1
+    report1=[]
+    tb1=[]
+    # database = 'mops'
+    database = 'summary'
+    conn = connect('{}.sqlite3'.format(database))
+    c = conn.cursor()
+    # compid1='5522'
+    compid1 = request.args.get('data')   # list object, empty is allowed
+    compid1 = compid1.replace('=', '').replace('compid_report1', '')
+    compid1 = [parse.unquote(i) for i in compid1.split('&')][0]
+    # compid1 = request.form['compid_report1']
+    d['compid_report1'] = compid1
+    print('compid_report1:',compid1)
+    # table = 'ifrs前後-綜合損益表(季)-一般業'
+    # table = 'ifrs前後-資產負債表-一般業'
+    # for table in ['ifrs前後-綜合損益表(季)', 'ifrs前後-資產負債表-一般業']:
+    for table in ['ifrs前後-綜合損益表(季)-一般業', 'ifrs前後-資產負債表-一般業']:
+        df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid1), conn)
+        df['季'] = df['季'].astype(int)
+        # if table =='ifrs前後-綜合損益表(季)':
+        if table == 'ifrs前後-綜合損益表(季)-一般業':
+            df['基本每股盈餘（元）'] = df['基本每股盈餘（元）'].map('{:,.2f}'.format)
+            col2 = {
+                '營業成本': '&emsp;&emsp;營業成本',
+                '未實現銷貨（損）益': '&emsp;&emsp;未實現銷貨（損）益',
+                '已實現銷貨（損）益': '&emsp;&emsp;已實現銷貨（損）益',
+                '營業費用': '&emsp;&emsp;營業費用',
+                '其他收益及費損淨額': '&emsp;&emsp;其他收益及費損淨額',
+                '營業外收入及支出': '&emsp;&emsp;營業外收入及支出',
+                '營業外收入及利益': '&emsp;&emsp;營業外收入及利益',
+                '所得稅費用（利益）': '&emsp;&emsp;所得稅費用（利益）',
+                '停業單位損益': '&emsp;&emsp;停業單位損益',
+                '合併前非屬共同控制股權損益': '&emsp;&emsp;合併前非屬共同控制股權損益',
+                '其他綜合損益（淨額）': '&emsp;&emsp;其他綜合損益（淨額）',
+                '合併前非屬共同控制股權綜合損益淨額': '&emsp;&emsp;合併前非屬共同控制股權綜合損益淨額',
+                '會計原則變動累積影響數': '&emsp;&emsp;會計原則變動累積影響數'
+            }
+            df = df.rename(columns=col2)
+        d['compname1']=df.ix[len(df)-1, '公司名稱']
+        color={1:'rgb(0,255,0)', 2:'rgb(0, 190, 255)', 3:'orange', 4:'rgb(255, 75, 140)'}
+        df2=df.copy()
+        df3=df.copy()
+        df3.ix[:, 4:] = df3.ix[:, 4:].replace('--', 0)
+        df3.ix[:, 4:] = df3.ix[:, 4:].astype(float)
+        if table == 'ifrs前後-資產負債表-一般業':
+            col2 = {
+                '流動資產': '&emsp;&emsp;流動資產',
+                '非流動資產': '&emsp;&emsp;非流動資產',
+                '基金與投資': '&emsp;&emsp;&emsp;&emsp;基金與投資',
+                '固定資產': '&emsp;&emsp;&emsp;&emsp;固定資產',
+                '無形資產': '&emsp;&emsp;&emsp;&emsp;無形資產',
+                '其他資產': '&emsp;&emsp;&emsp;&emsp;其他資產',
+                '流動負債': '&emsp;&emsp;流動負債',
+                '非流動負債': '&emsp;&emsp;非流動負債',
+                '長期負債': '&emsp;&emsp;&emsp;&emsp;長期負債',
+                '各項準備': '&emsp;&emsp;&emsp;&emsp;各項準備',
+                '其他負債': '&emsp;&emsp;&emsp;&emsp;其他負債',
+                '股本': '&emsp;&emsp;股本',
+                '資本公積': '&emsp;&emsp;資本公積',
+                '保留盈餘': '&emsp;&emsp;保留盈餘',
+                '其他權益': '&emsp;&emsp;其他權益',
+                '庫藏股票': '&emsp;&emsp;庫藏股票',
+                '歸屬於母公司業主之權益合計': '&emsp;&emsp;歸屬於母公司業主之權益合計',
+                '共同控制下前手權益': '&emsp;&emsp;共同控制下前手權益',
+                '合併前非屬共同控制股權': '&emsp;&emsp;合併前非屬共同控制股權',
+                '非控制權益': '&emsp;&emsp;非控制權益'
+            }
+            df = df.rename(columns=col2)
+        for i in color:
+            df2.ix[df.季==i, 2:]=color[i]
+        smd={1:'3/31', 2:'6/30', 3:'9/30', 4:'12/31'}
+        # df['年季'] = df['年'].astype(str) + '年第' + df['季'].astype(str) + '季'
+        df['年季'] = df['年'].astype(str)+'/' + df['季'].apply(lambda x: smd[x])
+        for i in range(len(df3)):
+            for j in range(df3.shape[1]):
+                try:
+                    if df3.iloc[i, j]<0:
+                        df2.iloc[i, j]='red'
+                except:
+                    pass
+        df2['季'] = df2['季'].astype(int)
+        df2['年季'] = df2['年'].astype(str) + df2['季'].apply(lambda x:smd[x])
+        df = df.drop(['年', '季', '公司代號', '公司名稱'], axis=1)
+        df = df[[list(df)[-1]] + list(df)[:-1]]
+        df2 = df2.drop(['年', '季', '公司代號', '公司名稱'], axis=1)
+        df2 = df2[[list(df2)[-1]] + list(df2)[:-1]]
+        # l = vstack((array([list(df)]), array(df))).transpose().tolist()
+        df.dtypes
+        df.ix[:, 1:] = df.ix[:, 1:].replace('--', NaN)
+        df.ix[:, 1:] = df.ix[:, 1:].astype(float)
+        m = df.ix[:, 1:].max().max()
+        list(df)
+        df1 = df.copy()
+        df1=df1.fillna('0')
+        df1.ix[:, 1:] = df1.ix[:, 1:].replace('--', 0)
+        df1.ix[:, 1:] = df1.ix[:, 1:].astype(float)
+        df1.ix[:, 1:] = df1.ix[:, 1:].apply(lambda x: x / m * 100)
+
+        for c in ['基本每股盈餘（元）', '預收股款（權益項下）之約當發行股數（單位：股）', '母公司暨子公司所持有之母公司庫藏股股數（單位：股）', '每股參考淨值', '待註銷股本股數（單位：股）']:
+            try:
+                pem = df[c].max()
+                df1[c] = df[c].apply(lambda x: x / pem * 100)
+            except:
+                pass
+        for i in range(len(df1)):
+            for j in range(df1.shape[1]):
+                try:
+                    if df1.iloc[i, j]<0:
+                        df1.iloc[i, j]=df1.iloc[i, j]*(-1)
+                except:
+                    pass
+
+        df4 = df.copy()
+        list(df4)
+        df.dtypes
+        if table == 'ifrs前後-綜合損益表(季)-一般業':
+            for i in list(df4)[2:]:
+                df4[i] = df4[i] / df4.營業收入 * 100
+            df4.營業收入 = df4.營業收入 / df4.營業收入 * 100
+        if table == 'ifrs前後-資產負債表-一般業':
+            a = list(df4)[1:]
+            a.remove('資產總額')
+            for i in a:
+                df4[i] = df4[i] / df4.資產總額 * 100
+            df4.資產總額 = df4.資產總額 / df4.資產總額 * 100
+
+        df4.ix[:, 1:] = df4.ix[:, 1:].applymap('{:,.0f}'.format)
+        df = df.fillna('')
+        df4 = df4.replace('nan', '')
+        # l = vstack((array([list(df)]), array(df))).transpose().tolist()
+        # lp = vstack((array([list(df4)]), array(df4))).transpose().tolist()
+        # lw = vstack((array([list(df1)]), array(df1))).transpose().tolist()
+        # lc = vstack((array([list(df2)]), array(df2))).transpose().tolist()
+
+        if table == 'ifrs前後-綜合損益表(季)-一般業':
+            lspan=['<span class=inc{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
+
+            l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
+            lspan = [None for i in list(df)]
+            lp = vstack((array([list(df4)]), array(df4), array([lspan]))).transpose().tolist()
+            lw = vstack((array([list(df1)]), array(df1), array([lspan]))).transpose().tolist()
+            lc = vstack((array([list(df2)]), array(df2), array([lspan]))).transpose().tolist()
+
+            lspan=[]
+            for x in l:
+                # print(x)
+                lspan.append(['null' if i=='' else i for i in x])
+            l[3][2]==''
+            lspan[1]
+            lspan[1][1:-1]
+            for i in lspan[1:]:
+                print(i[1:-1])
+            d['lspan'] = lspan
+        if table == 'ifrs前後-資產負債表-一般業':
+            lspan = ['<span class=bal{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
+
+            l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
+            lspan = [None for i in list(df)]
+            lp = vstack((array([list(df4)]), array(df4), array([lspan]))).transpose().tolist()
+            lw = vstack((array([list(df1)]), array(df1), array([lspan]))).transpose().tolist()
+            lc = vstack((array([list(df2)]), array(df2), array([lspan]))).transpose().tolist()
+
+            lspan = []
+            for x in l:
+                # print(x)
+                lspan.append(['null' if i == '' else i for i in x])
+            l[3][2] == ''
+            lspan[1]
+            lspan[1][1:-1]
+            for i in lspan[1:]:
+                print(i[1:-1])
+            d['lspan1'] = lspan
+
+        shape(lp)
+        for i in lw:
+            i[0]=0.0
+        for i in lc:
+            i[0]='white'
+        for i in lp:
+            i[0]=''
+        li = []
+        for i in range(len(l)):
+            li.append(zip(l[i], lw[i], lc[i], lp[i]))
+        # report1.append(li)
+        report1.append([list(x) for x in li])
+        tb1.append(table)
+
+    li1 = []
+    for i in report1:
+        li11 = []
+        for j in i:
+            li12 = []
+            for k in j:
+                k = list(k)
+                print(k)
+                li12.append(k)
+            li11.append(li12)
+        li1.append(li11)
+    report2 = li1.copy()
+    print(report1)
+    d['report1'] = report2
+    d['tb1'] = tb1
+    d['tab'] = '#tabs-9'
+    # return render_template('testlist.html', d=d)
+    print('lspan1:',lspan, 'lspan1:',lspan,'compid_report1:', d['compid_report1'], 'compname1:',d['compname1'], 'tb1:',tb1, 'tab:','#tabs-9')
+    return jsonify({'lspan1':lspan, 'lspan1':lspan,'compid_report1':d['compid_report1'], 'compname1':d['compname1'], 'report1':report1, 'tb1':tb1, 'tab':'#tabs-9'})
+
 # report1=[]
 # li=[]
 # for i in report1[0][0]:

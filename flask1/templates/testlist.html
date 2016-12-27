@@ -282,7 +282,7 @@ function fa(){
                     data: $("#listfieldform").serialize(),
                     }, function(data) {
                         var roots = data.fields.map(function(x){
-                            return "<li><button class='btn btn-info'>"+x+"</button></li>";
+                            return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
                         });
                         var y = document.getElementById("div4");
                         y.innerHTML = "<ul>"+roots.join('')+"</ul>";
