@@ -1011,7 +1011,7 @@ def rep1():
             li12 = []
             for k in j:
                 k = list(k)
-                print(k)
+                print("k:",k)
                 li12.append(k)
             li11.append(li12)
         li1.append(li11)
@@ -1219,19 +1219,37 @@ def rep1ajax():
             li12 = []
             for k in j:
                 k = list(k)
-                print(k)
+                k =['NaN' if isnull(m) else m for m in k]  # nan/None are undefined in javascript
+                print("k:", k)
                 li12.append(k)
             li11.append(li12)
         li1.append(li11)
     report2 = li1.copy()
-    print(report1)
+    # print(report2)
     d['report1'] = report2
     d['tb1'] = tb1
     d['tab'] = '#tabs-9'
-    # return render_template('testlist.html', d=d)
-    print('lspan1:',lspan, 'lspan1:',lspan,'compid_report1:', d['compid_report1'], 'compname1:',d['compname1'], 'tb1:',tb1, 'tab:','#tabs-9')
-    return jsonify({'lspan1':lspan, 'lspan1':lspan,'compid_report1':d['compid_report1'], 'compname1':d['compname1'], 'report1':report1, 'tb1':tb1, 'tab':'#tabs-9'})
+    # l=[1, NaN, 2]
+    # l=array([1,nan,2]).tolist()
+    # nan in l
+    # isnull(l[1])
+    # None in l
+    # [['NaN' for i in report2]]
+    # isnull(None)
+    # for i in report2:
+    #     for j in i:
+    #         for k in j:
+    #             for l in k:
+    #                 if isnull(l):
+    #                     l='NaN'
 
+    # ['NaN' for k in [j for j in [i for i in report2]]]
+    # ['']
+    # isnull('')
+    # return render_template('testlist.html', d=d)
+    # print('lspan:', lspan, 'lspan1:', lspan, 'compid_report1:', d['compid_report1'], 'compname1:', d['compname1'], 'tb1:', tb1, 'tab:', '#tabs-9')
+    # return jsonify({'lspan': lspan, 'lspan1': lspan, 'compid_report1': d['compid_report1'], 'compname1': d['compname1'], 'report1': report2, 'tb1': tb1, 'tab': '#tabs-9'})
+    return jsonify({'lspan': d['lspan'], 'lspan1': d['lspan1'], 'compid_report1': d['compid_report1'], 'compname1': d['compname1'], 'report1': report2, 'tb1': tb1, 'tab': '#tabs-9'})
 # report1=[]
 # li=[]
 # for i in report1[0][0]:

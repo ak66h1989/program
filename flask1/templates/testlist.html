@@ -539,7 +539,7 @@ function fa(){
 
     </div>
 
-{% include "table.html" %}
+{% include "tableajax.html" %}
 
   <!--</div>-->
     <div id="tabs-11" class="tab-pane active">
@@ -576,80 +576,7 @@ function fa(){
         <!--{% include "highchart.html" %}-->
     </div>
   </div>
-<link rel="stylesheet" type="text/css" href="../static/bower_components/datatables/media/css/dataTables.jqueryui.min.css">
-<script type="text/javascript" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../static/bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
-{% if d.report1 is defined %}
 
-  <!-- <link rel="stylesheet" type="text/css" href="../static/datatables.min.css">
-  <script type="text/javascript" src="../static/datatables.min.js"></script> -->
-
-        <script>
-        $(document).ready(function() {
-            var table =$('#report2').DataTable( {
-                colReorder: true,
-                scrollY:        820,
-                scrollX:        true,
-                scrollCollapse: true,
-                paging:         false,
-                searching: false,
-                info:     false,
-                ordering: false,
-                //fixedColumns:   true,
-                //fixedHeader: true,
-                //aaSorting : []
-                //"columnDefs": [
-                //  { "orderable": false, "targets": 0 }
-                //],
-                //bSort : false
-            } );
-
-            var table1 =$('#report3').DataTable( {
-                colReorder: true,
-                scrollY:        820,
-                scrollX:        true,
-                scrollCollapse: true,
-                paging:         false,
-                searching: false,
-                info:     false,
-                ordering: false,
-                //fixedColumns:   true,
-                //fixedHeader: true,
-                //aaSorting : []
-                //"columnDefs": [
-                //  { "orderable": false, "targets": 0 }
-                //],
-                //bSort : false
-            } );
-
-             $('#enable').click( function (e) {
-
-             alert(1);
-            //table.colReorder.reset();
-                new $.fn.dataTable.FixedColumns( table, {
-    //fixedColumns: false
-    //fixedColumns: true
-            });
-        } );
-
-               $('#enable1').click( function (e) {
-
-             alert(1);
-            //table.colReorder.reset();
-                new $.fn.dataTable.FixedColumns( table1, {
-    //fixedColumns: false
-    //fixedColumns: true
-            });
-        } );
-
-
-        } );
-
-        </script>
-
-
-
-{% endif %}
 
 <script type=text/javascript>
   $(function() {
