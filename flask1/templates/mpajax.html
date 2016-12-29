@@ -2,21 +2,21 @@
 
 $(function() {
     $('#mpform input[type="submit"]').on('click', function() {
-        document.getElementById('div13').innerHTML='';  // don't use $("#div13").innerHTML
+        // document.getElementById('div13').innerHTML='';  // don't use $("#div13").innerHTML
         $.getJSON($SCRIPT_ROOT + '/mpajax/', {
         data: $("#mpform").serialize(),
         }, function(data) {
           console.log(0);
-          // var divs =data.L1.map(function(l){
-          //     var text =`<div id = graphdiv{0} class=inline style="width:450px;"></div>`.format(l[0]);
-          //     return text;
-          // });
-          // console.log('divs.join(''):',divs[0]);
-          // $("#div13").innerHTML=divs.join('');
+          var divs =data.L1.map(function(l){
+              var text =`<div id = graphdiv{0} class=inline style='width:450px;'></div>`.format(l[0]); // don't use `<div id = graphdiv{0} class=inline style="width:450px;"></div>`
+              return text;
+          });
+          console.log(`divs.join(''):`,divs.join('')); // can't use 'divs.join(''):'
+          document.getElementById('div13').innerHTML=divs.join('');
           // console.log($("#div13").innerHTML);
 
           data.L1.map(function(l){
-            $("#div13").append('<div id = graphdiv'+l[0]+' class=inline style="width:450px;"></div>');
+            // $("#div13").append('<div id = graphdiv'+l[0]+' class=inline style="width:450px;"></div>');
             new Dygraph(document.getElementById("graphdiv"+l[0]),
                       l[2],
                       {

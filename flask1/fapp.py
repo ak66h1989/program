@@ -228,6 +228,20 @@ def listfield1():
     else:
         return render_template('testlist.html', d=d)
 
+@app.route('/listfield1ajax/', methods=['GET', 'POST'])
+def listfield1ajax():
+    global tab, df, dbtable1
+    tab ='#tabs-5'
+    d['tab'] = tab
+    dbtable1 = request.args.get('data')   # list object, empty is allowed
+    dbtable1 = dbtable1.replace('=', '').replace('dbtable1', '')
+    dbtable1 = [parse.unquote(i) for i in dbtable1.split('&')][0]
+    conn = connect('{}.sqlite3'.format(dic[dbtable1]))
+    df = read_sql_query("SELECT * from `{}`".format(dbtable1), conn)
+    d['fields1'] = list(df)
+    d['tbdata1'] = array(df).tolist()
+    return jsonify({'fields1': list(df)})
+
 @app.route('/listfield2/', methods=['GET', 'POST'])
 def listfield2():
     global tab, fields2

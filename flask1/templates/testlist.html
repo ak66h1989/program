@@ -349,7 +349,8 @@ function fa(){
     <div id="tabs-5" class="tab-pane">
         <div class="row">
             <div id=div10 style="background-color:blue;color:yellow" class="col-md-2">
-                <form action = "/listfield1/" method = "POST">
+                <!--<form action = "/listfield1/" method = "POST">-->
+                <form id="listfield1form">
                     <h4>mops</h4>
                     {% for item in d.mops1 %}
                     <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
@@ -371,11 +372,28 @@ function fa(){
 
             </div>
             <div id=div11 style="background-color:green;color:black" class="col-md-5">
-                <ul>
-                    {% for item in d.fields1 %}
-                    <li><button class='btn btn-default'>{{ item }}</button></li>
-                    {% endfor %}
-                </ul>
+                <!--<ul>-->
+                    <!--{% for item in d.fields1 %}-->
+                    <!--<li><button class='btn btn-default'>{{ item }}</button></li>-->
+                    <!--{% endfor %}-->
+                <!--</ul>-->
+
+            <script>
+            $(function() {
+                $('#div10 form input[type="submit"]').on('click', function() {
+                    $.getJSON($SCRIPT_ROOT + '/listfield1ajax/', {
+                    data: $("#listfield1form").serialize(),
+                    }, function(data) {
+                        var roots = data.fields1.map(function(x){
+                            return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
+                        });
+                        var y = document.getElementById("div11");
+                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                    });
+                return false;
+                });
+            });
+            </script>
             </div>
 
             <!-- <form action = "/mp/" method = "POST">    div should be inside form -->
