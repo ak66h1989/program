@@ -1543,7 +1543,6 @@ def dygraphsajax():
 @app.route('/mlineajax/', methods=['GET', 'POST'])
 def mlineajax():
     global i, j, mll, mll1, tab, d
-    j += 1
     cols = request.args.get('data')   # list object, empty is allowed
     if 'rangeselector' in cols:
         print('yes')
@@ -1606,7 +1605,7 @@ def mlineajax():
     tab ='#tabs-2'
     d['tab'] = tab
     d['tableid']='true'
-
+    j += 1
     # l=array(df).tolist()
     # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
     # return render_template('c3.html', d=d)

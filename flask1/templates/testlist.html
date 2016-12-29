@@ -487,12 +487,12 @@ function fa(){
                 </div>
                 {% if d.mllys is defined %}
                     {% if d.mllys !=[] %}
-                    公司代號:<input type="text" name=compid value={{d.mllys[-1][2]|safe}}/>
+                    公司代號:<input type="text" name=compid value="{{d.mllys[-1][2]|safe}}"/>
                     {% else %}
-                    公司代號:<input type="text" name=compid value=5522/>
+                    公司代號:<input type="text" name=compid value="5522"/>
                     {% endif %}
                 {% else %}
-                    公司代號:<input type="text" name=compid value=5522/>
+                    公司代號:<input type="text" name=compid value="5522"/>
                 {% endif %}
                 <input type="submit" value="query"/>
             </form>
@@ -508,7 +508,7 @@ function fa(){
     <div id="tabs-8" class="tab-pane">
 
         <form action = "/rep/" method = "POST">
-            公司代號:<input type="text" name=compid_report value=5522/>
+            公司代號:<input type="text" name=compid_report value="5522"/>
             <input type="submit" value="query"/>
         </form>
 
@@ -523,7 +523,7 @@ function fa(){
                     {% endfor %}
                 </tr>
             </thead>
-            <tbody>
+            <tbody>"
                 {% for item in d.report[0][1:] %}
                 <tr>
                     {% for i, j, k in item %}
