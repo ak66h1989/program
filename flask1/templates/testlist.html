@@ -378,8 +378,11 @@ function fa(){
                 </ul>
             </div>
 
-            <form action = "/mp/" method = "POST">    <!--div should be inside form-->
-                <div id=div12  style="background-color:red;color:black" class="col-md-5">
+            <!-- <form action = "/mp/" method = "POST">    div should be inside form -->
+            <form id = "mpform">
+            <div id=div12  style="background-color:red;color:black" class="col-md-5">
+
+
                     <ul>
                         {% for item in d.cols1 %}
                         <li><button class='btn btn-default'>{{ item }}</button></li>
@@ -388,12 +391,14 @@ function fa(){
                         <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true/>
                         {% endfor %}
                     </ul>
-                </div>
+
                 <input type="submit" value="query"/>
+
+            </div>
             </form>
         </div>
         <div id=div13>
-            {% include "mp.html" %}
+        {% include "mpajax.html" %}
         </div>
     </div>
     <div id="tabs-6" class="tab-pane">

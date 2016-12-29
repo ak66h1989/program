@@ -109,35 +109,7 @@ def bokeh():
 @app.route('/hello/<name>')
 def hello(name=None):
     return render_template('hello.html', name=name)
-#
-#
-# @app.route('/', methods=['GET', 'POST'])
-# def home():
-#     return '<h1>Home</h1>'
-#
-# @app.route('/signin', methods=['GET'])
-# def signin_form():
-#     return '''<form action="/signin" method="post">
-#               <p><input name="username"></p>
-#               <p><input name="password" type="password"></p>
-#               <p><button type="submit">Sign In</button></p>
-#               </form>'''
-#
-# @app.route('/signin', methods=['POST'])
-# def signin():
-#     # 需要从request对象读取表单内容：
-#     if request.form['username']=='admin' and request.form['password']=='password':
-#         return '<h3>Hello, admin!</h3>'
-#     return '<h3>Bad username or password.</h3>'
-#
-# @app.route('/test', methods=['GET'])
-# def index():
-#     return '''<form action="/test" method="post">
-#               <input type="text" name="username" value='1'>
-#               <input type="text" name="username" value='2'>
-#               <p><button type="submit">run</button></p>
-#               </form>'''
-#
+
 # @app.route('/test', methods=['POST'])
 # def test():
 #     print(request.form.getlist('username'))
@@ -370,67 +342,51 @@ def mline():
     # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
     # return render_template('c3.html', d=d)
     return render_template('testlist.html', d=d)
-    # return render_template('dygraph.html', d=d)
 
-# @app.route('/scale/', methods=['POST'])
-# def scale():
-#     df1 = df.copy()
-#     print(df)
-#     if request.form['dy'] == 'raw':
-#         df1 = df.copy()
-#     if request.form['dy'] == 'normalize':
-#         df1.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
-#     print(df1)
-#     l = array(df1).tolist()
-#     d['data'] = [['NaN' if isnull(x) else x for x in i] for i in l]
-#     d['labels'] = list(df1)
-#     d['y'] = list(df1)[1:]
-#     return render_template('testlist.html', d=d)
-#
-# @app.route('/scale/', methods=['POST'])
-# def scale():
-#     global mll, mll1, tab
-#     for i, l in enumerate(mll1):
-#         try:
-# # without try, program will break if request.form['dy'+str(l[0])] is invalid
-#             if request.form['dy'+str(l[0])] == 'raw':
-#                 mll1[i][6] = mll[i][6].copy()
-#                 print(mll[i][6])
-#                 print(i)
-#                 print(mll1[i][6].ix[:, 1:])
-#                 li = array(mll1[i][6]).tolist()
-#                 mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
-#                 print(request.form['dy'+str(l[0])])
-#                 d['mll'] = mll1
-#                 return render_template('testlist.html', d=d)
-#
-#             if request.form['dy'+str(l[0])] == 'normalize':
-#                 df = mll1[i][6].copy()
-#                 print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
-#                 df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
-#                 mll1[i][6] = df.copy()
-#                 # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
-#
-#                 print(mll1[i][6])
-#                 # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
-#                 print(i)
-#                 print(request.form['dy' + str(l[0])])
-#                 li = array(mll1[i][6]).tolist()
-#                 mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
-#                 d['mll'] = mll1
-#                 return render_template('testlist.html', d=d)
-#
-#             if request.form['dy' + str(l[0])] == 'remove':
-#                 mll1.pop(i)
-#                 mll.pop(i)
-#                 d['mll'] = mll1
-#                 return render_template('testlist.html', d=d)
-#
-#             tab = '#tabs-2'
-#             d['tab'] = tab
-#         except Exception as e:
-#             print(e)
-#             pass
+@app.route('/scale/', methods=['POST'])
+def scale():
+    global mll, mll1, tab
+    for i, l in enumerate(mll1):
+        try:
+# without try, program will break if request.form['dy'+str(l[0])] is invalid
+            if request.form['dy'+str(l[0])] == 'raw':
+                mll1[i][6] = mll[i][6].copy()
+                print(mll[i][6])
+                print(i)
+                print(mll1[i][6].ix[:, 1:])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                print(request.form['dy'+str(l[0])])
+                d['mll'] = mll1
+                return render_template('testlist.html', d=d)
+
+            if request.form['dy'+str(l[0])] == 'normalize':
+                df = mll1[i][6].copy()
+                print(df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                df.ix[:, 1:] = df.ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+                mll1[i][6] = df.copy()
+                # mll1[l[0]][6].ix[:, 1:] = mll[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy()
+
+                print(mll1[i][6])
+                # print(mll1[l[0]][6].ix[:, 1:].apply(lambda x: (x - x.mean()) / x.std()).copy())
+                print(i)
+                print(request.form['dy' + str(l[0])])
+                li = array(mll1[i][6]).tolist()
+                mll1[i][2] = [['NaN' if isnull(x) else x for x in a] for a in li].copy()
+                d['mll'] = mll1
+                return render_template('testlist.html', d=d)
+
+            if request.form['dy' + str(l[0])] == 'remove':
+                mll1.pop(i)
+                mll.pop(i)
+                d['mll'] = mll1
+                return render_template('testlist.html', d=d)
+
+            tab = '#tabs-2'
+            d['tab'] = tab
+        except Exception as e:
+            print(e)
+            pass
 
 @app.route('/mp/', methods=['POST'])
 def mp():
@@ -487,6 +443,65 @@ def mp():
     # return render_template('c3.html', d=d)
     return render_template('testlist.html', d=d)
     # return render_template('dygraph.html', d=d)
+
+@app.route('/mpajax/', methods=['GET', 'POST'])
+def mpajax():
+    global df, df1, i, L, tab
+    L = []
+    cols1 = request.args.get('data')
+    print('cols1:', cols1)
+    cols1 = cols1.replace('=', '').replace('cols1', '')
+    cols1 = [parse.unquote(i) for i in cols1.split('&')]
+
+    # cols2 = [x.replace('(%)', '') for x in cols1]
+    cols2 = [x.replace('%', '').replace('(', '').replace(')', '').replace(' ', '').replace('/', '').replace('+', '') for x in cols1]
+    print('cols2:',cols2)
+    d['cols1'] = cols1
+    cols3 = list(zip(cols1, cols2))
+    d['cols3'] = cols3
+    for col in cols1:
+        cols = [col]
+        i += 1
+        print(i)
+        if '年月日' in cols:
+            cols.remove('年月日')
+            cols.insert(0, '年月日')
+        else:
+            cols.insert(0, '年月日')
+        for c in cols:
+            print(c)
+
+        # database = 'mysum'
+        # conn = connect('{}.sqlite3'.format(database))
+        # c = conn.cursor()
+        # table = 'forr'
+        # df = read_sql_query('select `{}` from `{}`'.format('`,`'.join(cols), table), conn)
+        # df = df[cols]
+
+        conn = connect('{}.sqlite3'.format(dic[dbtable1]))
+        df = read_sql_query("SELECT `{}` from `{}`".format('`,`'.join(cols), dbtable1), conn)
+
+        df['年月日'] = to_datetime(df['年月日'])
+        df['年月日'] = df['年月日'].apply(unix_time_millis)
+        df = df.dropna(subset=['年月日'])
+        df1 = df
+        l = array(df1).tolist()
+        data1 = [['NaN' if isnull(x) else x for x in i] for i in l]
+        labels1 = list(df1)
+        y1 = list(df1)[1:]
+        list(df1)
+        ymd1 = df1.年月日.tolist()
+        title = cols[1]
+        print(title)
+        L.append([i, cols1, data1, labels1, y1, ymd1, title])
+    # d['L'] = [[1,2,3],[4,5,6]]
+    d['L1'] = L
+    tab = '#tabs-5'
+    d['tab'] = tab
+    # l=array(df).tolist()
+    # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
+    # return render_template('c3.html', d=d)
+    return jsonify({'L1':L})
 
 @app.route('/plot/', methods=['POST'])
 def plot():
