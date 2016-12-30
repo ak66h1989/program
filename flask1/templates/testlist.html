@@ -453,7 +453,8 @@ function fa(){
 
         <div class="row">
             <div id=div14 style="background-color:blue;color:yellow" class="col-md-2">
-                <form action = "/listfield2/" method = "POST">    <!--should contain '/' in tail-->
+                <!--<form action = "/listfield2/" method = "POST">    should contain '/' in tail-->
+                <form id = "listfield2form">
                     <h4>mops</h4>
                     {% for item in d.mops %}
                     <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
@@ -474,11 +475,27 @@ function fa(){
                 </form>
             </div>
             <div id=div15 style="background-color:green;color:black" class="col-md-5">
-                <ul>
-                    {% for item in d.fields2 %}
-                    <li><button class='btn btn-default'>{{ item }}</button></li>
-                    {% endfor %}
-                </ul>
+                <!--<ul>-->
+                    <!--{% for item in d.fields2 %}-->
+                    <!--<li><button class='btn btn-default'>{{ item }}</button></li>-->
+                    <!--{% endfor %}-->
+                <!--</ul>-->
+                <script>
+                $(function() {
+                    $('#div14 form input[type="submit"]').on('click', function() {
+                        $.getJSON($SCRIPT_ROOT + '/listfield2ajax/', {
+                        data: $("#listfield2form").serialize(),
+                        }, function(data) {
+                            var roots = data.fields2.map(function(x){
+                                return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
+                            });
+                            var y = document.getElementById("div15");
+                            y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                        });
+                    return false;
+                    });
+                });
+                </script>
             </div>
 
             <form action = "/ys/" method = "POST">    <!--div should be inside form-->

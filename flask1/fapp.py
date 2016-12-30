@@ -258,6 +258,20 @@ def listfield2():
     else:
         return render_template('testlist.html', d=d)
 
+@app.route('/listfield2ajax/', methods=['GET', 'POST'])
+def listfield2ajax():
+    global tab, df, dbtable2
+    tab ='#tabs-7'
+    d['tab'] = tab
+    dbtable2 = request.args.get('data')   # list object, empty is allowed
+    dbtable2 = dbtable2.replace('=', '').replace('dbtable2', '')
+    dbtable2 = [parse.unquote(i) for i in dbtable2.split('&')][0]
+    conn = connect('{}.sqlite3'.format(dic[dbtable2]))
+    df = read_sql_query("SELECT * from `{}`".format(dbtable2), conn)
+    d['fields2'] = list(df)
+    d['tbdata2'] = array(df).tolist()
+    return jsonify({'fields2': list(df)})
+
 @app.route('/query/', methods=['POST'])
 def query():
     global mll, df, df1
@@ -1598,7 +1612,7 @@ def mlineajax():
     ymd = df1.年月日.tolist()
     list(df1)
 
-    print('rangeselector:',rangeselector)
+    print('rangeselector:', rangeselector)
     mll.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
     mll1.append(['dy'+str(j), cols, data, labels, y, ymd, df1, width, height, rangeselector])
     d['mll'] = mll1
