@@ -260,7 +260,7 @@ def listfield2():
 
 @app.route('/listfield2ajax/', methods=['GET', 'POST'])
 def listfield2ajax():
-    global tab, df, dbtable2
+    global tab, df, dbtable2, fields2
     tab ='#tabs-7'
     d['tab'] = tab
     dbtable2 = request.args.get('data')   # list object, empty is allowed
@@ -268,6 +268,7 @@ def listfield2ajax():
     dbtable2 = [parse.unquote(i) for i in dbtable2.split('&')][0]
     conn = connect('{}.sqlite3'.format(dic[dbtable2]))
     df = read_sql_query("SELECT * from `{}`".format(dbtable2), conn)
+    fields2 = list(df)
     d['fields2'] = list(df)
     d['tbdata2'] = array(df).tolist()
     return jsonify({'fields2': list(df)})
