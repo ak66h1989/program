@@ -748,7 +748,6 @@ def ysajax():
     d['mllys'] = mllys
     return jsonify({'mllys':mllys})
 
-
 @app.route('/remove/', methods=['POST'])
 def remove():
     global mllys, mllys1, tab, d
@@ -768,6 +767,27 @@ def remove():
         except Exception as e:
             print(e)
             pass
+
+@app.route('/removeajax/', methods=['GET','POST'])
+def removeajax():
+    global mllys, mllys1, tab, d
+    print('removeajax')
+    name = request.args.get('name')
+    name = name.replace('=', '').replace('name', '')
+    name = [parse.unquote(i) for i in name.split('&')][0]
+    for i, l in enumerate(mllys1):
+        print(i, 'c3' + str(l[0]), name, 'c3' + str(l[0]) == name)
+
+    for i, l in enumerate(mllys1):
+        if 'c3' + str(l[0]) == name:
+            mllys1.pop(i)
+            print(mllys1)
+            mllys.pop(i)
+            comp.pop(i)
+            d['mllys'] = mllys1
+            tab = '#tabs-7'
+            d['tab'] = tab
+            return jsonify({'s':'removeajax'})
 
 @app.route('/changeall/', methods=['POST'])
 def changeall():

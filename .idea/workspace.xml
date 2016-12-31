@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/fapp.py" afterPath="$PROJECT_DIR$/flask1/fapp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testlist.html" afterPath="$PROJECT_DIR$/flask1/templates/testlist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/ysajax.html" afterPath="$PROJECT_DIR$/flask1/templates/ysajax.html" />
     </list>
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,8 +117,8 @@
       <file leaf-file-name="fapp.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1425">
-              <caret line="820" column="25" lean-forward="false" selection-start-line="820" selection-start-column="25" selection-end-line="820" selection-end-column="25" />
+            <state relative-caret-position="361">
+              <caret line="776" column="57" lean-forward="false" selection-start-line="776" selection-start-column="57" selection-end-line="776" selection-end-column="57" />
               <folding>
                 <element signature="e#88#146#0" expanded="true" />
               </folding>
@@ -1024,8 +1023,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="820" column="25" lean-forward="false" selection-start-line="820" selection-start-column="25" selection-end-line="820" selection-end-column="25" />
+        <state relative-caret-position="361">
+          <caret line="776" column="57" lean-forward="false" selection-start-line="776" selection-start-column="57" selection-end-line="776" selection-end-column="57" />
           <folding>
             <element signature="e#88#146#0" expanded="true" />
           </folding>
