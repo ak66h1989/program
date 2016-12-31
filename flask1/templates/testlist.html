@@ -498,7 +498,9 @@ function fa(){
                 </script>
             </div>
 
-            <form action = "/ys/" method = "POST">    <!--div should be inside form-->
+            <!--<form action = "/ys/" method = "POST">-->
+            <!--div should be inside form-->
+            <form id = "ysform">
                 <div id=div16  style="background-color:red;color:black" class="col-md-5">
                     <ul></ul>
                 </div>
@@ -513,14 +515,17 @@ function fa(){
                 {% endif %}
                 <input type="submit" value="query"/>
             </form>
-            <form action = "/changeall/" method = "POST">
-                公司代號:<input type="text" name=compid1/>
+            <!--<form action = "/changeall/" method = "POST">-->
+            <form id = "changeallform">
+                公司代號:<input type="text" name='compid1'/>
                 <input type="submit" value="change all"/>
             </form>
+            {% include "changeallajax.html" %}
         </div>
+        <div id="div17" class="row">
 
-        {% include "ys.html" %}
-
+        </div>
+        {% include "ysajax.html" %} <!--don't put this in div-->
     </div>
     <div id="tabs-8" class="tab-pane">
 

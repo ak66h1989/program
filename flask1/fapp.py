@@ -651,7 +651,7 @@ def ys():
     global mllys, d, k, comp
     k += 1
     cols = request.form.getlist('cols2')
-    compid=request.form['compid']
+    compid = request.form['compid']
     comp.append([k, cols, dbtable2, fields2])
     conn = connect('{}.sqlite3'.format(dic[dbtable2]))
     if '季' not in fields2:
@@ -693,6 +693,61 @@ def ys():
     d['mllys'] = mllys
 
     return render_template('testlist.html', d=d)
+
+@app.route('/ysajax/', methods=['GET','POST'])
+def ysajax():
+    global mllys, d, k, comp
+    k += 1
+    cols = request.args.get('data')
+    print('cols:', cols)
+    cols = cols.replace('=', '').replace('cols2', '').replace('compid', '')
+    cols = [parse.unquote(i) for i in cols.split('&')]
+    compid = cols[-1]
+    cols = cols[:-1]
+    print('compid:', compid)
+    # cols = request.form.getlist('cols2')
+    # compid = request.form['compid']
+    comp.append([k, cols, dbtable2, fields2])
+    conn = connect('{}.sqlite3'.format(dic[dbtable2]))
+    if '季' not in fields2:
+        for i in ['公司代號', '公司名稱', '公司簡稱', '年', '季']:
+            if i in cols:
+                cols.remove(i)
+        cols.insert(0, '年')
+        df = read_sql_query('select `{}` from `{}` where `公司代號`="{}"'.format('`,`'.join(cols), dbtable2, compid), conn)
+        df['年月日'] = df['年'].astype(str) + '-12-31'
+        df = df.drop(['年'], axis=1)
+    else:
+        for i in ['公司代號', '公司名稱', '年', '季']:
+            if i in cols:
+                cols.remove(i)
+        cols.insert(0, '年')
+        cols.insert(1, '季')
+        for c in cols:
+            print(c)
+        df = read_sql_query('select `{}` from `{}` where `公司代號`="{}"'.format('`,`'.join(cols), dbtable2, compid), conn)
+        df['季'] = df['季'].astype(int)
+        df['月'] = df.季.apply(sm)
+        list(df)
+        df['日'] = 1
+        df['年月日'] = df['年'].astype(str) + '/' + (df['月']).astype(str) + '/' + df['日'].astype(str)
+        df['年月日'] = to_datetime(df['年月日'], format='%Y/%m/%d')
+        df['年月日'] = df['年月日'].apply(lambda x: datetime.datetime(x.year, x.month, monthrange(x.year, x.month)[1]))
+        df = df.drop(['年', '季', '月', '日'], axis=1)
+        df['年月日'] = df['年月日'].astype(str)  # must be string
+
+    df = df[[list(df)[-1]]+list(df)[:-1]]
+    df = df.replace('--', 'NaN', regex=True)
+    df.ix[:, 1:] = df.ix[:, 1:].astype(float)
+    print(df)
+    l = array(df).tolist()
+    data = [list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
+    print(data)
+    mllys.append([k, data, compid])
+    mllys1.append([k, data, compid])
+    d['mllys'] = mllys
+    return jsonify({'mllys':mllys})
+
 
 @app.route('/remove/', methods=['POST'])
 def remove():
@@ -760,6 +815,56 @@ def changeall():
         d['mllys'] = mllys
     return render_template('testlist.html', d=d)
 
+@app.route('/changeallajax/', methods=['GET','POST'])
+def changeallajax():
+    global mllys, mllys1, d, k, comp
+    mllys, mllys1 =[], []
+    compid = request.args.get('data')
+    compid = compid.replace('=', '').replace('compid1', '')
+    compid = [parse.unquote(i) for i in compid.split('&')][0]
+    print('compid:', compid)
+    # compid=request.form['compid1']
+    for l in comp:
+        k, cols, dbtable2, fields2 = l[0], l[1], l[2], l[3]
+        conn = connect('{}.sqlite3'.format(dic[dbtable2]))
+        if '季' not in fields2:
+            for i in ['公司代號', '公司名稱', '公司簡稱', '年', '季']:
+                if i in cols:
+                    cols.remove(i)
+            cols.insert(0, '年')
+            df = read_sql_query('select `{}` from `{}` where `公司代號`="{}"'.format('`,`'.join(cols), dbtable2, compid), conn)
+            df['年月日'] = df['年'].astype(str) + '-12-31'
+            df = df.drop(['年'], axis=1)
+        else:
+            for i in ['公司代號', '公司名稱', '年', '季']:
+                if i in cols:
+                    cols.remove(i)
+            cols.insert(0, '年')
+            cols.insert(1, '季')
+            for c in cols:
+                print(c)
+            df = read_sql_query('select `{}` from `{}` where `公司代號`="{}"'.format('`,`'.join(cols), dbtable2, compid), conn)
+            df['月'] = df.季.apply(sm)
+            list(df)
+            df['日'] = 1
+            df['年月日'] = df['年'].astype(str) + '/' + (df['月']).astype(str) + '/' + df['日'].astype(str)
+            df['年月日'] = to_datetime(df['年月日'], format='%Y/%m/%d')
+            df['年月日'] = df['年月日'].apply(lambda x: datetime.datetime(x.year, x.month, monthrange(x.year, x.month)[1]))
+            df = df.drop(['年', '季', '月', '日'], axis=1)
+            df['年月日'] = df['年月日'].astype(str)  # must be string
+
+        df = df[[list(df)[-1]]+list(df)[:-1]]
+        df = df.replace('--', 'NaN', regex=True)
+        df.ix[:,1:] = df.ix[:,1:].astype(float)
+        print('df:', df)
+        l = array(df).tolist()
+        data = [list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
+        print('data:', data)
+        mllys.append([k, data, compid])
+        mllys1.append([k, data, compid])
+        d['mllys'] = mllys
+        print('mllys', mllys)
+    return jsonify({'mllys':mllys})
 @app.route('/c3/')
 def c3():
     database = 'bic'
