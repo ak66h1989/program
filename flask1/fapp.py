@@ -273,6 +273,21 @@ def listfield2ajax():
     d['tbdata2'] = array(df).tolist()
     return jsonify({'fields2': list(df)})
 
+@app.route('/listfield3ajax/', methods=['GET', 'POST'])
+def listfield3ajax():
+    global tab, df, dbtable3, fields3
+    tab ='#tabs-7'
+    d['tab'] = tab
+    dbtable3 = request.args.get('data')   # list object, empty is allowed
+    dbtable3 = dbtable3.replace('=', '').replace('dbtable3', '')
+    dbtable3 = [parse.unquote(i) for i in dbtable3.split('&')][0]
+    conn = connect('{}.sqlite3'.format(dic[dbtable3]))
+    df = read_sql_query("SELECT * from `{}`".format(dbtable3), conn)
+    fields3 = list(df)
+    d['fields3'] = list(df)
+    d['tbdata3'] = array(df).tolist()
+    return jsonify({'fields3': list(df)})
+
 @app.route('/query/', methods=['POST'])
 def query():
     global mll, df, df1
@@ -616,28 +631,53 @@ def plot1():
     # d['q'] =[list(df)]+[['NaN' if isnull(x) else x for x in i] for i in l]
     # return render_template('c3.html', d=d)
     return render_template('testlist.html', d=d)
-    # return render_template('dygraph.html', d=d)
 
-# @app.route('/dy/')
-# def dy():
-#     database = 'bic'
-#     conn = connect('{}.sqlite3'.format(database))
-#     c = conn.cursor()
-#     table = '景氣指標及燈號-綜合指數'
-#     df = read_sql_query('select * from `{}`'.format(table), conn)
-#     df['年月']=df['年月'].str[0:]+'-28'
-#     df['年月'] = df['年月'].replace('-', '/', regex=True)
-#     # df['年月'] = to_datetime(df['年月'], format='%Y-%m-%d')
-#     df['年月'] = to_datetime(df['年月'])
-#     df['年月'] = df['年月'].apply(unix_time_millis)
-#     df.ix[:, 1:]=(df.ix[:, 1:]-df.ix[:, 1:].mean())/df.ix[:, 1:].mean()
-#     print(df)
-#     l=array(df).tolist()
-#     d['data'] = [['NaN' if isnull(x) else x for x in i] for i in l]
-#     d['labels'] = list(df)
-#     # d['min'] = min(df.ix[:, 3:])
-#     # d['max'] = max(df.ix[:, 3:])
-#     return render_template('dygraph.html', d=d)
+@app.route('/plot1ajax/', methods=['GET','POST'])
+def plot1ajax():
+    global i, L, tab
+    print(i)
+    cols = request.args.get('data')
+    cols = cols.replace('=', '').replace('plot1', '')
+    cols = [parse.unquote(i) for i in cols.split('&')]
+    print('plot1:', cols)
+
+    # cols = [request.form['plot1']]   # list object, empty is allowed
+    cols1 = cols
+    if '年月日' in cols:
+        cols.remove('年月日')
+        cols.insert(0, '年月日')
+    else:
+        cols.insert(0, '年月日')
+
+    for c in cols:
+        print(c)
+
+    database = 'mysum'
+    conn = connect('{}.sqlite3'.format(database))
+    c = conn.cursor()
+    table = 'forr'
+    df = read_sql_query('select `{}` from `{}`'.format('`,`'.join(cols), table), conn)
+    df = df[cols]
+    df['年月日'] = to_datetime(df['年月日'])
+    df['年月日'] = df['年月日'].apply(unix_time_millis)
+    df = df.dropna(subset=['年月日'])
+    df1 = df
+    l = array(df1).tolist()
+    data1 = [['NaN' if isnull(x) else x for x in i] for i in l]
+    labels1 = list(df1)
+    y1 = list(df1)[1:]
+    list(df1)
+    ymd1 = df1.年月日.tolist()
+    title = cols[1]
+    print(title)
+    L.append([i, cols1, data1, labels1, y1, ymd1, title])
+    # d['L'] = [[1,2,3],[4,5,6]]
+    d['L'] = L
+    tab = '#tabs-3'
+    d['tab'] = tab
+    i += 1
+    print(L)
+    return jsonify({'L':L})
 
 import datetime
 from calendar import monthrange

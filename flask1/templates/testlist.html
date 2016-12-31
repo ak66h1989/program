@@ -313,29 +313,58 @@ function fa(){
     <div id="tabs-3" class="tab-pane">
           <div class="row">
               <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
-                <script type="text/babel">
-                ReactDOM.render(
-                   element,
-                   document.getElementById('div6')
-                );
-                </script>
+                <form id = "listfield3form">
+                    <h4>mops</h4>
+                    {% for item in d.mops %}
+                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                    {% endfor %}
+                    <h4>mysum</h4>
+                    {% for item in d.mysum %}
+                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                    {% endfor %}
+                    <h4>summary</h4>
+                    {% for item in d.summary %}
+                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                    {% endfor %}
+                    <h4>tse</h4>
+                    {% for item in d.tse %}
+                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                    {% endfor %}
+                    <input type="submit" value="Show fields" class='btn btn-default'/>
+                </form>
               </div>
+          <script>
+            $(function() {
+                $('#div6 form input[type="submit"]').on('click', function() {
+                    $.getJSON($SCRIPT_ROOT + '/listfield3ajax/', {
+                    data: $("#listfield3form").serialize(),
+                    }, function(data) {
+                        var roots = data.fields3.map(function(x){
+                            return `<li><button class='btn btn-info' name='plot1' value={0}>{0}</button></li>`.format(x);
+                        });
+                        var y = document.getElementById("div7");
+                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                    });
+                return false;
+                });
+            });
+            </script>
+
               <div id=div7 style="background-color:green;color:black" class="col-md-5">
-                  <form action = "/plot1/" method = "POST">
-                      <ul>
-                          {% for item in d.fields %}
-                          <li><input class='btn btn-default' type = "submit" name="plot1" value="{{ item }}"/></li>
-                          {% endfor %}
-                      </ul>
-                  </form>
+                  <!--<form action = "/plot1/" method = "POST">-->
+                      <!--<ul>-->
+                          <!--{% for item in d.fields %}-->
+                          <!--<li><input class='btn btn-default' type = "submit" name="plot1" value="{{ item }}"/></li>-->
+                          <!--{% endfor %}-->
+                      <!--</ul>-->
+                  <!--</form>-->
               </div>
               <div id=div8  style="background-color:red;color:black" class="col-md-5">
                   <ul></ul>
               </div>
           </div>
         <div id=div9>
-
-        {% include "plot1.html" %}
+        {% include "plot1ajax.html" %}
         {{d.labels1|safe}}
         </div>
     </div>
