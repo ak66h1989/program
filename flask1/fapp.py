@@ -952,6 +952,7 @@ def c3():
 def rep():
     global report, tb, d, compid
     report=[]
+    report1 = []
     tb=[]
     database = 'summary'
     conn = connect('{}.sqlite3'.format(database))
@@ -1021,11 +1022,104 @@ def rep():
             li.append(zip(l[i], lw[i], lc[i]))
         report.append(li)
         tb.append(table)
-
+    report1.append([list(i) for i in report[0]])
     d['report'] = report
     d['tb'] = tb
     d['tab'] = '#tabs-8'
     return render_template('testlist.html', d=d)
+
+@app.route('/repajax/', methods=['GET', 'POST'])
+def repajax():
+    global report, tb, d, compid
+    report=[]
+    tb=[]
+    database = 'summary'
+    conn = connect('{}.sqlite3'.format(database))
+    c = conn.cursor()
+
+    compid = request.args.get('data')   # list object, empty is allowed
+    compid = compid.replace('=', '').replace('compid_report', '')
+    compid = [parse.unquote(i) for i in compid.split('&')][0]
+    print(compid)
+
+    # compid='5522'
+    # compid = request.form['compid_report']
+    d['compid_report'] = compid
+    # table = '綜合損益表-一般業'
+    # table = '資產負債表-一般業'
+    for table in ['綜合損益表-一般業', '資產負債表-一般業']:
+        df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid), conn)
+        d['compname']=df.ix[len(df)-1, '公司名稱']
+        color={1:'rgb(0,255,0)', 2:'rgb(0, 190, 255)', 3:'orange', 4:'rgb(255, 75, 140)'}
+        df2=df.copy()
+        df3=df.copy()
+        df3.ix[:, 4:] = df3.ix[:, 4:].replace('--', 0)
+        df3.ix[:, 4:] = df3.ix[:, 4:].astype(float)
+        for i in color:
+            df2.ix[df.季==i, 2:]=color[i]
+        smd={1:'3/31', 2:'6/30', 3:'9/30', 4:'12/31'}
+        # df['年季'] = df['年'].astype(str) + '年第' + df['季'].astype(str) + '季'
+        df['年季'] = df['年'].astype(str)+'/' + df['季'].apply(lambda x: smd[x])
+        for i in range(len(df3)):
+            for j in range(df3.shape[1]):
+                try:
+                    if df3.iloc[i, j]<0:
+                        df2.iloc[i, j]='red'
+                except:
+                    pass
+        df2['年季'] = df2['年'].astype(str) + df2['季'].apply(lambda x:smd[x])
+        df = df.drop(['年', '季', '公司代號', '公司名稱'], axis=1)
+        df = df[[list(df)[-1]] + list(df)[:-1]]
+        df2 = df2.drop(['年', '季', '公司代號', '公司名稱'], axis=1)
+        df2 = df2[[list(df2)[-1]] + list(df2)[:-1]]
+        l = vstack((array([list(df)]), array(df))).transpose().tolist()
+        m = df.max().max()
+        list(df)
+
+        df1 = df.copy()
+        df1=df1.fillna('0')
+        df1.ix[:, 1:] = df1.ix[:, 1:].replace('--', 0)
+        df1.ix[:, 1:] = df1.ix[:, 1:].astype(float)
+        df1.ix[:, 1:] = df1.ix[:, 1:].apply(lambda x: x / m * 100)
+
+        for c in ['基本每股盈餘（元）', '預收股款（權益項下）之約當發行股數（單位：股）', '母公司暨子公司所持有之母公司庫藏股股數（單位：股）', '每股參考淨值', '待註銷股本股數（單位：股）']:
+            try:
+                pem = df[c].max()
+                df1[c] = df[c].apply(lambda x: x / pem * 100)
+            except:
+                pass
+        for i in range(len(df1)):
+            for j in range(df1.shape[1]):
+                try:
+                    if df1.iloc[i, j]<0:
+                        df1.iloc[i, j]=df1.iloc[i, j]*(-1)
+                except:
+                    pass
+        lw = vstack((array([list(df1)]), array(df1))).transpose().tolist()
+        lc = vstack((array([list(df2)]), array(df2))).transpose().tolist()
+        shape(lc)
+        for i in lw:
+            i[0]=0.0
+        for i in lc:
+            i[0]='white'
+        li = []
+        for i in range(len(l)):
+            a=['--' if isnull(a) else a for a in l[i]]    # nan/None is not allowed in javascript
+            b = ['--' if isnull(b) else b for b in lw[i]]
+            c = ['--' if isnull(c) else c for c in lc[i]]
+            li.append([list(z) for z in list(zip(a, b, c))])
+        report.append(li)
+        tb.append(table)
+    # [list(i) for i in list(zip([1, 2, 3], [1, 2, 3]))]
+
+    # for j in report[0][1:]:
+    #     for i in j:
+    #         print(i[0],i[1],i[2])
+    d['report'] = report
+    d['tb'] = tb
+    d['tab'] = '#tabs-8'
+    print('compname:',d['compname'],'compid_report:',d['compid_report'],'report:',report, 'tb:',tb)
+    return jsonify({'compname':d['compname'],'compid_report':d['compid_report'],'report':report, 'tb':tb})
 
 @app.route('/rep1/', methods=['POST'])
 def rep1():

@@ -126,7 +126,7 @@
         $('#rep1incform input[type="submit"], #rep1balform input[type="submit"]').on('click', function() {
             console.log(0);
             $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
-            data: $(this).parent().serialize(),
+            data: $(this).parent().serialize()
             }, function(data) {
                 console.log(1);
                 // inc
