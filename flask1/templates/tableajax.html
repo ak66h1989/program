@@ -195,13 +195,14 @@
                 });
                 var table2 =$('#report2').DataTable({
                     colReorder: true,
-                    scrollY:        820,
+                    scrollY:        1000,
                     scrollX:        true,
                     scrollCollapse: true,
                     paging:         false,
                     searching: false,
                     info:     false,
                     ordering: false,
+                    fixedHeader: true
                 });
                 var table3 =$('#report3').DataTable({
                     colReorder: true,
@@ -212,6 +213,7 @@
                     searching: false,
                     info:     false,
                     ordering: false,
+                    fixedHeader: true
                 });
                 $('#enable').click( function (e) {
                     alert(1);

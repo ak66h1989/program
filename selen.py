@@ -58,3 +58,7 @@ driver.get("http://127.0.0.1:5000/testajax")
 from urllib import parse
 parse.unquote('`%E9%96%8B%E7%9B%A4%E5%83%B9`')
 parse.quote_plus('開盤價')
+
+3.305785/0.0929
+
+100/35.58433799784715

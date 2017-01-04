@@ -34,6 +34,7 @@ $(function() {
         });
     //i+=1; should not put here beacuse it is executed before callback function(data){};
     console.log(i);
+    $('#tabs a[href="#tabs-plot1Out"]').click(); //need this or the plot won't show
     return false;
     });
 });

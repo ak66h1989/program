@@ -5,17 +5,17 @@ $(function() {
         data: $("#changeallform").serialize(),
         }, function(data) {
             var roots = data.mllys.map(function(l){
-                return `<div id = chart{0} class=inline></div>
-                          <form action = '/remove/' method = 'POST'>
-                              <input type='submit' name=c3{0} value='X' class='remove inline'>
+                return `<div id = c3{0} class=inline></div>
+                          <form>
+                              <input type='button' name=c3{0} value='X' class='remove inline'>
                           </form>`.format(l[0]);
             });
             var y = document.getElementById("div17");
             y.innerHTML = roots.join('');
-
+            $("#div17 form").on('click', 'input', removeajax);
             data.mllys.map(function(l){
               var chart = c3.generate({
-                  bindto: '#chart{0}'.format(l[0]),
+                  bindto: '#c3{0}'.format(l[0]),
                   data: {
                       x: '年月日',
                       rows:
@@ -48,6 +48,7 @@ $(function() {
 
 
         });
+    $('#tabs a[href="#tabs-ysOut"]').click();
     return false;
     });
 });

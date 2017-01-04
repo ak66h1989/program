@@ -197,22 +197,22 @@ function fa(){
 <body>
 <div id="tabs">
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#tabs-1">data</a></li>
-        <li><a data-toggle="tab" href="#tabs-2">mline</a></li>
-        <li><a data-toggle="tab" href="#tabs-3">plot1</a></li>
-        <li><a data-toggle="tab" href="#tabs-4">bokeh</a></li>
-        <li><a data-toggle="tab" href="#tabs-5">split</a></li>
-        <li><a data-toggle="tab" href="#tabs-6">mlinetable</a></li>
-        <li><a data-toggle="tab" href="#tabs-7">ys</a></li>
+        <li class="active"><a data-toggle="tab" href="#tabs-mline">mline</a></li>
+        <li><a data-toggle="tab" href="#tabs-mlineOut">1.</a></li>
+        <li><a data-toggle="tab" href="#tabs-plot1">plot1</a></li>
+        <li><a data-toggle="tab" href="#tabs-plot1Out">2.</a></li>
+        <li><a data-toggle="tab" href="#tabs-split">split</a></li>
+        <li><a data-toggle="tab" href="#tabs-splitOut">3.</a></li>
+        <li><a data-toggle="tab" href="#tabs-ys">ys</a></li>
+        <li><a data-toggle="tab" href="#tabs-ysOut">4.</a></li>
         <li><a data-toggle="tab" href="#tabs-8">report</a></li>
         <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
         <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
         <li><a data-toggle="tab" href="#tabs-11">react</a></li>
         <li><a data-toggle="tab" href="#tabs-12">table</a></li>
-        <li><a data-toggle="tab" href="#tabs-13">highchart</a></li>
     </ul>
   <!-- <div class="tab-content"> -->
-    <div id="tabs-1" class="tab-pane active">
+    <div id="tabs-mline" class="tab-pane active">
         <div class="row">
             <div id='div0' style="background-color:pink;color:white;padding:10px;" class="col-md-4">
                 <button>1</button>
@@ -306,76 +306,70 @@ function fa(){
         </div>
 
     </div>
-    <div id="tabs-2" class="tab-pane">
+    <div id="tabs-mlineOut" class="tab-pane">
     {% include "mlineajax.html" %}
-
     </div>
-    <div id="tabs-3" class="tab-pane">
-          <div class="row">
-              <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
-                <form id = "listfield3form">
-                    <h4>mops</h4>
-                    {% for item in d.mops %}
-                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <h4>mysum</h4>
-                    {% for item in d.mysum %}
-                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <h4>summary</h4>
-                    {% for item in d.summary %}
-                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <h4>tse</h4>
-                    {% for item in d.tse %}
-                    <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'/>
-                </form>
-              </div>
-          <script>
-            $(function() {
-                $('#div6 form input[type="submit"]').on('click', function() {
-                    $.getJSON($SCRIPT_ROOT + '/listfield3ajax/', {
-                    data: $("#listfield3form").serialize(),
-                    }, function(data) {
-                        var roots = data.fields3.map(function(x){
-                            return `<li><button class='btn btn-info' name='plot1' value={0}>{0}</button></li>`.format(x);
-                        });
-                        var y = document.getElementById("div7");
-                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
-                    });
-                return false;
-                });
-            });
-            </script>
-
-              <div id=div7 style="background-color:green;color:black" class="col-md-5">
-                  <!--<form action = "/plot1/" method = "POST">-->
-                      <!--<ul>-->
-                          <!--{% for item in d.fields %}-->
-                          <!--<li><input class='btn btn-default' type = "submit" name="plot1" value="{{ item }}"/></li>-->
-                          <!--{% endfor %}-->
-                      <!--</ul>-->
-                  <!--</form>-->
-              </div>
-              <div id=div8  style="background-color:red;color:black" class="col-md-5">
-                  <ul></ul>
-              </div>
-          </div>
-        <div id=div9>
-        {% include "plot1ajax.html" %}
-        {{d.labels1|safe}}
+    <div id="tabs-plot1" class="tab-pane">
+        <div class="row">
+            <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
+              <form id = "listfield3form">
+                  <h4>mops</h4>
+                  {% for item in d.mops %}
+                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                  {% endfor %}
+                  <h4>mysum</h4>
+                  {% for item in d.mysum %}
+                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                  {% endfor %}
+                  <h4>summary</h4>
+                  {% for item in d.summary %}
+                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                  {% endfor %}
+                  <h4>tse</h4>
+                  {% for item in d.tse %}
+                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
+                  {% endfor %}
+                  <input type="submit" value="Show fields" class='btn btn-default'/>
+              </form>
+            </div>
+            <script>
+              $(function() {
+                  $('#div6 form input[type="submit"]').on('click', function() {
+                      $.getJSON($SCRIPT_ROOT + '/listfield3ajax/', {
+                      data: $("#listfield3form").serialize(),
+                      }, function(data) {
+                          var roots = data.fields3.map(function(x){
+                              return `<li><button class='btn btn-info' name='plot1' value={0}>{0}</button></li>`.format(x);
+                          });
+                          var y = document.getElementById("div7");
+                          y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                      });
+                  return false;
+                  });
+              });
+              </script>
+            <div id=div7 style="background-color:green;color:black" class="col-md-5">
+                <!--<form action = "/plot1/" method = "POST">-->
+                    <!--<ul>-->
+                        <!--{% for item in d.fields %}-->
+                        <!--<li><input class='btn btn-default' type = "submit" name="plot1" value="{{ item }}"/></li>-->
+                        <!--{% endfor %}-->
+                    <!--</ul>-->
+                <!--</form>-->
+            </div>
+            <div id=div8  style="background-color:red;color:black" class="col-md-5">
+                <ul></ul>
+            </div>
         </div>
-    </div>
-    <div id="tabs-4" class="tab-pane">
-
-        {% include "bokeh.html" %}
-        <!--{{d.div|safe}}-->
-        {{d.script|safe}}
 
     </div>
-    <div id="tabs-5" class="tab-pane">
+    <div id="tabs-plot1Out" class="tab-pane">
+      <div id=div9>
+        {% include "plot1ajax.html" %}
+      </div>
+
+    </div>
+    <div id="tabs-split" class="tab-pane">
         <div class="row">
             <div id=div10 style="background-color:blue;color:yellow" class="col-md-2">
                 <!--<form action = "/listfield1/" method = "POST">-->
@@ -406,7 +400,6 @@ function fa(){
                     <!--<li><button class='btn btn-default'>{{ item }}</button></li>-->
                     <!--{% endfor %}-->
                 <!--</ul>-->
-
             <script>
             $(function() {
                 $('#div10 form input[type="submit"]').on('click', function() {
@@ -424,12 +417,9 @@ function fa(){
             });
             </script>
             </div>
-
             <!-- <form action = "/mp/" method = "POST">    div should be inside form -->
             <form id = "mpform">
             <div id=div12  style="background-color:red;color:black" class="col-md-5">
-
-
                     <ul>
                         {% for item in d.cols1 %}
                         <li><button class='btn btn-default'>{{ item }}</button></li>
@@ -438,47 +428,19 @@ function fa(){
                         <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true/>
                         {% endfor %}
                     </ul>
-
                 <input type="submit" value="query"/>
-
             </div>
             </form>
         </div>
-        <div id=div13>
-        {% include "mpajax.html" %}
-        </div>
-    </div>
-    <div id="tabs-6" class="tab-pane">
-
-        <!-- <script type="text/babel">
-        const element2 = (
-          <table id="table_id" className="display">
-              <thead>
-                  <tr>
-                      {% for item in d.labels %}
-                      <th>{{item}}</th>
-                      {% endfor %}
-                  </tr>
-              </thead>
-              <tbody>
-                  {% for item in d.data %}
-                  <tr>
-                      {% for i in item %}
-                      <td>{{i}}</td>
-                      {% endfor %}
-                  </tr>
-                  {% endfor %}
-              </tbody>
-          </table>
-        );
-        ReactDOM.render(
-           element2,
-           document.getElementById('tabs-6')
-        );
-        </script> -->
 
     </div>
-    <div id="tabs-7" class="tab-pane">
+    <div id="tabs-splitOut" class="tab-pane">
+      <div id=div13>
+      {% include "mpajax.html" %}
+      </div>
+    </div>
+
+    <div id="tabs-ys" class="tab-pane">
 
         <div class="row">
             <div id=div14 style="background-color:blue;color:yellow" class="col-md-2">
@@ -551,6 +513,9 @@ function fa(){
             </form>
             {% include "changeallajax.html" %}
         </div>
+
+    </div>
+    <div id="tabs-ysOut" class="tab-pane">
         <div id="div17" class="row">
 
         </div>
@@ -593,9 +558,7 @@ function fa(){
 
 
     </div>
-    <div id="tabs-13" class="tab-pane">
-        <!--{% include "highchart.html" %}-->
-    </div>
+
   </div>
 
 

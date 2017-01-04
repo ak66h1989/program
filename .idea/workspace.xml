@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e03c-0608-4720-be1e-cdcd468d9111" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/report.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/templates/reportajax.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask1/fappajax.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/fapp.py" afterPath="$PROJECT_DIR$/flask1/fapp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/changeallajax.html" afterPath="$PROJECT_DIR$/flask1/templates/changeallajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/datatable.html" afterPath="$PROJECT_DIR$/flask1/templates/datatable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/mlineajax.html" afterPath="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/mpajax.html" afterPath="$PROJECT_DIR$/flask1/templates/mpajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/plot1ajax.html" afterPath="$PROJECT_DIR$/flask1/templates/plot1ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/table.html" afterPath="$PROJECT_DIR$/flask1/templates/table.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/tableajax.html" afterPath="$PROJECT_DIR$/flask1/templates/tableajax.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/testlist.html" afterPath="$PROJECT_DIR$/flask1/templates/testlist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flask1/templates/ysajax.html" afterPath="$PROJECT_DIR$/flask1/templates/ysajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/selen.py" afterPath="$PROJECT_DIR$/selen.py" />
     </list>
     <ignored path="webscrap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,32 +52,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mlineajax.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/templates/mlineajax.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="55" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="selen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testhigh.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask1/templates/testhigh.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="133">
+              <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fapp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fapp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="1112" column="56" lean-forward="true" selection-start-line="1112" selection-start-column="56" selection-end-line="1112" selection-end-column="56" />
+            <state relative-caret-position="190">
+              <caret line="15" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1888" selection-end-column="0" />
               <folding>
                 <element signature="e#88#146#0" expanded="true" />
               </folding>
@@ -110,30 +98,34 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="fappajax.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/flask1/fappajax.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-551">
+              <caret line="237" column="22" lean-forward="false" selection-start-line="237" selection-start-column="22" selection-end-line="237" selection-end-column="22" />
+              <folding>
+                <element signature="e#88#146#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cash.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/公開資訊觀測站/cash.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3667">
+              <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="testlist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10450">
-              <caret line="550" column="19" lean-forward="false" selection-start-line="550" selection-start-column="19" selection-end-line="550" selection-end-column="19" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1483237584679" expanded="true" signature="23627:24278" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="23754:23932" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="23967:24266" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="24318:24331" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="24371:24428" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="24469:24790" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="24794:24893" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="24896:26079" ph="..." />
-                <marker date="1483237584679" expanded="true" signature="26099:26231" ph="..." />
-              </folding>
+            <state relative-caret-position="9709">
+              <caret line="511" column="19" lean-forward="false" selection-start-line="511" selection-start-column="19" selection-end-line="511" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,8 +145,8 @@
       <file leaf-file-name="reportajax.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flask1/templates/reportajax.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="1368">
+              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,8 +157,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -208,7 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/盤後資訊/當日融券賣出與借券賣出成交量值.py" />
         <option value="$PROJECT_DIR$/盤後資訊/個股日成交資訊.py" />
         <option value="$PROJECT_DIR$/三大法人/三大法人買賣超日報.py" />
         <option value="$PROJECT_DIR$/tse/incom.py" />
@@ -249,7 +240,6 @@
         <option value="$PROJECT_DIR$/flask1/templates/ajax.html" />
         <option value="$PROJECT_DIR$/flask1/templates/mline.html" />
         <option value="$PROJECT_DIR$/flask1/templates/testhigh.html" />
-        <option value="$PROJECT_DIR$/selen.py" />
         <option value="$PROJECT_DIR$/flask1/templates/dygraphsajax.html" />
         <option value="$PROJECT_DIR$/flask1/templates/highchart.html" />
         <option value="$PROJECT_DIR$/flask1/templates/mlineajax.html" />
@@ -259,6 +249,8 @@
         <option value="$PROJECT_DIR$/flask1/templates/testlist.html" />
         <option value="$PROJECT_DIR$/flask1/templates/reportajax.html" />
         <option value="$PROJECT_DIR$/flask1/fapp.py" />
+        <option value="$PROJECT_DIR$/flask1/fappajax.py" />
+        <option value="$PROJECT_DIR$/selen.py" />
       </list>
     </option>
   </component>
@@ -288,8 +280,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -376,6 +366,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -688,23 +680,23 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16897655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19189766" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275488" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3608742" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25692964" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -743,14 +735,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djangotest1/mypro/myapp/template/myapp/testlist.html" />
     <entry file="file://$PROJECT_DIR$/djangotest1/mypro/templates/jinja2/myapp/testlist0.html" />
     <entry file="file://$PROJECT_DIR$/djangotest1/mypro/templates/jinja2/myapp/testlist.html" />
     <entry file="file://$PROJECT_DIR$/djangotest1/mypro/mypro/jinja2.py" />
@@ -951,7 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,21 +959,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="57" column="37" lean-forward="false" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/mlineajax.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="55" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,27 +1004,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/testlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10450">
-          <caret line="550" column="19" lean-forward="false" selection-start-line="550" selection-start-column="19" selection-end-line="550" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1483237584679" expanded="true" signature="23627:24278" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="23754:23932" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="23967:24266" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="24318:24331" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="24371:24428" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="24469:24790" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="24794:24893" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="24896:26079" ph="..." />
-            <marker date="1483237584679" expanded="true" signature="26099:26231" ph="..." />
-          </folding>
+        <state relative-caret-position="9709">
+          <caret line="511" column="19" lean-forward="false" selection-start-line="511" selection-start-column="19" selection-end-line="511" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,24 +1022,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/templates/reportajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/selen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="1368">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flask1/fapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="1112" column="56" lean-forward="true" selection-start-line="1112" selection-start-column="56" selection-end-line="1112" selection-end-column="56" />
+        <state relative-caret-position="190">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1888" selection-end-column="0" />
+          <folding>
+            <element signature="e#88#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/templates/mline.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="57" column="37" lean-forward="false" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/公開資訊觀測站/cash.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3667">
+          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flask1/fappajax.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-551">
+          <caret line="237" column="22" lean-forward="false" selection-start-line="237" selection-start-column="22" selection-end-line="237" selection-end-column="22" />
           <folding>
             <element signature="e#88#146#0" expanded="true" />
           </folding>

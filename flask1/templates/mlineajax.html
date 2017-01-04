@@ -46,9 +46,9 @@ $(function() {
           <input type="button" name="dy{0}" value="remove"/>
         </form>`.format(i, $('#mlineform input[name="width"]').val(), $('#mlineform input[name="height"]').val());      //use button instead of submit or the page will reload
 
-        $('#tabs-2').append(d);
-        $("#tabs-2 form").on('click', 'input', scaleajax);
-        $('#tabs a[href="#tabs-2"]').click();
+        $('#tabs-mlineOut').append(d);
+        $("#tabs-mlineOut form").on('click', 'input', scaleajax);
+        $('#tabs a[href="#tabs-mlineOut"]').click();
         var id = 'dy'+i;
         $.getJSON($SCRIPT_ROOT + '/mlineajax/', {
         data: $("#mlineform").serialize(),
