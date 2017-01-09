@@ -1,6 +1,6 @@
 #----import----
 from sqlite3 import *
-conn = connect('C:\\Users\\ak66h_000\\Documents\\TEJ.sqlite3')
+conn = connect('C:/Users/ak66h_000/Documents/TEJ.sqlite3')
 c = conn.cursor()
 
 import requests
@@ -127,7 +127,7 @@ print(df2)
 #---continue---
 from os import *
 getcwd()
-chdir('C:/Users/ak66h_000/OneDrive/webscrap/cash')
+chdir('C:/Users/ak66h_000/Dropbox/webscrap/cash')
 getcwd()
 listdir()
 id2=[]
@@ -181,10 +181,10 @@ dupl=[]
 for CO_ID in id2:
     try:
         L = []
-        for YEAR in ['2015','2014','2013']:
+        for YEAR in ['2015']:
             print('Wait 4 seconds')
             time.sleep(4)
-            for SEASON in ['4','3','2','1']:
+            for SEASON in ['4']:
                 print(CO_ID+' '+YEAR+' '+SEASON)
                 try:
                     url='http://mops.twse.com.tw/server-java/t164sb01'
@@ -241,7 +241,7 @@ for CO_ID in id2:
                         print(du)
                         dupl = concat([dupl,du], axis=1)
                         print(dupl)
-                        dupl.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/cashdu' + str(stat) + '.csv', index=False)
+                        dupl.to_csv('C:/Users/ak66h_000/Dropbox/webscrap/cashdu' + str(stat) + '.csv', index=False)
                     L.append(df) # do not use L=L.append(df)
                 except Exception as e:
                     print(e)
@@ -258,8 +258,8 @@ for CO_ID in id2:
         df2 = df2.replace(',', '', regex=True)
         print(df2)
         #df4=concat([df4, df3], ignore_index=True)
-        #df4.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/income/df4.csv',index=False)
-        path='C:/Users/ak66h_000/OneDrive/webscrap/cash/df'+CO_ID+'.csv'
+        #df4.to_csv('C:/Users/ak66h_000/Dropbox/webscrap/income/df4.csv',index=False)
+        path='C:/Users/ak66h_000/Dropbox/webscrap/cash/df'+CO_ID+'.csv'
         df2.to_csv(path,index=False)
     except Exception as e:
         id_e.append(CO_ID)
@@ -276,7 +276,7 @@ import os
 os.getcwd()
 dir()
 os.listdir()
-path='C:\\Users\\ak66h_000\\OneDrive\\webscrap\\cash'
+path='C:/Users/ak66h_000/Dropbox/webscrap/cash'
 os.chdir(path)
 L=os.listdir()
 
@@ -288,6 +288,8 @@ for i in id:
         id2.append(i)
 print(id2)
 print(len(id2))
+
+'C:/Users/ak66h_000/Documents/db/xbrlcash'
 
 
 #---read csv---
@@ -303,4 +305,43 @@ import re
 # dup
 # [x for x in name if re.search(r'\.1',x) is not None ]
 df['證券代號'] =[str(x).replace('.0', '') for x in df['證券代號'].values.tolist()]
-df.to_csv('C:/Users/ak66h_000/OneDrive/webscrap/cash.csv',index=False)
+df.to_csv('C:/Users/ak66h_000/Dropbox/webscrap/cash.csv',index=False)
+
+from sqlite3 import *
+conn = connect('C:/Users/ak66h_000/Documents/db/xbrlcash.sqlite3')
+def getyear(x):
+    for i in ['2012', '2013', '2014', '2015', '2016']:
+        if i + '年' in x:
+            return i
+def getmonth(x):
+    if '03' in x:
+        return '1'
+    if '06' in x:
+        return '2'
+    if '09' in x:
+        return '3'
+    if '12月31日' or '度' in x:
+        return '4'
+err = []
+for i in L:
+    try:
+        df=read_csv(i,encoding='big5')
+        df['年']=df['年季'].apply(getyear)
+        df['季']=df['年季'].apply(getmonth)
+        df=df[['年','季']+[i for i in list(df) if i not in ['年','季']]]
+        df=df[~df['年季'].str.contains('12月31日')].reset_index(drop=True)
+        del df['年季']
+
+        c = conn.cursor()
+        df=df.rename(columns={'證券代號':'公司代號'})
+        table='ifrs合併現金流量表-'+str(df.公司代號[0])
+        sql='create table `{}` (`{}`, PRIMARY KEY ({}))'.format(table, '`,`'.join(list(df)), '`年`, `季`, `公司代號`')
+        c.execute(sql)
+        sql='insert into `{}`(`{}`) values({})'.format(table, '`,`'.join(list(df)), ','.join('?'*len(list(df))))
+        c.executemany(sql, df.values.tolist())
+        conn.commit()
+    except Exception as e:
+        print(e)
+        print(df.公司代號[0])
+        err.append(df.公司代號[0])
+print('finish')

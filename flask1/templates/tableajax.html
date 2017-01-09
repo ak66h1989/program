@@ -193,37 +193,42 @@
                       maxSpotColor: '#ff0000'});
                     }
                 });
-                var table2 =$('#report2').DataTable({
-                    colReorder: true,
-                    scrollY:        1000,
-                    scrollX:        true,
-                    scrollCollapse: true,
-                    paging:         false,
-                    searching: false,
-                    info:     false,
-                    ordering: false,
-                    fixedHeader: true
-                });
-                var table3 =$('#report3').DataTable({
-                    colReorder: true,
-                    scrollY:        820,
-                    scrollX:        true,
-                    scrollCollapse: true,
-                    paging:         false,
-                    searching: false,
-                    info:     false,
-                    ordering: false,
-                    fixedHeader: true
-                });
-                $('#enable').click( function (e) {
-                    alert(1);
-                    new $.fn.dataTable.FixedColumns( table2, {});
-                });
-                $('#enable1').click( function (e) {
-                    alert(1);
-                    new $.fn.dataTable.FixedColumns( table3, {});
-                });
+                $(document).ready(function() {
+                  var table2 =$('#report2').DataTable({
+                      colReorder: true,
+                      scrollY:        1000,
+                      scrollX:        true,
+                      scrollCollapse: true,
+                      paging:         false,
+                      searching: false,
+                      info:     false,
+                      ordering: false,
+                      // fixedColumns:   true,
+                      fixedHeader: true
+                  });
 
+                  var table3 =$('#report3').DataTable({
+                      colReorder: true,
+                      scrollY:        820,
+                      scrollX:        true,
+                      scrollCollapse: true,
+                      paging:         false,
+                      searching: false,
+                      info:     false,
+                      ordering: false,
+                      // fixedColumns:   true,
+                      fixedHeader: true
+                  });
+
+                  $('#enable').click( function (e) {
+                      alert(1);
+                      new $.fn.dataTable.FixedColumns( table2, {});
+                  });
+                  $('#enable1').click( function (e) {
+                      alert(1);
+                      new $.fn.dataTable.FixedColumns( table3, {});
+                  });
+                });
             });
         return false;
         });

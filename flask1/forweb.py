@@ -32,7 +32,7 @@ def fill(s):
     for i in range(len(le)):
         l = l + repeat(s[a[i]], le[i]).tolist()
     return Series(l, name=s.name)
-id='3056'
+id='5522'
 com = "'%s'"%(id)
 sql = "SELECT * FROM '%s' WHERE 公司代號 LIKE %s" % ('ifrs前後-綜合損益表', com)
 inc = read_sql_query(sql, conn).replace('--', 'NaN')
@@ -423,6 +423,64 @@ forweb['spandiff'] = forweb.span.diff()
 forweb['spanudiff'] = forweb[['調整開盤價', '調整收盤價']].max(axis=1).diff()
 forweb['spanldiff'] = forweb[['調整開盤價', '調整收盤價']].min(axis=1).diff()
 forweb['span/hl_1'] = forweb['span/hl'].shift()
+
+forweb['OSCsign'] = sign(forweb.OSC)
+forweb['gr']=0
+g=0
+for i in range(len(forweb['OSCsign'])-1):
+    try:
+        if forweb['OSCsign'][i]*forweb['OSCsign'][i+1]<0:
+            g+=1
+            forweb['gr'][i+1]=g
+        else:
+            forweb['gr'][i+1]=g
+    except:
+        pass
+print(forweb['gr'])
+
+def minORmax(forweb):
+    if forweb.max()>0:
+        return forweb.max()
+    if forweb.min()<0:
+        return forweb.min()
+    else:
+        return forweb
+
+grouped = forweb.groupby('gr')
+l=grouped['OSC'].apply(minORmax).tolist()
+
+d={}
+for i, v in enumerate(l):
+    d[i+2]=v
+d[0], d[1]=nan, nan
+forweb[['gr1']]=forweb[['gr']].applymap(lambda x:d[x])
+
+forweb['change']=0
+def OSCbreakpoint(forweb):
+    forweb=forweb.reset_index(drop=True)  # without this forweb.ix[0,'gr1'] is only defined in first group
+    if forweb['OSC'].max()>0:
+        for i in range(len(forweb['gr1'])):
+            print(i, len(forweb['gr1']))
+            print(i, forweb.ix[i,'OSC'], forweb.ix[i,'gr1'])
+            if forweb.ix[i,'OSC']>forweb.ix[i,'gr1']:
+                print(i, 'yes')
+                forweb.ix[i, 'change'] = 1
+                break
+        return forweb
+    if forweb['OSC'].min()<0:
+        for i in range(len(forweb['gr1'])):
+            print(i, len(forweb['gr1']))
+            print(i, forweb.ix[i,'OSC'], forweb.ix[i,'gr1'])
+            if forweb.ix[i,'OSC']<forweb.ix[i,'gr1']:
+                print(i, 'yes')
+                forweb.ix[i, 'change'] = -1
+                break
+        return forweb
+    else:
+        return forweb
+
+forweb=grouped.apply(OSCbreakpoint).reset_index(drop=True)
+del forweb['OSCsign'];del forweb['gr'];del forweb['gr1']
 
 print('forweb')
 

@@ -29,7 +29,7 @@ from sklearn import *
 ycol = ['r1']
 dropcol=[j for j in ['年月日', '證券代號', 'lnr', 'lnr025', 'lnr05', 'lnr1', 'lnr2', 'lnr3', 'lnr6', 'r025', 'r05', 'r1', 'r2', 'r3', 'r6', 'r025.s', 'r05.s', 'r1.s', 'r2.s', 'r3.s', 'r6.s'] if j not in list(ycol)]
 df = forr.drop(dropcol, axis=1).drop(['臺灣企業經營101報酬指數','臺灣企業經營101指數','漲升股利100報酬指數','漲升股利100指數','漲升股利150報酬指數','漲升股利150指數','小型股300報酬指數','小型股300指數','臺指日報酬兩倍指數',
-'電子類兩倍槓桿指數','電子類反向指數','臺指日報酬反向一倍指數','投信鉅額交易', '漲跌(+/-)', '外資鉅額交易','span/ushadow','span/lshadow','span/ushadow_1','span/lshadow_1'], axis=1).dropna()
+'電子類兩倍槓桿指數','電子類反向指數','臺指日報酬反向一倍指數','投信鉅額交易', '漲跌(+/-)', '外資鉅額交易','ushadow/span','lshadow/span','ushadow/span_1','lshadow/span_1'], axis=1).dropna()
 list(df)
 len(df)
 len(forr)

@@ -87,7 +87,6 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 {% include "index.html" %}
 
-
 <style>
     li { list-style-type: none; margin: 0; padding: 0;}
     #div4 li { display: inline;}
@@ -206,6 +205,7 @@ function fa(){
         <li><a data-toggle="tab" href="#tabs-ys">ys</a></li>
         <li><a data-toggle="tab" href="#tabs-ysOut">4.</a></li>
         <li><a data-toggle="tab" href="#tabs-8">report</a></li>
+        <li><a data-toggle="tab" href="#tabs-report1">report1</a></li>
         <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
         <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
         <li><a data-toggle="tab" href="#tabs-11">react</a></li>
@@ -525,7 +525,7 @@ function fa(){
         {% include "reportajax.html" %}
     </div>
 
-{% include "tableajax.html" %}
+{% include "tableajax2.html" %}
 
   <!--</div>-->
     <div id="tabs-11" class="tab-pane active">
@@ -562,7 +562,7 @@ function fa(){
   </div>
 
 
-<script type=text/javascript>
+<!-- <script type=text/javascript>
   $(function() {
     $('a#calculate').bind('click', function() {
       $.getJSON($SCRIPT_ROOT + '/ajax/', {
@@ -578,7 +578,7 @@ function fa(){
 <p><input type=text size=5 name=a> +
    <input type=text size=5 name=b> =
    <span id=result>?</span>
-<p><a href=# id=calculate>calculate server side</a>
+<p><a href=# id=calculate>calculate server side</a> -->
 
 <!--<script type=text/javascript>-->
 <!--if (!String.prototype.format) {-->
@@ -614,12 +614,12 @@ function fa(){
 <!--});-->
 <!--</script>-->
 
-<form id="formajax">
+<!-- <form id="formajax">
 <input type=checkbox name="c1" value="x"> +
    <input type=checkbox name="c1" value="y"> =
    <button id=b1>answer</button>
 </form>
-    <div id="result1">??</div>
+    <div id="result1">??</div> -->
 
 {{d.tab|safe}}
 {{d.cl|safe}}
@@ -647,9 +647,9 @@ function fa(){
 <!--</script>-->
 
 
-<button id="b">click</button>
+<!-- <button id="b">click</button>
 <button id="dyb">dygraphsajax</button>
-<div id="dygraphsajax"></div>
+<div id="dygraphsajax"></div> -->
 <!--<input type="checkbox" id="chk-sync" onchange="update()"><label for="chk-sync">Sync</label>-->
 <!--<script type=text/javascript>-->
 <!--gs = [];-->
