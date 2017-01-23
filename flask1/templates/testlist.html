@@ -64,7 +64,9 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+<!-- vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- <script src="‪C:/Users/ak66h_000/node_modules/vue/dist/vue.js"></script> -->
 
 <script type=text/javascript>
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -210,6 +212,7 @@ function fa(){
         <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
         <li><a data-toggle="tab" href="#tabs-11">react</a></li>
         <li><a data-toggle="tab" href="#tabs-12">table</a></li>
+        <li><a data-toggle="tab" href="#tabs-vue">vue</a></li>
     </ul>
   <!-- <div class="tab-content"> -->
     <div id="tabs-mline" class="tab-pane active">
@@ -304,7 +307,6 @@ function fa(){
             </form>
 
         </div>
-
     </div>
     <div id="tabs-mlineOut" class="tab-pane">
     {% include "mlineajax.html" %}
@@ -347,7 +349,7 @@ function fa(){
                   return false;
                   });
               });
-              </script>
+            </script>
             <div id=div7 style="background-color:green;color:black" class="col-md-5">
                 <!--<form action = "/plot1/" method = "POST">-->
                     <!--<ul>-->
@@ -557,6 +559,9 @@ function fa(){
     <div id="tabs-12" class="tab-pane">
 
 
+    </div>
+    <div id="tabs-vue" class="tab-pane">
+        {% include "vue.html" %}
     </div>
 
   </div>

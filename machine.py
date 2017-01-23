@@ -16,27 +16,28 @@ import matplotlib
 import matplotlib.pyplot as plt
 zhfont1 = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\msjh.ttc')  #show chinese
 
-get_option("display.max_rows")
-get_option("display.max_columns")
-set_option("display.max_rows", 1000)
-set_option("display.max_columns", 1000)
-set_option('display.expand_frame_repr', False)
-set_option('display.unicode.east_asian_width', True)
+# get_option("display.max_rows")
+# get_option("display.max_columns")
+# set_option("display.max_rows", 1000)
+# set_option("display.max_columns", 1000)
+# set_option('display.expand_frame_repr', False)
+# set_option('display.unicode.east_asian_width', True)
 # forr = read_sql_query("SELECT * from `forr`", conn).replace('', nan)
 forr = read_sql_query("SELECT * from `forweb`", conn).replace('', nan)
 
 from sklearn import *
 ycol = ['r1']
 dropcol=[j for j in ['年月日', '證券代號', 'lnr', 'lnr025', 'lnr05', 'lnr1', 'lnr2', 'lnr3', 'lnr6', 'r025', 'r05', 'r1', 'r2', 'r3', 'r6', 'r025.s', 'r05.s', 'r1.s', 'r2.s', 'r3.s', 'r6.s'] if j not in list(ycol)]
-df = forr.drop(dropcol, axis=1).drop(['臺灣企業經營101報酬指數','臺灣企業經營101指數','漲升股利100報酬指數','漲升股利100指數','漲升股利150報酬指數','漲升股利150指數','小型股300報酬指數','小型股300指數','臺指日報酬兩倍指數',
-'電子類兩倍槓桿指數','電子類反向指數','臺指日報酬反向一倍指數','投信鉅額交易', '漲跌(+/-)', '外資鉅額交易','ushadow/span','lshadow/span','ushadow/span_1','lshadow/span_1'], axis=1).dropna()
-list(df)
-len(df)
-len(forr)
-round(df)
-df.applymap(lambda x: round(x, 4))
-forr.drop(dropcol, axis=1).tail(500)
-
+df = forr.drop(dropcol, axis=1).drop([i for i in list(forr) if len(forr[i].dropna())<len(forr)*0.75], axis=1)
+df = df.drop(['投信鉅額交易', '漲跌(+/-)', '外資鉅額交易'], axis=1).dropna()
+# df = forr.drop(dropcol, axis=1).drop(['臺灣企業經營101報酬指數','臺灣企業經營101指數','漲升股利100報酬指數','漲升股利100指數','漲升股利150報酬指數','漲升股利150指數','小型股300報酬指數','小型股300指數','臺指日報酬兩倍指數',
+# '電子類兩倍槓桿指數','電子類反向指數','臺指日報酬反向一倍指數','投信鉅額交易', '漲跌(+/-)', '外資鉅額交易','ushadow/span','lshadow/span','ushadow/span_1','lshadow/span_1'], axis=1).dropna()
+# list(df)
+# len(df)
+# len(forr)
+# round(df)
+# df.applymap(lambda x: round(x, 4))
+# forr.drop(dropcol, axis=1).tail(500)
 
 # df = forr.drop(dropcol, axis=1).dropna()
 y = df[ycol]
@@ -50,30 +51,49 @@ x_train, x_test = df_train[list(x)], df_test[list(x)]
 from sklearn import tree
 from sklearn.tree import export_graphviz
 import subprocess
-from sklearn.cross_validation import cross_val_score
-from sklearn.cross_validation import KFold
-cv = KFold(n=x.shape[0], n_folds=10, shuffle=True)
-params = {'min_samples_split': 9} # unlike R, complexity parameter is not supported in sklearn
-clf = tree.DecisionTreeRegressor(**params)
-clf.fit(x_train, y_train)
-clf.fit(x, y)  # the result is not the same compared to r, perhaps sklearn does not use cross validation !!!
-clf.tree_.node_count
-clf.score(x,y)
-clf.apply(x)
-len(clf.apply(x))
-
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
+# cv = KFold(n=x.shape[0], n_folds=10, shuffle=True)
 n_folds=10
-cv = KFold(n=x_train.shape[0], n_folds=n_folds, shuffle=True)
-l=[]
-for n in range(2, 1000, 4):
+cv = KFold(n_splits=n_folds, shuffle=True)
+
+#--test--
+# params = {'min_impurity_split': 0.001}
+# clf = tree.DecisionTreeRegressor(**params)
+# clf.fit(x_train, y_train)
+# clf.fit(x, y)  # the result is not the same compared to r, perhaps sklearn does not use cross validation !!!
+# clf.tree_.node_count
+# clf.score(x,y)
+# clf.apply(x)
+# len(clf.apply(x))
+
+# -- takes more time but testr2 may be higher --
+lnodes, lmse, lR2=[], [], []
+for n in range(2, 300, 4):
     params = {'max_leaf_nodes': n}
     clf = tree.DecisionTreeRegressor(**params)
-    score = sum(-cross_val_score(clf, x_train, y_train, cv=cv, scoring='mean_squared_error'))  # sklearn put '-' in front of mse
-    R2 = 1-score/y_train.var()
-    print('max_leaf_nodes : %i | mse : %.3f | R2 : %.3f' % (n, score, R2))
-    l.append(score)
-print(np.argmin(l)+1, l[np.argmin(l)])
-params = {'max_leaf_nodes': np.argmin(l)+1}
+    mse = mean(-cross_val_score(clf, x_train, y_train, cv=cv, scoring='neg_mean_squared_error'))  # sklearn put '-' in front of mse
+    R2 = 1-mse/y_train.var()
+    print('max_leaf_nodes : %i | mse : %.3f | R2 : %.3f' % (n, mse, R2))
+    lnodes.append(n)
+    lmse.append(mse)
+    lR2.append(R2)
+print('max_leaf_nodes:', lnodes[argmin(lmse)], 'mse:', lmse[argmin(lmse)], 'R2:', lR2[argmin(lmse)])
+params = {'max_leaf_nodes': lnodes[argmin(lmse)]}
+
+# -- takes less time but testr2 may be lower --
+lalpha, lmse, lR2=[], [], []
+for alpha in range(1, 100, 2):
+    params = {'min_impurity_split': alpha/1000}     #complexity parameter
+    clf = tree.DecisionTreeRegressor(**params)
+    mse = mean(-cross_val_score(clf, x_train, y_train, cv=cv, scoring='neg_mean_squared_error'))  # sklearn put '-' in front of mse
+    R2 = 1-mse/y_train.var()
+    print('min_impurity_split : %.3f | mse : %.3f | R2 : %.3f' % (alpha/1000, mse, R2))
+    lalpha.append(alpha/1000)
+    lmse.append(mse)
+    lR2.append(R2)
+print('i:', argmax(lR2), 'min_impurity_split:', lalpha[argmax(lR2)], 'mse:', lmse[argmax(lR2)], 'R2:', lR2[argmax(lR2)])
+params = {'min_impurity_split': lalpha[argmax(lR2)]}
 
 # l=[]
 # for n in range(2, 1000, 2):
@@ -88,14 +108,20 @@ params = {'max_leaf_nodes': np.argmin(l)+1}
 #     score = 1 - u/v
 #     l.append(score)
 #     print('max_leaf_nodes : %i | n_node : %.3f | R-square: %.3f' % (n, clf.tree_.node_count, score))
-# print(np.argmax(l)+1, l[np.argmax(l)])
-# params = {'max_leaf_nodes': np.argmax(l)+1}
+# print(np.argmax(l) + 1, l[np.argmax(l)])
+# params = {'max_leaf_nodes': np.argmax(l) + 1}
 clf = tree.DecisionTreeRegressor(**params)
 clf.fit(x_train, y_train)
 print('clf.tree_.node_count : ', clf.tree_.node_count, 'nrow : ', len(df))
 testr2 = clf.score(x_test, y_test)
 print('test R2 : ', testr2)
-clf.predict(array(x)[-1])
+
+clf.predict(array(x)[-1].reshape(1, -1))
+feature_importances={}
+for i in range(len(list(x_train))):
+    feature_importances[list(x_train)[i]]=clf.feature_importances_[i]
+for i in reversed(sorted(feature_importances.items(), key=lambda x: x[1])):
+    print(i)
 
 import os
 from graphviz import Source
@@ -123,20 +149,20 @@ src.render('graph_tree/tree'+forr['證券代號'][0]+list(y)[0]+'Rsq'+str(format
 # clf.tree_
 # clf.get_params()
 
-#----mars----
+# ----mars----
 import numpy
 from pyearth import Earth
 from matplotlib import pyplot
 
-#Fit an Earth model
+# Fit an Earth model
 model = Earth()
 model.fit(x_train, y_train)
 
-#Print the model
+# Print the model
 print(model.trace())
 print(model.summary())
 
-#Plot the model
+# Plot the model
 y_hat = model.predict(x_train)
 pyplot.figure()
 pyplot.plot(x_train.ix[:, 6], y_train, 'r.')
@@ -149,8 +175,8 @@ error = array(y_test) - model.predict(array(x_test))
 print('R^2', 1-error.std()/y_test.var())
 model.predict([array(x)[-1]])
 
-#----gbm----
-from sklearn.cross_validation import KFold
+# ----gbm----
+from sklearn.model_selection import KFold
 # Fit classifier with out-of-bag estimates
 params = {'n_estimators': 1000, 'max_depth': 4, 'subsample': 0.5,
           'learning_rate': 0.01, 'min_samples_leaf': 1, 'verbose':1}
@@ -167,12 +193,12 @@ def heldout_score(clf, x_test, y_test):
     return score
 
 def cv_estimate(n_folds=4):
-    cv = KFold(n=x_train.shape[0], n_folds=n_folds, shuffle=True)  # KFold is not random without shuffle=True
+    cv = KFold(n_splits=n_folds, shuffle=True)  # KFold is not random without shuffle=True
     cv_clf = ensemble.GradientBoostingRegressor(**params)
     val_scores = np.zeros((n_estimators,), dtype=np.float64)
     for train, test in cv:
         cv_clf.fit(array(x_train)[train], array(y_train)[train])   # need use array
-        val_scores += heldout_score(cv_clf, array(x_train)[test], array(y_train)[test])  # need use array
+        val_scores += heldout_score(cv_clf, array(x_train)[test], array(y_train)[test])  # need to use array
     return val_scores
 
 # Estimate best n_estimator using cross-validation
@@ -327,9 +353,7 @@ plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
 from graphviz import Digraph
 
 dot = Digraph(comment='The Round Table')
-
 dot
-
 dot.node('A', 'King Arthur')
 dot.node('B', 'Sir Bedevere the Wise')
 dot.node('L', 'Sir Lancelot the Brave')
@@ -355,6 +379,19 @@ dot.edge_attr.update(arrowhead='vee', arrowsize='2')
 
 print(dot.source)
 
+# ----SVR----
+from sklearn import svm
+clf = svm.SVR(kernel='linear')
+clf.fit(x_train, array([i for i in y_train['r1']]))
+clf.score(x_test, y_test)
+clf.predict(array(x)[-1].reshape(1, -1))
+
+# ----NN----
+from sklearn.neural_network import MLPRegressor
+clf = MLPRegressor(activation='logistic', solver='adam', alpha=1e-5, hidden_layer_sizes=(100, 100, 100), random_state=1)
+clf.fit(array(x_train), array([i for i in y_train['r1']]))
+clf.score(x_test, y_test)
+clf.predict(array(x)[-1].reshape(1, -1))
 
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
@@ -394,7 +431,6 @@ phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
 mo = phoneNumRegex.search('My number is 415-555-4242.')
 re.search(r'\d\d\d-\d\d\d-\d\d\d\d','My number is 415-555-4242.')
 print('Phone number found: ' + mo.group())
-
 
 cd C:\Users\ak66h_000\OneDrive\webscrap\mysite
 python manage.py shell

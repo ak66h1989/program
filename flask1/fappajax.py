@@ -75,7 +75,8 @@ for i in tse:
     dic[i] = 'tse'
 
 d = dict()
-
+d['testl']=[['a', 'b'], [1, 2], ['c', 3]]
+# d['testl']=[['a', 'b'], ['c', 'd'], ['e', 'f']]
 @app.route('/', methods=['GET', 'POST'])   # should contain '/' in tail
 def index():
     global d
@@ -575,8 +576,8 @@ def repajax():
         for i in range(len(df3)):
             for j in range(df3.shape[1]):
                 try:
-                    if df3.iloc[i, j]<0:
-                        df2.iloc[i, j]='red'
+                    if df3.iloc[i, j] < 0:
+                        df2.iloc[i, j] = 'red'
                 except:
                     pass
         df2['年季'] = df2['年'].astype(str) + df2['季'].apply(lambda x:smd[x])
@@ -630,8 +631,8 @@ def repajax():
     d['report'] = report
     d['tb'] = tb
     d['tab'] = '#tabs-8'
-    print('compname:',d['compname'],'compid_report:',d['compid_report'],'report:',report, 'tb:',tb)
-    return jsonify({'compname':d['compname'],'compid_report':d['compid_report'],'report':report, 'tb':tb})
+    print('compname:', d['compname'], 'compid_report:', d['compid_report'], 'report:', report, 'tb:', tb)
+    return jsonify({'compname': d['compname'], 'compid_report': d['compid_report'], 'report': report, 'tb': tb})
 
 @app.route('/rep1ajax/', methods=['GET', 'POST'])
 def rep1ajax():
@@ -648,7 +649,7 @@ def rep1ajax():
     compid1 = [parse.unquote(i) for i in compid1.split('&')][0]
     # compid1 = request.form['compid_report1']
     d['compid_report1'] = compid1
-    print('compid_report1:',compid1)
+    print('compid_report1:', compid1)
     # table = 'ifrs前後-綜合損益表(季)-一般業'
     # table = 'ifrs前後-資產負債表-一般業'
     # for table in ['ifrs前後-綜合損益表(季)', 'ifrs前後-資產負債表-一般業']:

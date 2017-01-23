@@ -50,7 +50,8 @@
     <!--sparkline-->
     <script type="text/javascript" src="../static/jquery.sparkline.js"></script>
     <!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
-
+    <!-- vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
     <!--myjsfile-->
     {%include "index.html"%}
@@ -183,7 +184,28 @@
                 <input type="submit" value="query">
             </form>
         </div>
+        <div id="app1">
+            ${ message }
+            ${ summary }
 
+        </div>
+        <script>
+        var items1=[['Foo', 'Bar' ], ['Foo', 'Bar' ]];
+        var items2=[['Foo', 'Bar' ], ['Foo', 'Bar' ]];
+        var l=[];
+        {%for item in summary%}
+        l.push({{item}});
+        {%endfor%}
+        var app = new Vue({
+          el: '#app1',
+          delimiters: ['${', '}'],
+          data: {
+            message: 'abc',
+            summary: l
+
+          }
+        })
+        </script>
     </div>
     <div id="tabs-2" class="tab-pane">
         <button id=sy>synchronize</button>
