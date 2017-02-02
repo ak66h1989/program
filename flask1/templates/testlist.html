@@ -1,199 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>flask</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include "import.html" %}
+  <script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
 
-<title>Bootstrap Example</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--jquery-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-<!--<script type="text/javascript" src="{{url_for('static', filename='jquery-3.1.1.min.js')}}"></script>-->
-<!--do not use jquery-3.1.1-->
-<!--<script type="text/javascript" src="../static/jquery-3.1.1.min.js"></script>-->
-<!-- <script type="text/javascript" src="../static/jQuery-2.2.3/jquery-2.2.3.min.js"></script> -->
-<script type="text/javascript" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
-
-<!--bootstrap-->
-<!--need jquery-->
-<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-<script type="text/javascript" src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!--dygraphs-->
-<!--<script type="text/javascript" src="{{url_for('static', filename='dygraph-combined-dev.js')}}"></script>-->
-<!-- <script type="text/javascript" src="../static/dygraph-combined-dev.js"></script> -->
-<script type="text/javascript" src="../static/bower_components/dygraphs/dygraph-combined-dev.js"></script>
-<!--dygraphs synchronizer--><!--cannot put before dygraph-combined-dev.js-->
-<!--<script type="text/javascript" src="{{url_for('static', filename='extras/synchronizer.js')}}"></script>-->
-<!--copy latest version from github-->
-<script type="text/javascript" src="../static/extras/synchronizer.js"></script> <!--this version can synchronize x without synchronizing y-->
-<!--<script type="text/javascript" src="../static/bower_components/dygraphs/extras/synchronizer.js"></script>-->
-
-<!--jquery-ui-->
-<!--<link rel="stylesheet" href="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.css')}}">
-<script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/external/jquery/jquery.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>-->
-<!-- <link rel="stylesheet" href="../static/jquery-ui-1.12.1/jquery-ui.min.css">
-<script src="../static/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-<script src="../static/jquery-ui-1.12.1/jquery-ui.min.js"></script> -->
-<link rel="stylesheet" href="../static/bower_components/jquery-ui/themes/base/jquery-ui.min.css">
-<!-- <script src="../static/bower_components/jquery-ui/external/jquery/jquery.js"></script> -->
-<script src="../static/bower_components/jquery-ui/jquery-ui.min.js"></script>
-
-<!--react-->
-<script src="https://unpkg.com/react@latest/dist/react.js"></script>
-<script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-
-<!--datatable-->
-<!--need to load jqeury first unless download package include jquery-->
-<!--need to download extentions like fixedColumns, fixedHeader, responsive-->
-<!--useless when put here-->
-
-<!--sparkline-->
-<script type="text/javascript" src="../static/jquery.sparkline.js"></script>
-<!-- <script type="text/javascript" src="../static/bower_components/sparklines/source/sparkline.js"></script> -->
-
-<!--highstock--><!--need to put before highcharts-->
-<script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-<!--highcharts-->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<!-- vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- <script src="‪C:/Users/ak66h_000/node_modules/vue/dist/vue.js"></script> -->
-
-<script type=text/javascript>
-$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-
-<!--myjsfile-->
-
-<script>
-  $( function() {
-      // $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
-      // for sparline to work in tabs
-      $( "#tabs").tabs({
-          activate: function( event, ui ) {
-              $.sparkline_display_visible();
-              }
-      });
-  } );
-
-</script>
-
-{% include "index.html" %}
-
-<style>
-    li { list-style-type: none; margin: 0; padding: 0;}
-    #div4 li { display: inline;}
-    #div7 li { display: inline;}
-    #div11 li { display: inline;}
-    a {float: right; color: blue;}
-    .inline { float:left; }
-    /*#div13 { display: inline;}*/
-    /*#div12 input[type=checkbox] { display: none; }*/
-
-    .few .dygraph-legend > span.highlight { border: 1px solid grey; }
-    /*table { margin-left: 15px; }*/
-    #inc, #bal { margin-left: 15px; }
-</style>
-<script>
-//$( function() {
-//    $('a[href={{d.tab|safe}}]').click();
-//} );
-</script>
-
-<script type="text/javascript">
-$(function() {
-    /** This code runs when everything has been loaded on the page */
-    /* Inline sparklines take their values from the contents of the tag */
-    $('.inlinesparkline').sparkline();
-
-    /* Sparklines can also take their values from the first argument
-    passed to the sparkline() function */
-    var myvalues = [10,8,5,null,4,4,1];
-    $('.dynamicsparkline').sparkline(myvalues, {width:'100px'});
-
-    /* The second argument gives options such as chart type */
-    $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green', width:'10px'} );
-
-    /* Use 'html' instead of an array of values to pass options
-    to a sparkline with data in the tag */
-    $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
-});
-</script>
-<!--<script>-->
-    <!--if (!String.prototype.format) {-->
-      <!--String.prototype.format = function() {-->
-        <!--var args = arguments;-->
-        <!--return this.replace(/{(\d+)}/g, function(match, number) {-->
-          <!--return typeof args[number] != 'undefined'-->
-            <!--? args[number]-->
-            <!--: match-->
-          <!--;-->
-        <!--});-->
-      <!--};-->
-    <!--}-->
-
-<!--$(document).ready(function(){-->
-    <!--var k=1;-->
-    <!--$('#b').click(function(){-->
-        <!--alert(0);-->
-        <!--var d1=`<div id = "dy{0}" className="few"></div>-->
-            <!--<form>-->
-                <!--<input type="submit" name="dy{0}" value="raw"/>-->
-                <!--<input type="submit" name="dy{0}" value="normalize"/>-->
-                <!--<input type="submit" name="dy{0}" value="remove"/>-->
-            <!--</form>`.format(k)-->
-        <!--$('#tabs-13').append(d1);-->
-        <!--$("#tabs-13 form").on('click', 'input', fa);-->
-        <!--var id="dy"+k;-->
-        <!--$(function () {-->
-            <!--Highcharts.chart(id, {-->
-
-                <!--chart: {-->
-                    <!--type: 'line'-->
-                <!--},-->
-
-                <!--title: {-->
-                    <!--text: 'Data input as column arrays'-->
-                <!--},-->
-                <!--plotOptions: {-->
-                    <!--series: {-->
-                        <!--connectNulls: true // by default-->
-                    <!--}-->
-                <!--},-->
-                <!--data: {-->
-                    <!--columns: [-->
-                        <!--['time', 1, 2, 3, 4], // categories-->
-                        <!--['a', 1, 2, 3, 4], // first series-->
-                        <!--['b', 5,4 , 'null', 2] // second series-->
-                    <!--]-->
-                <!--}-->
-            <!--});-->
-        <!--});-->
-        <!--k+=1;-->
-        <!--alert(1);-->
-    <!--});-->
-<!--})-->
-
-<!--</script>-->
-<script>
-
-function fa(){
-  alert($(this).attr('name'));
-  alert($(this).attr('value'));
-}
-
-</script>
-
-
+  <!--myjsfile-->
+  <script>
+    $( function() {
+        // $( "#tabs" ).tabs(); //tabs() cannot be put at the end of this file
+        // for sparline to work in tabs
+        $( "#tabs").tabs({
+            activate: function( event, ui ) {
+                $.sparkline_display_visible();
+                }
+        });
+    } );
+  </script>
+  {% include "index.html" %}
+  <script>
+  //$( function() {
+  //    $('a[href={{d.tab|safe}}]').click();
+  //} );
+  </script>
+  <style>
+      li { list-style-type: none; margin: 0; padding: 0;}
+      #div4 li { display: inline;}
+      #div7 li { display: inline;}
+      #div11 li { display: inline;}
+      a {float: right; color: blue;}
+      .inline { float:left; }
+      /*#div13 { display: inline;}*/
+      /*#div12 input[type=checkbox] { display: none; }*/
+      .few .dygraph-legend > span.highlight { border: 1px solid grey; }
+      /*table { margin-left: 15px; }*/
+      #inc, #bal { margin-left: 15px; }
+  </style>
 </head>
 <body>
 <div id="tabs">
@@ -206,12 +52,12 @@ function fa(){
         <li><a data-toggle="tab" href="#tabs-splitOut">3.</a></li>
         <li><a data-toggle="tab" href="#tabs-ys">ys</a></li>
         <li><a data-toggle="tab" href="#tabs-ysOut">4.</a></li>
-        <li><a data-toggle="tab" href="#tabs-8">report</a></li>
+        <li><a data-toggle="tab" href="#tabs-report">report</a></li>
         <li><a data-toggle="tab" href="#tabs-report1">report1</a></li>
-        <li><a data-toggle="tab" href="#tabs-9">income statement</a></li>
-        <li><a data-toggle="tab" href="#tabs-10">balence sheet</a></li>
-        <li><a data-toggle="tab" href="#tabs-11">react</a></li>
-        <li><a data-toggle="tab" href="#tabs-12">table</a></li>
+        <li><a data-toggle="tab" href="#tabs-income">income statement</a></li>
+        <li><a data-toggle="tab" href="#tabs-balance">balance sheet</a></li>
+        <li><a data-toggle="tab" href="#tabs-react">react</a></li>
+        <li><a data-toggle="tab" href="#tabs-table">table</a></li>
         <li><a data-toggle="tab" href="#tabs-vue">vue</a></li>
     </ul>
   <!-- <div class="tab-content"> -->
@@ -221,7 +67,6 @@ function fa(){
                 <button>1</button>
                 <button>2</button>
             </div>
-
             <div id='div1' style="background-color:purple;color:white;padding:10px;" class="col-md-4">
                 <ul></ul>
             </div>
@@ -233,62 +78,49 @@ function fa(){
             </form>
         </div>
 
-        <div class="row" id="tab1row2">
-            <div id=div3 style="background-color:blue;color:yellow" class="col-md-2">
-              <script type="text/babel">
-              const element = (
-                //<form action = "/listfield/" method = "POST">
+        <div class="row" id="div3">
+            <div style="background-color:blue;color:yellow" class="col-md-2">
                 <form id = "listfieldform">
                     <h4>mops</h4>
-                    {% for item in d.mops %}
-                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mops">
+                        <input type="radio" name="dbtable" v-bind:value="item">${ item }
+                    </div>
                     <h4>mysum</h4>
-                    {% for item in d.mysum %}
-                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mysum">
+                        <input type="radio" name="dbtable" v-bind:value="item">${ item }
+                    </div>
                     <h4>summary</h4>
-                    {% for item in d.summary %}
-                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in summary">
+                        <input type="radio" name="dbtable" v-bind:value="item">${ item }
+                    </div>
                     <h4>tse</h4>
-                    {% for item in d.tse %}
-                    <input type="radio" name="dbtable" value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'/>
+                    <div v-for="item in tse">
+                        <input type="radio" name="dbtable" v-bind:value="item">${ item }
+                    </div>
+                    <input type="submit" value="Show fields" class='btn btn-default'>
                 </form>
-              );
-              ReactDOM.render(
-                 element,
-                 document.getElementById('div3')
-              );
-              </script>
             </div>
+            <script>
+            new Vue({
+              el: '#listfieldform',
+              delimiters: ['${', '}'],
+              data: {
+                mops:{{d.mops|safe}},
+                mysum:{{d.mysum|safe}},
+                summary:{{d.summary|safe}},
+                tse:{{d.tse|safe}},
+              }
+            })
+            </script>
             <div id="div4" style="background-color:green;color:black" class="col-md-5">
-              <!--<script type="text/babel">-->
-              <!--const element1 = (-->
-                <!--<ul>-->
-                    <!--{% for item in d.fields %}-->
-                    <!--<li><button className='btn btn-info'>{{ item }}</button></li>-->
-                    <!--{% endfor %}-->
-                <!--</ul>-->
-              <!--);-->
-              <!--ReactDOM.render(-->
-                 <!--element1,-->
-                 <!--document.getElementById('div4')-->
-              <!--);-->
-              <!--</script>-->
             <script>
             $(function() {
                 $('#div3 form input[type="submit"]').on('click', function() {
                     $.getJSON($SCRIPT_ROOT + '/listfieldajax/', {
                     data: $("#listfieldform").serialize(),
                     }, function(data) {
-                        var roots = data.fields.map(function(x){
-                            return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
-                        });
-                        var y = document.getElementById("div4");
-                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                        let roots = data.fields.map(x =>`<li><button class='btn btn-info'>${x}</button></li>`);
+                        document.getElementById("div4").innerHTML = `<ul>${roots.join('')}</ul>`;
                     });
                 return false;
                 });
@@ -309,42 +141,52 @@ function fa(){
         </div>
     </div>
     <div id="tabs-mlineOut" class="tab-pane">
-    {% include "mlineajax.html" %}
+        {% include "mlineajax.html" %}
     </div>
     <div id="tabs-plot1" class="tab-pane">
         <div class="row">
             <div id=div6 style="background-color:blue;color:yellow" class="col-md-2">
               <form id = "listfield3form">
                   <h4>mops</h4>
-                  {% for item in d.mops %}
-                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                  {% endfor %}
+                  <div v-for="item in mops">
+                      <input type="radio" name="dbtable3" v-bind:value="item">${ item }
+                  </div>
                   <h4>mysum</h4>
-                  {% for item in d.mysum %}
-                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                  {% endfor %}
+                  <div v-for="item in mysum">
+                      <input type="radio" name="dbtable3" v-bind:value="item">${ item }
+                  </div>
                   <h4>summary</h4>
-                  {% for item in d.summary %}
-                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                  {% endfor %}
+                  <div v-for="item in summary">
+                      <input type="radio" name="dbtable3" v-bind:value="item">${ item }
+                  </div>
                   <h4>tse</h4>
-                  {% for item in d.tse %}
-                  <input type="radio" name="dbtable3" value="{{ item }}"/>{{ item }}<br/>
-                  {% endfor %}
-                  <input type="submit" value="Show fields" class='btn btn-default'/>
+                  <div v-for="item in tse">
+                      <input type="radio" name="dbtable3" v-bind:value="item">${ item }
+                  </div>
+                  <input type="submit" value="Show fields" class='btn btn-default'>
               </form>
             </div>
+            <script>
+              new Vue({
+                el: '#listfield3form',
+                delimiters: ['${', '}'],
+                data: {
+                  mops:{{d.mops|safe}},
+                  mysum:{{d.mysum|safe}},
+                  summary:{{d.summary|safe}},
+                  tse:{{d.tse|safe}},
+                }
+              })
+            </script>
             <script>
               $(function() {
                   $('#div6 form input[type="submit"]').on('click', function() {
                       $.getJSON($SCRIPT_ROOT + '/listfield3ajax/', {
                       data: $("#listfield3form").serialize(),
                       }, function(data) {
-                          var roots = data.fields3.map(function(x){
-                              return `<li><button class='btn btn-info' name='plot1' value={0}>{0}</button></li>`.format(x);
-                          });
+                          var roots = data.fields3.map(x => `<li><button class='btn btn-info' name='plot1' value=${x}>${x}</button></li>`);
                           var y = document.getElementById("div7");
-                          y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                          y.innerHTML = `<ul>${roots.join('')}</ul>`;
                       });
                   return false;
                   });
@@ -367,9 +209,8 @@ function fa(){
     </div>
     <div id="tabs-plot1Out" class="tab-pane">
       <div id=div9>
-        {% include "plot1ajax.html" %}
+          {% include "plot1ajax.html" %}
       </div>
-
     </div>
     <div id="tabs-split" class="tab-pane">
         <div class="row">
@@ -377,42 +218,47 @@ function fa(){
                 <!--<form action = "/listfield1/" method = "POST">-->
                 <form id="listfield1form">
                     <h4>mops</h4>
-                    {% for item in d.mops1 %}
-                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mops1">
+                        <input type="radio" name="dbtable1" v-bind:value="item">${ item }
+                    </div>
                     <h4>mysum</h4>
-                    {% for item in d.mysum1 %}
-                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mysum1">
+                        <input type="radio" name="dbtable1" v-bind:value="item">${ item }
+                    </div>
                     <h4>summary</h4>
-                    {% for item in d.summary1 %}
-                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in summary1">
+                        <input type="radio" name="dbtable1" v-bind:value="item">${ item }
+                    </div>
                     <h4>tse</h4>
-                    {% for item in d.tse1 %}
-                    <input type="radio" name=dbtable1 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'/>
+                    <div v-for="item in tse1">
+                        <input type="radio" name="dbtable1" v-bind:value="item">${ item }
+                    </div>
+                    <input type="submit" value="Show fields" class='btn btn-default'>
                 </form>
 
             </div>
             <div id=div11 style="background-color:green;color:black" class="col-md-5">
-                <!--<ul>-->
-                    <!--{% for item in d.fields1 %}-->
-                    <!--<li><button class='btn btn-default'>{{ item }}</button></li>-->
-                    <!--{% endfor %}-->
-                <!--</ul>-->
+            <script>
+              new Vue({
+                el: '#listfield1form',
+                delimiters: ['${', '}'],
+                data: {
+                  mops1:{{d.mops1|safe}},
+                  mysum1:{{d.mysum1|safe}},
+                  summary1:{{d.summary1|safe}},
+                  tse1:{{d.tse1|safe}},
+                }
+              })
+            </script>
             <script>
             $(function() {
                 $('#div10 form input[type="submit"]').on('click', function() {
                     $.getJSON($SCRIPT_ROOT + '/listfield1ajax/', {
                     data: $("#listfield1form").serialize(),
                     }, function(data) {
-                        var roots = data.fields1.map(function(x){
-                            return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
-                        });
+                        var roots = data.fields1.map(x => `<li><button class='btn btn-info'>${x}</button></li>`);
                         var y = document.getElementById("div11");
-                        y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                        y.innerHTML = `<ul>${roots.join('')}</ul>`;
                     });
                 return false;
                 });
@@ -422,14 +268,14 @@ function fa(){
             <!-- <form action = "/mp/" method = "POST">    div should be inside form -->
             <form id = "mpform">
             <div id=div12  style="background-color:red;color:black" class="col-md-5">
-                    <ul>
-                        {% for item in d.cols1 %}
-                        <li><button class='btn btn-default'>{{ item }}</button></li>
-                        {% endfor %}
-                        {% for item in d.cols3 %}
-                        <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true/>
-                        {% endfor %}
-                    </ul>
+                <ul>
+                    {% for item in d.cols1 %}
+                    <li><button class='btn btn-default'>{{ item }}</button></li>
+                    {% endfor %}
+                    {% for item in d.cols3 %}
+                    <input type=checkbox name=cols1 class={{ item[1] }} value={{ item[0] }} checked = true/>
+                    {% endfor %}
+                </ul>
                 <input type="submit" value="query"/>
             </div>
             </form>
@@ -449,41 +295,47 @@ function fa(){
                 <!--<form action = "/listfield2/" method = "POST">    should contain '/' in tail-->
                 <form id = "listfield2form">
                     <h4>mops</h4>
-                    {% for item in d.mops %}
-                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mops">
+                        <input type="radio" name="dbtable2" v-bind:value="item">${ item }
+                    </div>
                     <h4>mysum</h4>
-                    {% for item in d.mysum %}
-                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in mysum">
+                        <input type="radio" name="dbtable2" v-bind:value="item">${ item }
+                    </div>
                     <h4>summary</h4>
-                    {% for item in d.summary %}
-                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
+                    <div v-for="item in summary">
+                        <input type="radio" name="dbtable2" v-bind:value="item">${ item }
+                    </div>
                     <h4>tse</h4>
-                    {% for item in d.tse %}
-                    <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
-                    {% endfor %}
-                    <input type="submit" value="Show fields" class='btn btn-default'/>
+                    <div v-for="item in tse">
+                        <input type="radio" name="dbtable2" v-bind:value="item">${ item }
+                    </div>
+                    <input type="submit" value="Show fields" class='btn btn-default'>
+
                 </form>
             </div>
             <div id=div15 style="background-color:green;color:black" class="col-md-5">
-                <!--<ul>-->
-                    <!--{% for item in d.fields2 %}-->
-                    <!--<li><button class='btn btn-default'>{{ item }}</button></li>-->
-                    <!--{% endfor %}-->
-                <!--</ul>-->
+                <script>
+                  new Vue({
+                    el: '#listfield2form',
+                    delimiters: ['${', '}'],
+                    data: {
+                      mops:{{d.mops|safe}},
+                      mysum:{{d.mysum|safe}},
+                      summary:{{d.summary|safe}},
+                      tse:{{d.tse|safe}},
+                    }
+                  })
+                </script>
                 <script>
                 $(function() {
                     $('#div14 form input[type="submit"]').on('click', function() {
                         $.getJSON($SCRIPT_ROOT + '/listfield2ajax/', {
                         data: $("#listfield2form").serialize(),
                         }, function(data) {
-                            var roots = data.fields2.map(function(x){
-                                return `<li><button class='btn btn-info'>{0}</button></li>`.format(x);
-                            });
+                            var roots = data.fields2.map(x => `<li><button class='btn btn-info'>${x}</button></li>`);
                             var y = document.getElementById("div15");
-                            y.innerHTML = "<ul>"+roots.join('')+"</ul>";
+                            y.innerHTML = `<ul>${roots.join('')}</ul>`;
                         });
                     return false;
                     });
@@ -523,14 +375,14 @@ function fa(){
         </div>
         {% include "ysajax.html" %} <!--don't put this in div-->
     </div>
-    <div id="tabs-8" class="tab-pane">
+    <div id="tabs-report" class="tab-pane">
         {% include "reportajax.html" %}
     </div>
 
-{% include "tableajax2.html" %}
+    {% include "tableajax2.html" %}
 
   <!--</div>-->
-    <div id="tabs-11" class="tab-pane active">
+    <div id="tabs-react" class="tab-pane active">
         <div id="root"></div>
         <div id="root1"></div>
         <div id="root2"></div>
@@ -543,21 +395,19 @@ function fa(){
         </script>
         <script type="text/babel">
           ReactDOM.render(
-        <div>
-        <h4>mops</h4>
-        {% for item in d.mops %}
-        <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
-        {% endfor %}
-
-        </div>
-          ,
+            <div>
+            <h4>mops</h4>
+            {% for item in d.mops %}
+            <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
+            {% endfor %}
+            </div>
+            ,
             document.getElementById('root2')
           );
         </script>
 
     </div>
-    <div id="tabs-12" class="tab-pane">
-
+    <div id="tabs-table" class="tab-pane">
 
     </div>
     <div id="tabs-vue" class="tab-pane">
@@ -565,125 +415,23 @@ function fa(){
     </div>
 
   </div>
+  <div id="ex3">
+  <child message="hello!" a='wo'></child>
+  </div>
+  <script>
+    Vue.component('child', {
+      // declare the props
+      props: ['message','a'],
+      delimiters: ['${', '}'],
+      // just like data, the prop can be used inside templates
+      // and is also made available in the vm as this.message
+      template: '<span>${ message }${ a }</span>'
+    })
+    new Vue({
+      el: '#ex3',
+    })
 
-
-<!-- <script type=text/javascript>
-  $(function() {
-    $('a#calculate').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/ajax/', {
-        aa: $('input[name="a"]').val(),
-        bb: $('input[name="b"]').val()
-      }, function(data) {
-        $("#result").text(data.result1*data.result2);
-      });
-      return false;
-    });
-  });
-</script>
-<p><input type=text size=5 name=a> +
-   <input type=text size=5 name=b> =
-   <span id=result>?</span>
-<p><a href=# id=calculate>calculate server side</a> -->
-
-<!--<script type=text/javascript>-->
-<!--if (!String.prototype.format) {-->
-    <!--String.prototype.format = function() {-->
-        <!--var args = arguments;-->
-        <!--return this.replace(/{(\d+)}/g, function(match, number) {-->
-        <!--return typeof args[number] != 'undefined'-->
-          <!--? args[number]-->
-          <!--: match-->
-        <!--;-->
-        <!--});-->
-    <!--};-->
-<!--}-->
-<!--var i=1;-->
-<!--$(function() {-->
-<!--$('#b1').bind('click', function() {-->
-    <!--var d=`<div id = "dy{0}" className="few">{0}</div>-->
-      <!--<form action = "/scale1/" method = "POST">-->
-          <!--<input type="submit" name="dy{0}" value="raw"/>-->
-          <!--<input type="submit" name="dy{0}" value="normalize"/>-->
-          <!--<input type="submit" name="dy{0}" value="remove"/>-->
-      <!--</form>`.format(i)-->
-  <!--$('#tabs-13').append(d);-->
-
-  <!--$.getJSON($SCRIPT_ROOT + '/ajax1/', {-->
-    <!--aa: $('#formajax').serialize()-->
-  <!--}, function(data) {-->
-    <!--$("#result1").text(data.result1);-->
-  <!--});-->
-  <!--i+=1;-->
-  <!--return false;-->
-<!--});-->
-<!--});-->
-<!--</script>-->
-
-<!-- <form id="formajax">
-<input type=checkbox name="c1" value="x"> +
-   <input type=checkbox name="c1" value="y"> =
-   <button id=b1>answer</button>
-</form>
-    <div id="result1">??</div> -->
-
-{{d.tab|safe}}
-{{d.cl|safe}}
-
-<!--<script>-->
-<!--var sync;-->
-<!--var gs;-->
-
-<!--window.update = function() {-->
-    <!--var chk = document.getElementById('chk-sync').checked;-->
-
-    <!--if(chk) {-->
-        <!--sync = Dygraph.synchronize(gs,{range: false});-->
-    <!--}-->
-    <!--else {-->
-        <!--sync.detach();-->
-	    <!--for (i = 0; i < 2; ++i) {-->
-			<!--gs[i].updateOptions({-->
-          <!--dateWindow: null,-->
-			    <!--valueRange: null-->
-		    <!--});-->
-        <!--}-->
-    <!--}-->
-<!--}-->
-<!--</script>-->
-
-
-<!-- <button id="b">click</button>
-<button id="dyb">dygraphsajax</button>
-<div id="dygraphsajax"></div> -->
-<!--<input type="checkbox" id="chk-sync" onchange="update()"><label for="chk-sync">Sync</label>-->
-<!--<script type=text/javascript>-->
-<!--gs = [];-->
-<!--var w=0;-->
-  <!--$(function() {-->
-    <!--$('#dyb').bind('click', function() {-->
-        <!--var d=`<div id = "dygraphsajax{0}" className="few"></div>`.format(w)-->
-        <!--var id ='dygraphsajax'+w-->
-        <!--$('#tabs-1').append(d);-->
-      <!--$.getJSON($SCRIPT_ROOT + '/dygraphsajax/', {-->
-        <!--aa: 0,-->
-        <!--bb: 1-->
-      <!--}, function(data) {-->
-          <!--gs.push(new Dygraph(document.getElementById(id),-->
-                <!--[-->
-                  <!--[1,10,100,10],-->
-                  <!--[2,20,'NaN',30],-->
-                  <!--[3,'NaN',60,40],-->
-                  <!--[4,70,80,20]-->
-                <!--],-->
-                <!--{-->
-                  <!--labels: [ "x", "A", "B", "C" ]-->
-                <!--}));-->
-      <!--});-->
-      <!--w+=1-->
-      <!--return false;-->
-    <!--});-->
-  <!--});-->
-<!--</script>-->
-
+  </script>
+{% include "bottom.html" %}
 </body>
 </html>

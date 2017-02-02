@@ -14,9 +14,13 @@
     <currency-input label="Discount" v-model="discount"></currency-input>
     <p>Total: ${{ total }}</p>
   </div>
-
 <script>
-
+function printArgs() {
+  for (let x of arguments) {
+    console.log(x);
+  }
+}
+printArgs('a', 'b');
 Vue.component('currency-input', {
   template: `
   <div>
@@ -80,16 +84,51 @@ new Vue({
     }
   }
 })
-
 </script>
+
 <button>Default</button>
+<div id="example-3">
+  <input v-model="parentMsg"><br>
+<child :message="parentMsg"></child>
+</div>
 <script>
+  Vue.component('child', {
+    // declare the props
+    props: ['message'],
+    delimiters: ['${', '}'],
+    // just like data, the prop can be used inside templates
+    // and is also made available in the vm as this.message
+    template: '<span>${ message }</span>'
+  })
+  new Vue({
+    el: '#example-3',
+    data:{
+      parentMsg:''
+    }
+  })
+
+  var data = { counter: 0 }
+  Vue.component('simple-counter', {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    // data is technically a function, so Vue won't
+    // complain, but we return the same object
+    // reference for each component instance
+    data: function () {
+      return data
+    }
+  })
+  new Vue({
+    el: '#example-2'
+  })
+
   var name = "Bob", time = "today";
-  $(document).ready(function(){
-    $("button").click(function(){
-      alert(`Hello ${name}, how are you ${time}?`);
-    });
-  });
+  // $(document).ready(function(){
+  //   $("button").click(function(){
+  //     alert(`Hello ${name}, how are you ${time}?`);
+  //   });
+  // });
+
+
 </script>
 </body>
 

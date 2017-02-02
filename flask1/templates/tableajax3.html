@@ -41,25 +41,25 @@ $(function() {
             console.log(1);
             //bal
             var span = document.getElementById("balance1");
-            span.innerHTML=`${data.tb1[1]}>>>${data.compid_report1}${data.compname1}`;
-            var roots = data.report1[1][0].slice(1,-1).map(x =>`
-              <th style='text-align: right;width: 100%;'>${x[0]}</th><th style='text-align: right;font-size: 14px;'>%</th>
+            span.innerHTML=`${data.tb1.bal}>>>${data.compid_report1}${data.compname1}`;
+            var roots = data.balSheet[0].slice(1,-1).map(x =>`
+              <th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>
               `);
-            var thead = `<thead><tr><th style='text-align: center'>${data.report1[1][0][0][0]}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
-            var tbody = data.report1[1].slice(1).map(function(x){
+            var thead = `<thead><tr><th style='text-align: center'>${data.balSheet[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+            var tbody = data.balSheet.slice(1).map(function(x){
                 var td= x.slice(1, -1).map(x =>`
-                  <td><div style="background-image: linear-gradient( to right, ${x[2]} ${x[1]}%, #FFF 0px);text-align: right;">${x[0]}</div></td>
-                  <td style="text-align: right;font-size: 12px;">${x[3]}</td>
+                  <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div></td>
+                  <td style="text-align: right;font-size: 12px;">${x.percent}</td>
                   `);
-                return `<tr><td><div>${x[0][0]}</div></td>${td.join('')}<td>${x.slice(-1)[0][0]}</td></tr>`; //slice return an array, not a constant
+                return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
             });
             var table = document.getElementById("bal");
             table.innerHTML = `<table id="report3" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
 
             $(function() {
-                for (var i = 0; i < data.lspan1.slice(1).length; i++) {
-                  console.log(`sparklinebal:`, i, data.lspan1.slice(1)[i].slice(1, -1));
-                  $('.bal'+(i+1)).sparkline(data.lspan1.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+                for (var i = 0; i < data.lsparkline1.slice(1).length; i++) {
+                  console.log(`sparklinebal:`, i, data.lsparkline1.slice(1)[i].slice(1, -1));
+                  $('.bal'+(i+1)).sparkline(data.lsparkline1.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
                   minSpotColor: '#00ff00',
                   maxSpotColor: '#ff0000'});
                 }
@@ -81,22 +81,23 @@ $(function() {
             $('#tabs a[href="#tabs-income"]').click();
             // inc
             var span = document.getElementById("income1");
-            span.innerHTML=`${data.tb1[0]}>>>${data.compid_report1}${data.compname1}`;
-            var roots = data.report1[0][0].slice(1,-1).map(x =>`<th style='text-align: right;width: 100%;'>${x[0]}</th><th style='text-align: right;font-size: 14px;'>%</th>`);
-            var thead = `<thead><tr><th style='text-align: center'>${data.report1[0][0][0][0]}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
-            var tbody = data.report1[0].slice(1).map(function(x){
+            span.innerHTML=`${data.tb1.inc}>>>${data.compid_report1}${data.compname1}`;
+            var roots = data.incStatement[0].slice(1,-1).map(x =>`<th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>`);
+            var thead = `<thead><tr><th style='text-align: center'>${data.incStatement[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+            var tbody = data.incStatement.slice(1).map(function(x){
                 var td= x.slice(1, -1).map(x =>`
-                  <td><div style="background-image: linear-gradient( to right, ${x[2]} ${x[1]}%,  #FFF 0px);text-align: right;">${x[0]}</div></td>
-                  <td style="text-align: right;font-size: 12px;">${x[3]}</td>
+                  <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%,  #FFF 0px);text-align: right;">${x.value}</div></td>
+                  <td style="text-align: right;font-size: 12px;">${x.percent}</td>
                   `);
-                return `<tr><td><div>${x[0][0]}</div></td>${td.join('')}<td>${x.slice(-1)[0][0]}</td></tr>`; //slice return an array, not a constant
+                return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
             });
             var table = document.getElementById("inc");
             table.innerHTML = `<table id="report2" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
+
             $(function() {
-                for (var i = 0; i < data.lspan.slice(1).length; i++) {
-                  console.log(`sparklineinc:`, i, data.lspan.slice(1)[i].slice(1, -1));
-                  $('.inc'+(i+1)).sparkline(data.lspan.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+                for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
+                  console.log(`sparklineinc:`, i, data.lsparkline.slice(1)[i].slice(1, -1));
+                  $('.inc'+(i+1)).sparkline(data.lsparkline.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
                   minSpotColor: '#00ff00',
                   maxSpotColor: '#ff0000'});
                 }
@@ -131,24 +132,23 @@ $(function() {
             console.log(1);
             // inc
             var span = document.getElementById("income1");
-            span.innerHTML=`{0}>>>{1}{2}`.format(data.tb1[0], data.compid_report1, data.compname1);
-            var roots = data.report1[0][0].slice(1,-1).map(function(x){
-                return "<th style='text-align: right;width: 100%;'>"+x[0]+"</th><th style='text-align: right;font-size: 14px;'>%</th>";
-            });
-            var thead = `<thead><tr><th style='text-align: center'>{0}</th>`.format(data.report1[0][0][0][0])+roots.join('')+`<th>Sparklines</th></tr></thead>`;
-            var tbody = data.report1[0].slice(1).map(function(x){
-                var td= x.slice(1, -1).map(function(x){
-                    return `<td><div style="background-image: linear-gradient( to right, {0} {1}%,  #FFF 0px);text-align: right;">{2}</div></td><td style="text-align: right;font-size: 12px;">{3}</td>`.format(x[2], x[1], x[0], x[3]);
-                });
-                return `<tr><td><div>{0}</div></td>`.format(x[0][0]) + td.join('') + `<td>{0}</td></tr>`.format(x.slice(-1)[0][0]); //slice return an array, not a constant
+            span.innerHTML=`${data.tb1.inc}>>>${data.compid_report1}${data.compname1}`;
+            var roots = data.incStatement[0].slice(1,-1).map(x =>`<th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>`);
+            var thead = `<thead><tr><th style='text-align: center'>${data.incStatement[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+            var tbody = data.incStatement.slice(1).map(function(x){
+                var td= x.slice(1, -1).map(x =>`
+                  <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%,  #FFF 0px);text-align: right;">${x.value}</div></td>
+                  <td style="text-align: right;font-size: 12px;">${x.percent}</td>
+                  `);
+                return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
             });
             var table = document.getElementById("inc");
-            table.innerHTML = `<table id="report2" class="display compact nowrap">`+thead +`<tbody>`+ tbody.join('')+`</tbody></table>`;
+            table.innerHTML = `<table id="report2" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
 
             $(function() {
-                for (var i = 0; i < data.lspan.slice(1).length; i++) {
-                  console.log(`sparklineinc:`, i, data.lspan.slice(1)[i].slice(1, -1));
-                  $('.inc'+(i+1)).sparkline(data.lspan.slice(1)[i].slice(1, -1), {width:'100px',height:'25px',    spotColor: undefined,
+                for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
+                  console.log(`sparklineinc:`, i, data.lsparkline.slice(1)[i].slice(1, -1));
+                  $('.inc'+(i+1)).sparkline(data.lsparkline.slice(1)[i].slice(1, -1), {width:'100px',height:'25px',    spotColor: undefined,
                   minSpotColor: '#00ff00',
                   maxSpotColor: '#ff0000'});
                 }
@@ -170,23 +170,25 @@ $(function() {
             $('#tabs a[href="#tabs-balance"]').click();
             //bal
             var span = document.getElementById("balance1");
-            span.innerHTML=`{0}>>>{1}{2}`.format(data.tb1[1], data.compid_report1, data.compname1);
-            var roots = data.report1[1][0].slice(1,-1).map(function(x){
-                return "<th style='text-align: right;width: 100%;'>"+x[0]+"</th><th style='text-align: right;font-size: 14px;'>%</th>";
-            });
-            var thead = `<thead><tr><th style='text-align: center'>{0}</th>`.format(data.report1[1][0][0][0])+roots.join('')+`<th>Sparklines</th></tr></thead>`;
-            var tbody = data.report1[1].slice(1).map(function(x){
-                var td= x.slice(1, -1).map(function(x){
-                    return `<td><div style="background-image: linear-gradient( to right, {0} {1}%,  #FFF 0px);text-align: right;">{2}</div></td><td style="text-align: right;font-size: 12px;">{3}</td>`.format(x[2], x[1], x[0], x[3]);
-                });
-                return `<tr><td><div>{0}</div></td>`.format(x[0][0]) + td.join('') + `<td>{0}</td></tr>`.format(x.slice(-1)[0][0]); //slice return an array, not a constant
+            span.innerHTML=`${data.tb1.bal}>>>${data.compid_report1}${data.compname1}`;
+            var roots = data.balSheet[0].slice(1,-1).map(x =>`
+              <th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>
+              `);
+            var thead = `<thead><tr><th style='text-align: center'>${data.balSheet[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+            var tbody = data.balSheet.slice(1).map(function(x){
+                var td= x.slice(1, -1).map(x =>`
+                  <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div></td>
+                  <td style="text-align: right;font-size: 12px;">${x.percent}</td>
+                  `);
+                return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
             });
             var table = document.getElementById("bal");
-            table.innerHTML = `<table id="report3" class="display compact nowrap">`+thead +`<tbody>`+ tbody.join('')+`</tbody></table>`;
+            table.innerHTML = `<table id="report3" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
+
             $(function() {
-                for (var i = 0; i < data.lspan1.slice(1).length; i++) {
-                  console.log(`sparklinebal:`, i, data.lspan1.slice(1)[i].slice(1, -1));
-                  $('.bal'+(i+1)).sparkline(data.lspan1.slice(1)[i].slice(1, -1), {width:'100px',height:'25px',    spotColor: undefined,
+                for (var i = 0; i < data.lsparkline1.slice(1).length; i++) {
+                  console.log(`sparklinebal:`, i, data.lsparkline1.slice(1)[i].slice(1, -1));
+                  $('.bal'+(i+1)).sparkline(data.lsparkline1.slice(1)[i].slice(1, -1), {width:'100px',height:'25px',    spotColor: undefined,
                   minSpotColor: '#00ff00',
                   maxSpotColor: '#ff0000'});
                 }

@@ -366,7 +366,7 @@ def plot1ajax():
     global i, L, tab
     print(i)
     cols = request.args.get('data')
-    cols = cols.replace('=', '').replace('plot1', '')
+    cols = cols.replace('=', '')
     cols = [parse.unquote(i) for i in cols.split('&')]
     print('plot1:', cols)
 
