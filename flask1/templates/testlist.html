@@ -379,7 +379,7 @@
         {% include "reportajax.html" %}
     </div>
 
-    {% include "tableajax.html" %}
+    {% include "tableajax1.html" %}
 
   <!--</div>-->
     <div id="tabs-react" class="tab-pane active">
@@ -398,7 +398,7 @@
             <div>
             <h4>mops</h4>
             {% for item in d.mops %}
-            <input type="radio" name=dbtable2 value="{{ item }}"/>{{ item }}<br/>
+            <input type="radio" name="dbtable2" value="{{ item }}"/>{{ item }}<br/>
             {% endfor %}
             </div>
             ,
