@@ -578,6 +578,7 @@ def rep1ajax():
     compid1 = getPostParameter(PostParameters('data'), 'compid_report1')
     d['compid_report1'] = compid1
     print('compid_report1:', compid1)
+    #---- income statement ----
     table = 'ifrs前後-綜合損益表(季)-一般業'
     tb1['inc'] = table
     df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid1), conn)
@@ -636,7 +637,6 @@ def rep1ajax():
             dfWidth[c] = df[c].apply(lambda x: x / pem * 100)
         except:
             pass
-
     for i in range(len(dfWidth)):
         for j in range(dfWidth.shape[1]):
             try:
@@ -653,7 +653,7 @@ def rep1ajax():
     dfPercent.ix[:, 1:] = dfPercent.ix[:, 1:].applymap('{:,.0f}'.format) # this will convert float to object
     # df = df.fillna('')
     dfPercent = dfPercent.replace('nan', '')
-
+    df[['基本每股盈餘（元）']] = df[['基本每股盈餘（元）']].applymap('{:,.2f}'.format)  # this will convert float to object
     lspan=['<span class=inc{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
     l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
     lspan = [None for i in list(df)] # None for percent, width, color
@@ -683,7 +683,7 @@ def rep1ajax():
         incStatement.append(row)
     d['incStatement'] = incStatement
     print('incStatement')
-
+    #---- balance sheet ----
     table = 'ifrs前後-資產負債表-一般業'
     tb1['bal'] = table
     df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid1), conn)
@@ -800,6 +800,77 @@ def rep1ajax():
 
     d['balSheet'] = balSheet
     print('balSheet')
+
+    #----cash flow----
+    database = 'xbrlcash'
+    conn = connect('{}.sqlite3'.format(database))
+    c = conn.cursor()
+    table = 'ifrs現金流量表'
+    tb1['cash'] = table
+    df = read_sql_query('select * from `{}-{}`'.format(table, compid1), conn)
+    df['年']=df['年'].astype(int)
+    df['季'] = df['季'].astype(int)
+    df.dtypes
+
+    if len(df['公司代號'].unique()) == 1:
+        d['companyId'] = df['公司代號'].unique()[0]
+    else:
+        print("len(d['companyId']) is not 1")
+
+    floatCols = [col for col in list(df) if col not in ['年', '季', '公司代號']]
+    df.ix[:, floatCols] = df.ix[:, floatCols].replace('--', 0).astype(float)
+
+    smd={1:'3/31', 2:'6/30', 3:'9/30', 4:'12/31'}
+    df.insert(0, '年月日', df['年'].astype(str) + '/' + df['季'].apply(lambda x: smd[x]))
+    color={1:'rgb(0,255,0)', 2:'rgb(0, 190, 255)', 3:'orange', 4:'rgb(255, 75, 140)'}
+    dfColor = df.copy()
+    dfColor.dtypes
+    for i in color:
+        dfColor.ix[df.季==i, floatCols]=color[i]
+
+    df = df.drop(['年', '季', '公司代號'], axis=1)
+    dfColor = dfColor.drop(['年', '季', '公司代號'], axis=1)
+    dfWidth = df.copy()
+    max = dfWidth[floatCols].max().max()
+    dfWidth = dfWidth.fillna(0)
+    dfWidth[floatCols] = dfWidth[floatCols].apply(lambda x: x / max * 100)
+    df.dtypes
+
+    for i in range(len(dfWidth)):
+        for j in range(dfWidth.shape[1]):
+            try:
+                if dfWidth.iloc[i, j]<0:
+                    dfWidth.iloc[i, j]=dfWidth.iloc[i, j]*(-1)
+            except:
+                pass
+
+    lspan=['<span class=inc{}>sparklines</span>'.format(i) for i, j in enumerate(list(df))]
+    l = vstack((array([list(df)]), array(df), array([lspan]))).transpose().tolist()
+    lspan = [None for i in list(df)] # None for percent, width, color
+    lw = vstack((array([list(dfWidth)]), array(dfWidth), array([lspan]))).transpose().tolist()
+    lc = vstack((array([list(dfColor)]), array(dfColor), array([lspan]))).transpose().tolist()
+    for i in lw:
+        i[0] = 0.0
+    for i in lc:
+        i[0] = 'white'
+
+    lsparkline = []
+    for x in l:
+        a = ['null' if i=='' else i for i in x]
+        b = [replaceNull(i) for i in a]
+        lsparkline.append(b)
+
+    d['lsparkline'] = lsparkline
+
+    cashFlow = []
+    for i in range(shape(l)[0]):
+        row = []
+        for j in range(shape(l)[1]):
+            row.append({'value': replaceNull(l[i][j]), 'width': replaceNull(lw[i][j]), 'color': replaceNull(lc[i][j])})
+        cashFlow.append(row)
+    d['cashFlow'] = cashFlow
+    print('cashFlow')
+    # --------
     d['tb1'] = tb1
     d['tab'] = '#tabs-9'
-    return jsonify({'incStatement':incStatement, 'balSheet':balSheet, 'lsparkline': d['lsparkline'], 'lsparkline1': d['lsparkline1'], 'compid_report1': d['compid_report1'], 'compname1': d['compname1'], 'tb1': d['tb1'], 'tab': d['tab']})
+    return jsonify({'incStatement':incStatement, 'balSheet':balSheet, 'cashFlow':cashFlow, 'lsparkline': d['lsparkline'], 'lsparkline1': d['lsparkline1'], 'compid_report1': d['compid_report1'], 'compname1': d['compname1'], 'tb1': d['tb1'], 'tab': d['tab']})

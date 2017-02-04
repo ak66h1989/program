@@ -18,7 +18,12 @@
       <span><a href=#income1>To income statement</a></span>
   </form>
   <span><button id=enable1>fix column</button></span>
-
+  <form id="rep1cashform">
+      公司代號:<input type="text" name=compid_report1 value=5522>
+      <input type="submit" value="query">
+      <span id=cashflow></span>
+  </form>
+  <span><button id=enable2>fix column</button></span>
 </div>
 
 <div id="tabs-income" class="tab-pane">
@@ -30,21 +35,46 @@
     </div>
 </div>
 
+<div id="tabs-cashflow" class="tab-pane">
+  <div class="row" id="cash">
+  </div>
+</div>
+
 <script>
 function incStatement(data) {
   var span = document.getElementById("income1");
   span.innerHTML=`${data.tb1.inc}>>>${data.compid_report1}${data.compname1}`;
-  var roots = data.incStatement[0].slice(1,-1).map(x =>`<th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>`);
-  var thead = `<thead><tr><th style='text-align: center'>${data.incStatement[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+  var innerThs = data.incStatement[0].slice(1,-1).map(x =>`
+    <th style='text-align: right;width: 100%;'>${x.value}</th>
+    <th style='text-align: right;font-size: 14px;'>%</th>`);
+  var thead = `
+    <thead>
+      <tr>
+        <th style='text-align: center'>${data.incStatement[0][0].value}</th>
+        ${innerThs.join('')}
+        <th>Sparklines</th>
+      </tr>
+    </thead>`;
   var tbody = data.incStatement.slice(1).map(function(x){
-      var td= x.slice(1, -1).map(x =>`
-        <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%,  #FFF 0px);text-align: right;">${x.value}</div></td>
+      var innerTds= x.slice(1, -1).map(x =>`
+        <td>
+          <div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div>
+        </td>
         <td style="text-align: right;font-size: 12px;">${x.percent}</td>
         `);
-      return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
+      return `
+        <tr>
+          <td><div>${x[0].value}</div></td>
+          ${innerTds.join('')}
+          <td>${x.slice(-1)[0].value}</td>
+        </tr>`; //slice return an array, not a constant
   });
   var table = document.getElementById("inc");
-  table.innerHTML = `<table id="report2" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
+  table.innerHTML = `
+    <table id="report2" class="display compact nowrap">
+      ${thead}
+      <tbody>${tbody.join('')}</tbody>
+    </table>`;
 
   $(function() {
       for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
@@ -71,19 +101,38 @@ function incStatement(data) {
 function balSheet(data) {
   var span = document.getElementById("balance1");
   span.innerHTML=`${data.tb1.bal}>>>${data.compid_report1}${data.compname1}`;
-  var roots = data.balSheet[0].slice(1,-1).map(x =>`
-    <th style='text-align: right;width: 100%;'>${x.value}</th><th style='text-align: right;font-size: 14px;'>%</th>
+  var innerThs = data.balSheet[0].slice(1,-1).map(x =>`
+    <th style='text-align: right;width: 100%;'>${x.value}</th>
+    <th style='text-align: right;font-size: 14px;'>%</th>
     `);
-  var thead = `<thead><tr><th style='text-align: center'>${data.balSheet[0][0].value}</th>${roots.join('')}<th>Sparklines</th></tr></thead>`;
+  var thead = `
+    <thead>
+      <tr>
+        <th style='text-align: center'>${data.balSheet[0][0].value}</th>
+        ${innerThs.join('')}
+        <th>Sparklines</th>
+      </tr>
+    </thead>`;
   var tbody = data.balSheet.slice(1).map(function(x){
-      var td= x.slice(1, -1).map(x =>`
-        <td><div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div></td>
+      var innerTds= x.slice(1, -1).map(x =>`
+        <td>
+          <div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div>
+        </td>
         <td style="text-align: right;font-size: 12px;">${x.percent}</td>
         `);
-      return `<tr><td><div>${x[0].value}</div></td>${td.join('')}<td>${x.slice(-1)[0].value}</td></tr>`; //slice return an array, not a constant
+      return `
+      <tr>
+        <td><div>${x[0].value}</div></td>
+        ${innerTds.join('')}
+        <td>${x.slice(-1)[0].value}</td>
+      </tr>`; //slice return an array, not a constant
   });
   var table = document.getElementById("bal");
-  table.innerHTML = `<table id="report3" class="display compact nowrap">${thead}<tbody>${tbody.join('')}</tbody></table>`;
+  table.innerHTML = `
+    <table id="report3" class="display compact nowrap">
+      ${thead}
+      <tbody>${tbody.join('')}</tbody>
+    </table>`;
 
   $(function() {
       for (var i = 0; i < data.lsparkline1.slice(1).length; i++) {
@@ -108,22 +157,80 @@ function balSheet(data) {
     });
 
 }
+function cashFlow(data) {
+  var span = document.getElementById("cashflow");
+  span.innerHTML=`${data.tb1.cash}>>>${data.compid_report1}${data.compname1}`;
+  var innerThs = data.cashFlow[0].slice(1,-1).map(x =>`
+    <th style='text-align: right;width: 100%;'>${x.value}</th>`);
+  var thead = `
+    <thead>
+      <tr>
+        <th style='text-align: center'>${data.cashFlow[0][0].value}</th>
+        ${innerThs.join('')}
+        <th>Sparklines</th>
+      </tr>
+    </thead>`;
+  var tbody = data.cashFlow.slice(1).map(function(x){
+      var innerTds= x.slice(1, -1).map(x =>`
+        <td>
+          <div style="background-image: linear-gradient( to right, ${x.color} ${x.width}%, #FFF 0px);text-align: right;">${x.value}</div>
+        </td>
+        `);
+      return `
+        <tr>
+          <td><div>${x[0].value}</div></td>
+          ${innerTds.join('')}
+          <td>${x.slice(-1)[0].value}</td>
+        </tr>`; //slice return an array, not a constant
+  });
+  var table = document.getElementById("cash");
+  table.innerHTML = `
+    <table id="cashFlowStatement" class="display compact nowrap">
+      ${thead}
+      <tbody>${tbody.join('')}</tbody>
+    </table>`;
+
+  $(function() {
+      for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
+        console.log(`sparklinecash:`, i, data.lsparkline.slice(1)[i].slice(1, -1));
+        $('.inc'+(i+1)).sparkline(data.lsparkline.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+        minSpotColor: '#00ff00',
+        maxSpotColor: '#ff0000'});
+      }
+  });
+
+    var table4 =$('#cashFlowStatement').DataTable({
+      colReorder: true,
+      scrollY:        820,
+      scrollX:        true,
+      scrollCollapse: true,
+      paging:         false,
+      searching: false,
+      info:     false,
+      ordering: false,
+      fixedColumns:   true,
+      fixedHeader: true
+    });
+}
 </script>
 
 <script>
 $(function() {
     $('#rep1incform input[type="submit"]').on('click', function() {
-        $('#tabs a[href="#tabs-balance"]').click();
+        // $('#tabs a[href="#tabs-balance"]').click();
         console.log(0);
         $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
         data: $(this).parent().serialize()
         }, function(data) {
             console.log(1);
             //bal
+            $('#tabs a[href="#tabs-balance"]').click();
             balSheet(data)
-            
-            $('#tabs a[href="#tabs-income"]').click();
+            //cash
+            $('#tabs a[href="#tabs-cashflow"]').click();
+            cashFlow(data)
             // inc
+            $('#tabs a[href="#tabs-income"]').click();
             incStatement(data)
         });
     return false;
@@ -134,17 +241,43 @@ $(function() {
 $(function() {
     $('#rep1balform input[type="submit"]').on('click', function() {
         console.log(0);
-        $('#tabs a[href="#tabs-income"]').click(); //need click before table draw so that fixedColumns can work
+        // $('#tabs a[href="#tabs-income"]').click(); //need click before table draw so that fixedColumns can work
         $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
         data: $(this).parent().serialize()
         }, function(data) {
             console.log(1);
             // inc
+            $('#tabs a[href="#tabs-income"]').click();
             incStatement(data)
-
-            $('#tabs a[href="#tabs-balance"]').click();
+            //cash
+            $('#tabs a[href="#tabs-cashflow"]').click();
+            cashFlow(data)
             //bal
+            $('#tabs a[href="#tabs-balance"]').click();
             balSheet(data)
+        });
+    return false;
+    });
+});
+</script>
+<script>
+$(function() {
+    $('#rep1cashform input[type="submit"]').on('click', function() {
+        console.log(0);
+        // $('#tabs a[href="#tabs-income"]').click(); //need click before table draw so that fixedColumns can work
+        $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
+        data: $(this).parent().serialize()
+        }, function(data) {
+            console.log(1);
+            // inc
+            $('#tabs a[href="#tabs-income"]').click();
+            incStatement(data)
+            //bal
+            $('#tabs a[href="#tabs-balance"]').click();
+            balSheet(data)
+            //cash
+            $('#tabs a[href="#tabs-cashflow"]').click();
+            cashFlow(data)
         });
     return false;
     });
