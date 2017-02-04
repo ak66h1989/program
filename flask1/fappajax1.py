@@ -567,21 +567,21 @@ def replaceNull(x, y=''):
         return x
 @app.route('/rep1ajax/', methods=['GET', 'POST'])
 def rep1ajax():
-    global incStatement, balSheet, tb1, d, compid1
-    # compid1='5522'
+    global incStatement, balSheet, tb1, d, companyId, sparkline
+    # companyId='5522'
     # table = 'ifrs前後-綜合損益表(季)-一般業'
     # table = 'ifrs前後-資產負債表-一般業'
     tb1 = {}
+    sparkline={}
     database = 'summary'
     conn = connect('{}.sqlite3'.format(database))
     c = conn.cursor()
-    compid1 = getPostParameter(PostParameters('data'), 'compid_report1')
-    d['compid_report1'] = compid1
-    print('compid_report1:', compid1)
+    companyId = getPostParameter(PostParameters('data'), 'companyId')
+    print('companyId:', companyId)
     #---- income statement ----
     table = 'ifrs前後-綜合損益表(季)-一般業'
     tb1['inc'] = table
-    df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid1), conn)
+    df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, companyId), conn)
     df.dtypes
     col2 = {
         '營業成本': '&emsp;&emsp;營業成本',
@@ -601,9 +601,9 @@ def rep1ajax():
     df = df.rename(columns=col2)
 
     if len(df['公司名稱'].unique()) == 1:
-        d['compname1'] = df['公司名稱'].unique()[0]
+        d['companyName'] = df['公司名稱'].unique()[0]
     else:
-        print("len(d['compname1']) is not 1")
+        print("len(d['companyName']) is not 1")
 
     floatCols = [col for col in list(df) if col not in ['年', '季', '公司代號', '公司名稱']]
     df.ix[:, floatCols] = df.ix[:, floatCols].replace('--', 0).astype(float)
@@ -672,8 +672,8 @@ def rep1ajax():
         a = ['null' if i=='' else i for i in x]
         b = [replaceNull(i) for i in a]
         lsparkline.append(b)
-
-    d['lsparkline'] = lsparkline
+    sparkline['inc'] = lsparkline
+    # d['lsparkline'] = lsparkline
 
     incStatement = []
     for i in range(shape(l)[0]):
@@ -686,7 +686,7 @@ def rep1ajax():
     #---- balance sheet ----
     table = 'ifrs前後-資產負債表-一般業'
     tb1['bal'] = table
-    df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, compid1), conn)
+    df = read_sql_query('select * from `{}` where `公司代號`="{}"'.format(table, companyId), conn)
     df.dtypes
     col2 = {
         '流動資產': '&emsp;&emsp;流動資產',
@@ -713,9 +713,9 @@ def rep1ajax():
     df = df.rename(columns=col2)
 
     if len(df['公司名稱'].unique()) == 1:
-        d['compname1'] = df['公司名稱'].unique()[0]
+        d['companyName'] = df['公司名稱'].unique()[0]
     else:
-        print("len(d['compname1']) is not 1")
+        print("len(d['companyName']) is not 1")
 
     floatCols = [col for col in list(df) if col not in ['年', '季', '公司代號', '公司名稱']]
     df.ix[:, floatCols] = df.ix[:, floatCols].replace('--', 0).astype(float)
@@ -787,8 +787,8 @@ def rep1ajax():
         a = ['null' if i == '' else i for i in x]
         b = [replaceNull(i) for i in a]
         lsparkline.append(b)
-
-    d['lsparkline1'] = lsparkline
+    sparkline['bal'] = lsparkline
+    # d['lsparkline1'] = lsparkline
 
     balSheet = []
     for i in range(shape(l)[0]):
@@ -807,7 +807,7 @@ def rep1ajax():
     c = conn.cursor()
     table = 'ifrs現金流量表'
     tb1['cash'] = table
-    df = read_sql_query('select * from `{}-{}`'.format(table, compid1), conn)
+    df = read_sql_query('select * from `{}-{}`'.format(table, companyId), conn)
     df['年']=df['年'].astype(int)
     df['季'] = df['季'].astype(int)
     df.dtypes
@@ -820,13 +820,13 @@ def rep1ajax():
     floatCols = [col for col in list(df) if col not in ['年', '季', '公司代號']]
     df.ix[:, floatCols] = df.ix[:, floatCols].replace('--', 0).astype(float)
 
-    smd={1:'3/31', 2:'6/30', 3:'9/30', 4:'12/31'}
+    smd = {1:'3/31', 2:'6/30', 3:'9/30', 4:'12/31'}
     df.insert(0, '年月日', df['年'].astype(str) + '/' + df['季'].apply(lambda x: smd[x]))
-    color={1:'rgb(0,255,0)', 2:'rgb(0, 190, 255)', 3:'orange', 4:'rgb(255, 75, 140)'}
+    color = {1:'rgb(0,255,0)', 2:'rgb(0, 190, 255)', 3:'orange', 4:'rgb(255, 75, 140)'}
     dfColor = df.copy()
     dfColor.dtypes
     for i in color:
-        dfColor.ix[df.季==i, floatCols]=color[i]
+        dfColor.ix[df.季 == i, floatCols]=color[i]
 
     df = df.drop(['年', '季', '公司代號'], axis=1)
     dfColor = dfColor.drop(['年', '季', '公司代號'], axis=1)
@@ -859,8 +859,8 @@ def rep1ajax():
         a = ['null' if i=='' else i for i in x]
         b = [replaceNull(i) for i in a]
         lsparkline.append(b)
-
-    d['lsparkline'] = lsparkline
+    sparkline['cash'] = lsparkline
+    # d['lsparkline'] = lsparkline
 
     cashFlow = []
     for i in range(shape(l)[0]):
@@ -873,4 +873,4 @@ def rep1ajax():
     # --------
     d['tb1'] = tb1
     d['tab'] = '#tabs-9'
-    return jsonify({'incStatement':incStatement, 'balSheet':balSheet, 'cashFlow':cashFlow, 'lsparkline': d['lsparkline'], 'lsparkline1': d['lsparkline1'], 'compid_report1': d['compid_report1'], 'compname1': d['compname1'], 'tb1': d['tb1'], 'tab': d['tab']})
+    return jsonify({'incStatement':incStatement, 'balSheet':balSheet, 'cashFlow':cashFlow, 'sparkline': sparkline, 'companyId': str(d['companyId']), 'companyName': d['companyName'], 'tb1': d['tb1'], 'tab': d['tab']})

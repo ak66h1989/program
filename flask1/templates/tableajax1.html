@@ -1,29 +1,38 @@
 <link rel="stylesheet" type="text/css" href="../static/bower_components/datatables/media/css/dataTables.jqueryui.min.css">
 <script type="text/javascript" src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../static/bower_components/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
-
+<style>
+.hidden {
+    display: none;
+}
+.loading {
+    color: blue;
+}
+</style>
 <div id="tabs-report1" class="tab-pane">
 
   <form id="rep1incform">
-      公司代號:<input type="text" name=compid_report1 value=5522>
-      <input type="submit" value="query" id=sel>
-      <span id=income1></span>
-      <span><a href=#balance1>To balance sheet</a></span>
+      公司代號:<input type="text" name=companyId value=5522>
+      <input type="submit" value="query">
+      <span id=statementInc>ifrs前後-綜合損益表(季)-一般業</span>
+      <span id=companyIdInc class="loading"></span>
+      <span class="loading hidden">Loading ...</span>
   </form>
-  <span><button id=enable>fix column</button></span>
   <form id="rep1balform">
-      公司代號:<input type="text" name=compid_report1 value=5522>
+      公司代號:<input type="text" name=companyId value=5522>
       <input type="submit" value="query">
-      <span id=balance1></span>
-      <span><a href=#income1>To income statement</a></span>
+      <span id=statementBal>ifrs前後-資產負債表-一般業</span>
+      <span id=companyIdBal class="loading"></span>
+      <span class="loading hidden">Loading ...</span>
   </form>
-  <span><button id=enable1>fix column</button></span>
   <form id="rep1cashform">
-      公司代號:<input type="text" name=compid_report1 value=5522>
+      公司代號:<input type="text" name=companyId value=5522>
       <input type="submit" value="query">
-      <span id=cashflow></span>
+      <span id=statementCash>ifrs現金流量表</span>
+      <span id=companyIdCash class="loading"></span>
+      <span class="loading hidden">Loading ...</span>
   </form>
-  <span><button id=enable2>fix column</button></span>
+<span id="ajaxStart"></span>
 </div>
 
 <div id="tabs-income" class="tab-pane">
@@ -42,8 +51,10 @@
 
 <script>
 function incStatement(data) {
-  var span = document.getElementById("income1");
-  span.innerHTML=`${data.tb1.inc}>>>${data.compid_report1}${data.compname1}`;
+  var statementInc = document.getElementById("statementInc");
+  statementInc.innerHTML=`${data.tb1.inc}`;
+  var companyIdInc = document.getElementById("companyIdInc");
+  companyIdInc.innerHTML=`>>>${data.companyId}${data.companyName}`;
   var innerThs = data.incStatement[0].slice(1,-1).map(x =>`
     <th style='text-align: right;width: 100%;'>${x.value}</th>
     <th style='text-align: right;font-size: 14px;'>%</th>`);
@@ -77,15 +88,15 @@ function incStatement(data) {
     </table>`;
 
   $(function() {
-      for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
-        console.log(`sparklineinc:`, i, data.lsparkline.slice(1)[i].slice(1, -1));
-        $('.inc'+(i+1)).sparkline(data.lsparkline.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+      for (var i = 0; i < data.sparkline.inc.slice(1).length; i++) {
+        // console.log(`sparklineinc:`, i, data.sparkline.inc.slice(1)[i].slice(1, -1));
+        $('.inc'+(i+1)).sparkline(data.sparkline.inc.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
         minSpotColor: '#00ff00',
         maxSpotColor: '#ff0000'});
       }
   });
 
-    var table2 =$('#report2').DataTable({
+    $('#report2').DataTable({
       colReorder: true,
       scrollY:        820,
       scrollX:        true,
@@ -99,8 +110,10 @@ function incStatement(data) {
     });
 }
 function balSheet(data) {
-  var span = document.getElementById("balance1");
-  span.innerHTML=`${data.tb1.bal}>>>${data.compid_report1}${data.compname1}`;
+  var statementBal = document.getElementById("statementBal");
+  statementBal.innerHTML=`${data.tb1.bal}`;
+  var companyIdBal = document.getElementById("companyIdBal");
+  companyIdBal.innerHTML=`>>>${data.companyId}${data.companyName}`;
   var innerThs = data.balSheet[0].slice(1,-1).map(x =>`
     <th style='text-align: right;width: 100%;'>${x.value}</th>
     <th style='text-align: right;font-size: 14px;'>%</th>
@@ -135,15 +148,15 @@ function balSheet(data) {
     </table>`;
 
   $(function() {
-      for (var i = 0; i < data.lsparkline1.slice(1).length; i++) {
-        console.log(`sparklinebal:`, i, data.lsparkline1.slice(1)[i].slice(1, -1));
-        $('.bal'+(i+1)).sparkline(data.lsparkline1.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+      for (var i = 0; i < data.sparkline.bal.slice(1).length; i++) {
+        // console.log(`sparklinebal:`, i, data.sparkline.bal.slice(1)[i].slice(1, -1));
+        $('.bal'+(i+1)).sparkline(data.sparkline.bal.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
         minSpotColor: '#00ff00',
         maxSpotColor: '#ff0000'});
       }
   });
 
-    var table3 =$('#report3').DataTable({
+    $('#report3').DataTable({
         colReorder: true,
         scrollY:        820,
         scrollX:        true,
@@ -158,8 +171,10 @@ function balSheet(data) {
 
 }
 function cashFlow(data) {
-  var span = document.getElementById("cashflow");
-  span.innerHTML=`${data.tb1.cash}>>>${data.compid_report1}${data.compname1}`;
+  var statementCash = document.getElementById("statementCash");
+  statementCash.innerHTML=`${data.tb1.cash}`;
+  var companyIdCash = document.getElementById("companyIdCash");
+  companyIdCash.innerHTML=`>>>${data.companyId}${data.companyName}`;
   var innerThs = data.cashFlow[0].slice(1,-1).map(x =>`
     <th style='text-align: right;width: 100%;'>${x.value}</th>`);
   var thead = `
@@ -191,15 +206,15 @@ function cashFlow(data) {
     </table>`;
 
   $(function() {
-      for (var i = 0; i < data.lsparkline.slice(1).length; i++) {
-        console.log(`sparklinecash:`, i, data.lsparkline.slice(1)[i].slice(1, -1));
-        $('.inc'+(i+1)).sparkline(data.lsparkline.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
+      for (var i = 0; i < data.sparkline.cash.slice(1).length; i++) {
+        // console.log(`sparklinecash:`, i, data.sparkline.cash.slice(1)[i].slice(1, -1));
+        $('.inc'+(i+1)).sparkline(data.sparkline.cash.slice(1)[i].slice(1, -1), {width:'100px',height:'25px', spotColor: undefined,
         minSpotColor: '#00ff00',
         maxSpotColor: '#ff0000'});
       }
   });
 
-    var table4 =$('#cashFlowStatement').DataTable({
+    $('#cashFlowStatement').DataTable({
       colReorder: true,
       scrollY:        820,
       scrollX:        true,
@@ -213,12 +228,20 @@ function cashFlow(data) {
     });
 }
 </script>
-
+<script>
+$(document).ready(function(){
+  $(document).ajaxStart(function{
+    let div = document.getElementById("ajaxStart");
+    div.innerHTML=123;
+  })
+});
+</script>
 <script>
 $(function() {
     $('#rep1incform input[type="submit"]').on('click', function() {
         // $('#tabs a[href="#tabs-balance"]').click();
         console.log(0);
+        $('.loading').toggleClass("hidden")
         $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
         data: $(this).parent().serialize()
         }, function(data) {
@@ -232,6 +255,7 @@ $(function() {
             // inc
             $('#tabs a[href="#tabs-income"]').click();
             incStatement(data)
+            $('.loading').toggleClass("hidden")
         });
     return false;
     });
@@ -241,6 +265,7 @@ $(function() {
 $(function() {
     $('#rep1balform input[type="submit"]').on('click', function() {
         console.log(0);
+        $('.loading').toggleClass("hidden")
         // $('#tabs a[href="#tabs-income"]').click(); //need click before table draw so that fixedColumns can work
         $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
         data: $(this).parent().serialize()
@@ -255,6 +280,7 @@ $(function() {
             //bal
             $('#tabs a[href="#tabs-balance"]').click();
             balSheet(data)
+            $('.loading').toggleClass("hidden")
         });
     return false;
     });
@@ -264,12 +290,16 @@ $(function() {
 $(function() {
     $('#rep1cashform input[type="submit"]').on('click', function() {
         console.log(0);
+        $('.loading').toggleClass("hidden")
         // $('#tabs a[href="#tabs-income"]').click(); //need click before table draw so that fixedColumns can work
+
+
+
         $.getJSON($SCRIPT_ROOT + '/rep1ajax/', {
         data: $(this).parent().serialize()
         }, function(data) {
             console.log(1);
-            // inc
+            //inc
             $('#tabs a[href="#tabs-income"]').click();
             incStatement(data)
             //bal
@@ -278,6 +308,7 @@ $(function() {
             //cash
             $('#tabs a[href="#tabs-cashflow"]').click();
             cashFlow(data)
+            $('.loading').toggleClass("hidden")
         });
     return false;
     });
